@@ -1,0 +1,13 @@
+{
+  "itemGroup.player_activity": "Example Mod Tab",
+  "block.player_activity.example_block": "Example Block",
+  "item.player_activity.example_item": "Example Item",
+
+  "player_activity.configuration.title": "Player Activity Configs",
+  "player_activity.configuration.section.player_activity.common.toml": "Player Activity Configs",
+  "player_activity.configuration.section.player_activity.common.toml.title": "Player Activity Configs",
+  "player_activity.configuration.items": "Item List",
+  "player_activity.configuration.logDirtBlock": "Log Dirt Block",
+  "player_activity.configuration.magicNumberIntroduction": "Magic Number Text",
+  "player_activity.configuration.magicNumber": "Magic Number"
+}
