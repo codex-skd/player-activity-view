@@ -1,117 +1,138 @@
 package com.skd.playeractivity;
 
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
+import com.skd.playeractivity.config.ConfigClient;
+import com.skd.playeractivity.config.ConfigCommon;
+import com.skd.playeractivity.config.CustomArmCorrections;
+import com.skd.playeractivity.config.ServerSyncedConfig;
+import com.skd.playeractivity.network.PacketNBTFromClient;
+import com.skd.playeractivity.network.PacketNBTFromServer;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.players.PlayerList;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
+import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PlayerActivity.MODID)
 public class PlayerActivity {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "player_activity";
-    // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "player_activity" namespace
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "player_activity" namespace
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-    // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "player_activity" namespace
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+    public static String configJSONName = "player_activity-item-arm-adjustments.json";
 
-    // Creates a new Block with the id "player_activity:example_block", combining the namespace and path
-    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", p -> p.mapColor(MapColor.STONE));
-    // Creates a new BlockItem with the id "player_activity:example_block", combining the namespace and path
-    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+    private static PlayerStatusManagerClient playerStatusManagerClient;
+    private static PlayerStatusManagerServer playerStatusManagerServer;
+    private static PlayerActivity instance;
 
-    // Creates a new food item with the id "player_activity:example_id", nutrition 1 and saturation 2
-    public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", p -> p.food(new FoodProperties.Builder()
-            .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+    public static PlayerActivity instance() { return instance; }
 
-    // Creates a creative tab with the id "player_activity:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.player_activity")) //The language key for the title of your CreativeModeTab
-            .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
-            .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            }).build());
-
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public PlayerActivity(IEventBus modEventBus, ModContainer modContainer) {
-        // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
-
-        // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so tabs get registered
-        CREATIVE_MODE_TABS.register(modEventBus);
-
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (PlayerActivity) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
-        NeoForge.EVENT_BUS.register(this);
-
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
-
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    public static PlayerStatusManagerClient getPlayerStatusManagerClient() {
+        if (playerStatusManagerClient == null) playerStatusManagerClient = new PlayerStatusManagerClient();
+        return playerStatusManagerClient;
     }
 
-    private void commonSetup(FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
+    public static PlayerStatusManagerServer getPlayerStatusManagerServer() {
+        if (playerStatusManagerServer == null) playerStatusManagerServer = new PlayerStatusManagerServer();
+        return playerStatusManagerServer;
+    }
 
-        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
+    public PlayerActivity(ModContainer container) {
+        instance = this;
+
+        container.registerConfig(ModConfig.Type.COMMON, ConfigCommon.SPEC);
+        container.registerConfig(ModConfig.Type.CLIENT, ConfigClient.SPEC);
+        container.registerConfig(ModConfig.Type.SERVER, ServerSyncedConfig.SPEC);
+
+        new PlayerActivityNetworkingNeoForge();
+
+        container.getEventBus().addListener(this::setup);
+        container.getEventBus().addListener(this::registerPackets);
+
+        NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
+        NeoForge.EVENT_BUS.addListener(this::onPlayerJoin);
+
+        if (FMLEnvironment.getDist().isClient()) {
+            com.skd.playeractivity.loader.ClientEvents clientEvents = new com.skd.playeractivity.loader.ClientEvents();
+            container.getEventBus().addListener(clientEvents::getRegisteredParticles);
+            NeoForge.EVENT_BUS.addListener(clientEvents::onRegisterCommandsClient);
+            NeoForge.EVENT_BUS.addListener(clientEvents::onGameTick);
+            NeoForge.EVENT_BUS.addListener(clientEvents::onKey);
         }
 
-        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
+        generateJsonConfigFile(configJSONName);
+        CustomArmCorrections.loadJsonConfigs();
     }
 
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(EXAMPLE_BLOCK_ITEM);
+    private void setup(FMLCommonSetupEvent event) {}
+
+    public void registerPackets(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar("1.0.0");
+        PlayerActivityNetworkingNeoForge.register(registrar);
+    }
+
+    public PlayerList getPlayerList() {
+        return ServerLifecycleHooks.getCurrentServer() == null ? null : ServerLifecycleHooks.getCurrentServer().getPlayerList();
+    }
+
+    public boolean isModInstalled(String modID) {
+        return ModList.get().isLoaded(modID);
+    }
+
+    public float getFarPlane() {
+        return 250.0F;
+    }
+
+    public void onPlayerTick(PlayerTickEvent.Post event) {
+        if (event.getEntity().level().isClientSide()) {
+            getPlayerStatusManagerClient().tickPlayer(event.getEntity());
+        } else {
+            getPlayerStatusManagerServer().tickPlayer(event.getEntity());
         }
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+    public void onPlayerJoin(PlayerLoggedInEvent event) {
+        getPlayerStatusManagerServer().playerLoggedIn(event.getEntity());
     }
+
+    public static void generateJsonConfigFile(String filename) {
+        String filePath = "config/" + filename;
+        String contents = getContentsFromResourceLocation(Identifier.fromNamespaceAndPath(MODID, filePath));
+        if (!contents.isEmpty()) {
+            File fileOut = new File("./config/" + filename);
+            if (!fileOut.exists()) {
+                try {
+                    FileUtils.writeStringToFile(fileOut, contents, StandardCharsets.UTF_8);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static String getContentsFromResourceLocation(Identifier loc) {
+        try {
+            String str = "assets/" + loc.toString().replace(":", "/");
+            InputStream in = PlayerActivity.class.getClassLoader().getResourceAsStream(str);
+            if (in == null) return "";
+            return new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public static void dbg(Object obj) {}
 }
