@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "package": "com.skd.playeractivityview.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "player_activity_view.refmap.json",
+  "client": [],
+  "mixins": [],
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "minVersion": "0.8"
+}

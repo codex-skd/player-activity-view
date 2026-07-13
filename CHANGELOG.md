@@ -1,10 +1,10 @@
 # Changelog
 
-## [0.0.0-beta.1] - 2025-07-13
+## [0.0.0-beta.2] - 2025-07-13
 
 ### Added
-- Complete fork and rewrite of WATUT (What Are They Up To) mod as **Player Activity**
-- All code fully rewritten under `com.skd.playeractivity` package — zero traces of original code
+- Complete fork and rewrite of WATUT (What Are They Up To) mod as **Player Activity View View**
+- All code fully rewritten under `com.skd.playeractivityview` package — zero traces of original code
 - Player status detection: typing, GUI interaction, idle states
 - In-world particle indicators above player heads showing GUI type and chat state
 - 34 custom particle textures: inventory, chest, crafting table, furnace, enchanting table, anvil, beacon, brewing stand, dispenser, grindstone, hopper, horse, loom, villager, command block, sign, book, chat typing/idle animations, idle indicator
@@ -21,20 +21,20 @@
 - "Player is typing..." display in chat
 - Screen open/close sound effects and mouse click sounds
 - Three-tier config system: Common, Client, Server-synced
-- Hugo-style command `/player_activity reloadJSON` to reload arm adjustments
+- Hugo-style command `/player_activity_view reloadJSON` to reload arm adjustments
 - Access transformers for required private Minecraft fields
 - Custom shader pipeline (particle, Gaussian blur with circular vignette)
 - New logo and full asset set rebranded from original
 
 ### Changed
-- **Package**: `com.corosus.watut` → `com.skd.playeractivity`
-- **Mod ID**: `watut` → `player_activity`
-- **Mod Name**: "What Are They Up To" → "Player Activity"
+- **Package**: `com.corosus.watut` → `com.skd.playeractivityview`
+- **Mod ID**: `watut` → `player_activity_view`
+- **Mod Name**: "What Are They Up To" → "Player Activity View View"
 - **Dependency**: Removed CoroUtil dependency — now fully self-contained
 - **Config system**: Replaced CoroConfigRegistry with NeoForge ModConfigSpec
 - **Logging**: Replaced CULog with SLF4J
 - **Networking**: Updated to modern NeoForge payload API
-- All resource locations renamed from `watut:*` to `player_activity:*`
+- All resource locations renamed from `watut:*` to `player_activity_view:*`
 
 ### Removed
 - All original WATUT source code traces (package `com.corosus.watut`)
