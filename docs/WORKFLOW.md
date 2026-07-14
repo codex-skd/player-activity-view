@@ -152,23 +152,27 @@ git push
 ### 2. Preparar versión para CurseForge
 
 ```bash
-# 1. Actualizar versión en gradle.properties
+# 1. Compilar con clean para evitar caché corrupta
+./gradlew.bat clean build
+
+# 2. Actualizar versión en gradle.properties
 #    mod_version=0.0.0-beta.3
 
-# 2. Crear release notes
+# 3. Crear release notes
 #    docs/versions/0.0.0-beta.3.md
 
-# 3. Actualizar CHANGELOG.md
+# 4. Actualizar CHANGELOG.md
 
-# 4. Commit del bump de versión
+# 5. Commit del bump de versión
 git add -A
 git commit -m "chore: bump version to 0.0.0-beta.3"
 
-# 5. Tag para CurseForge
+# 6. Tag para CurseForge
 git tag -a curseforge-beta.3 -m "v0.0.0-beta.3: Bugfix release"
 git push origin curseforge-beta.3
 
-# 6. Subir JAR a CurseForge manualmente
+# 7. Subir JAR a CurseForge manualmente
+#    El JAR está en build/libs/<mod_id>-<version>.jar
 ```
 
 ### 3. Release estable
@@ -188,3 +192,4 @@ git push origin curseforge-1.0.0
 - **Commit y push después de cada cambio funcional**: no esperar a tener todo terminado
 - **Versionar antes de subir a CurseForge**: el tag debe apuntar al commit exacto del JAR que se sube
 - **CHANGELOG.md siempre actualizado**: reflejar todos los cambios de cada versión
+- **Siempre hacer `clean build` antes de generar el JAR final**: la caché de Gradle puede dejar artefactos obsoletos o corruptos que no se detectan en compilaciones incrementales; `clean` fuerza una compilación desde cero
