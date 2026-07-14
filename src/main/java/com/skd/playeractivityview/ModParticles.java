@@ -5,6 +5,8 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 
 public class ModParticles {
+    public static List<SpriteInfo> particles = new ArrayList<>();
+
     public static SpriteInfo inventory = add("inventory_", 3, 0);
     public static SpriteInfo chest = add("chest_", 3, 0);
     public static SpriteInfo crafting = add("crafting_", 3, 0);
@@ -26,8 +28,6 @@ public class ModParticles {
     public static SpriteInfo chat_idle = add("chat_idle_", 2, 6);
     public static SpriteInfo chat_typing = add("chat_typing_", 6, 2);
     public static SpriteInfo idle = add("idle");
-
-    public static List<SpriteInfo> particles = new ArrayList<>();
 
     private static SpriteInfo add(String name) { return add(name, 0, 0); }
 
