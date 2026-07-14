@@ -3,7 +3,9 @@
   "package": "com.skd.playeractivityview.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "player_activity_view.refmap.json",
-  "client": [],
+  "client": [
+    "client.PostChainResizeMixin"
+  ],
   "mixins": [],
   "injectors": {
     "defaultRequire": 0

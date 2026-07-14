@@ -11,8 +11,8 @@ description='''
 Lets you see what other players are doing - typing, in a GUI, idle - with cool in-game visuals. A complete rewrite and modernization of the original WATUT mod.
 '''
 
-#[[mixins]]
-#config="${mod_id}.mixins.json"
+[[mixins]]
+config="${mod_id}.mixins.json"
 
 [[dependencies.${mod_id}]]
     modId="neoforge"
