@@ -4,10 +4,20 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "player_activity_view.refmap.json",
   "client": [
-    "client.PostChainResizeMixin"
+    "client.PostChainResizeMixin",
+    "client.GuiExtractRenderStateMixin",
+    "client.ExtractPingIconInjectMixin",
+    "client.ScreenExtractBackgroundMixin",
+    "client.ScreenExtractRenderStateWithTooltipMixin",
+    "client.GameRendererPreloadUiShaderMixin",
+    "client.NativeImageAccessorMixin",
+    "client.ParticleEngineMixin",
+    "client.EntityRenderStateTrackerMixin",
+    "client.SetupAnimInjectMixin"
   ],
   "mixins": [
-    "BlockBehaviorUseMixin"
+    "BlockBehaviorUseMixin",
+    "AbstractContainerMenuDoClickMixin"
   ],
   "injectors": {
     "defaultRequire": 0

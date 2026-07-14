@@ -136,4 +136,14 @@ public class PlayerActivity {
     }
 
     public static void dbg(Object obj) {}
+
+    private static net.minecraft.server.packs.resources.ResourceProvider shaderResourceProvider;
+
+    public static void initCustomShaders(net.minecraft.server.packs.resources.ResourceProvider resourceProvider) {
+        shaderResourceProvider = resourceProvider;
+    }
+
+    public static net.minecraft.server.packs.resources.ResourceProvider getShaderResourceProvider() {
+        return shaderResourceProvider;
+    }
 }

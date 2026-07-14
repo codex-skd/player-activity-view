@@ -1,6 +1,29 @@
 # Changelog
 
-## [0.0.0-beta.2] - 2025-07-13
+## [0.0.0-beta.6] - 2025-07-14
+
+### Added (Phase 2)
+- Tab list idle indicator: shows "ZZZ" next to idle players in the player list
+- Typing overlay: shows "Player is typing..." text on screen when others are typing
+- Screen background cancellation: hides inventory background when player is idle
+- Screen capture hook: connected screen extraction pipeline for dynamic GUI rendering
+- Shader initialization: hooked into GameRenderer.preloadUiShader for custom shaders
+- Custom particle engine ticking: synced with vanilla ParticleEngine.tick()
+- Container click tracking: server-side inventory snapshot on container clicks
+- Arm animations: hooked into HumanoidModel.setupAnim() via EntityRenderState->UUID tracking
+- `EntityRenderStateTracker`: maps EntityRenderState objects to their source player UUID for animation lookup
+
+### Changed
+- All Phase 2 mixins rewritten for Minecraft 26.1.2 (1.21.4) new rendering pipeline
+  - `extractRenderState`/`extractPingIcon` instead of old `render` methods
+  - `setupAnim(HumanoidRenderState)` instead of `setupRotations(Entity, ...)`
+  - `extractBackground`/`extractRenderStateWithTooltipAndSubtitles` instead of `renderBackground`
+  - `GuiGraphicsExtractor` replaces `GuiGraphics`/`PoseStack`
+- Version bumped to 0.0.0-beta.6
+
+### Technical
+- Mixins use `remap = false` for all 1.21.4-native methods (Mojang-mapped runtime, no SRG needed)
+- Arm animation uses EntityRenderStateTracker (IdentityHashMap<EntityRenderState, UUID>) to bridge extraction and submission phases
 
 ### Added
 - Complete fork and rewrite of WATUT (What Are They Up To) mod as **Player Activity View View**

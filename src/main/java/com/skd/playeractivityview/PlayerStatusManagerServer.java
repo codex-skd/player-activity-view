@@ -144,6 +144,12 @@ public class PlayerStatusManagerServer extends PlayerStatusManager {
     public void doClickPre(AbstractContainerMenu menu, int slotId, int button, Object clickType, Player player) {
     }
 
+    public void onContainerClick(Player player, int slotIndex) {
+        if (player.containerMenu != null && ServerSyncedConfig.SHOW_ITEMS_TRANSFERRED.get()) {
+            makeNewInventorySnapshot(player.containerMenu, player);
+        }
+    }
+
     public void useBlock(Player player, BlockPos pos) {
         if (ServerSyncedConfig.SHOW_ITEMS_TRANSFERRED.get() && !FakePlayerHelper.isFakePlayer(player)) {
             PlayerStatus ps = getStatus(player);

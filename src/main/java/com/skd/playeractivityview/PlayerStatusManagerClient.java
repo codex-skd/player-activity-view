@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.UUID;
 import java.util.Map.Entry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -47,11 +48,16 @@ import net.minecraft.client.gui.screens.inventory.LoomScreen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -65,6 +71,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public class PlayerStatusManagerClient extends PlayerStatusManager {
     private static final int SCREEN_TYPING_CHAR_LIMIT = 50;
@@ -340,7 +347,14 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         }
     }
 
-    public void onGuiRender() {
+    public void onGuiRender(GuiGraphicsExtractor graphics) {
+        if (Minecraft.getInstance().level == null || Minecraft.getInstance().player == null) return;
+        if (!ConfigClient.SCREEN_TYPING_VISIBLE.get()) return;
+        String typingText = getTypingPlayers();
+        if (typingText.isEmpty()) return;
+        int x = 2 + ConfigClient.SCREEN_TYPING_RELATIVE_POSITION_X.get();
+        int y = Minecraft.getInstance().getWindow().getGuiScaledHeight() - 40 + ConfigClient.SCREEN_TYPING_RELATIVE_POSITION_Y.get();
+        graphics.text(Minecraft.getInstance().font, typingText, x, y, 0xFFFFFF);
     }
 
     private String getTypingPlayers() {
@@ -485,11 +499,43 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         if (psPrev.getTicksSinceLastAction() != ps.getTicksSinceLastAction()) psPrev.setTicksSinceLastAction(ps.getTicksSinceLastAction());
     }
 
-    public boolean renderPingIconHook(PlayerTabOverlay overlay, int x, int y, int z, PlayerInfo info) {
-        return false;
+    public void renderPingIconHook(GuiGraphicsExtractor graphics, int slotWidth, int xo, int yo, PlayerInfo info) {
+        if (!ConfigClient.SHOW_IDLE_STATES_IN_PLAYER_LIST.get() || info == null || info.getProfile() == null) return;
+        UUID uuid = info.getProfile().id();
+        if (uuid == null) return;
+        PlayerStatus ps = lookupPlayerToStatus.get(uuid);
+        if (ps != null && ps.isIdle()) {
+            graphics.text(Minecraft.getInstance().font, "ZZZ", xo + slotWidth - 22, yo, 0xAAAAAA);
+        }
     }
 
-    public void setupRotationsHook(EntityModel model, Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void onSetupAnim(HumanoidModel<?> model, HumanoidRenderState state) {
+        java.util.UUID uuid = com.skd.playeractivityview.render.EntityRenderStateTracker.get(state);
+        if (uuid == null) return;
+        PlayerStatus ps = lookupPlayerToStatus.get(uuid);
+        if (ps == null) return;
+        if (!ps.isLerping()) return;
+        float partial = state.partialTick;
+        ps.lastPartialTick = partial;
+        Lerpables target = ps.getLerpTarget();
+        Lerpables prev = ps.getLerpPrev();
+        float lerp = ps.getPartialLerp(partial);
+        if (ps.isPressing()) {
+            model.rightArm.x = prev.rightArm.x + (target.rightArm.x - prev.rightArm.x) * lerp;
+            model.rightArm.y = prev.rightArm.y + (target.rightArm.y - prev.rightArm.y) * lerp;
+            model.rightArm.z = prev.rightArm.z + (target.rightArm.z - prev.rightArm.z) * lerp;
+        } else {
+            model.rightArm.x = 0; model.rightArm.y = 0; model.rightArm.z = 0;
+        }
+        model.rightArm.xRot = prev.rightArm.xRot + (target.rightArm.xRot - prev.rightArm.xRot) * lerp;
+        model.rightArm.yRot = prev.rightArm.yRot + (target.rightArm.yRot - prev.rightArm.yRot) * lerp;
+        model.rightArm.zRot = prev.rightArm.zRot + (target.rightArm.zRot - prev.rightArm.zRot) * lerp;
+        model.leftArm.xRot = prev.leftArm.xRot + (target.leftArm.xRot - prev.leftArm.xRot) * lerp;
+        model.leftArm.yRot = prev.leftArm.yRot + (target.leftArm.yRot - prev.leftArm.yRot) * lerp;
+        model.leftArm.zRot = prev.leftArm.zRot + (target.leftArm.zRot - prev.leftArm.zRot) * lerp;
+        model.head.xRot = prev.head.xRot + (target.head.xRot - prev.head.xRot) * lerp;
+        model.head.yRot = prev.head.yRot + (target.head.yRot - prev.head.yRot) * lerp;
+        model.head.zRot = prev.head.zRot + (target.head.zRot - prev.head.zRot) * lerp;
     }
 
     public void setPoseTarget(UUID uuid, boolean becauseMousePress) {
@@ -793,5 +839,14 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
     }
 
     public void renderScreenCapture() {
+    }
+
+    public void onExtractBackground(CallbackInfo ci) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null || mc.level == null) return;
+        PlayerStatus local = getStatusLocal();
+        if (local.isIdle() && mc.screen != null && !(mc.screen instanceof ChatScreen)) {
+            ci.cancel();
+        }
     }
 }
