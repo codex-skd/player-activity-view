@@ -70,7 +70,8 @@ public class PlayerActivity {
             container.getEventBus().addListener(clientEvents::getRegisteredParticles);
             NeoForge.EVENT_BUS.addListener(clientEvents::onRegisterCommandsClient);
             NeoForge.EVENT_BUS.addListener(clientEvents::onGameTick);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onKey);
+            NeoForge.EVENT_BUS.addListener(clientEvents::onMouseEvent);
+            NeoForge.EVENT_BUS.addListener(clientEvents::onKeyEvent);
         }
 
         generateJsonConfigFile(configJSONName);

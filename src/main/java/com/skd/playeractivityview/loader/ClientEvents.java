@@ -4,8 +4,8 @@ import com.skd.playeractivityview.CommandReloadConfig;
 import com.skd.playeractivityview.PlayerActivity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 public class ClientEvents {
     public void getRegisteredParticles(net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event) {}
@@ -21,7 +21,15 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public void onKey(PlayerInteractEvent.LeftClickEmpty event) {
-        PlayerActivity.getPlayerStatusManagerClient().onKey();
+    public void onMouseEvent(InputEvent.MouseButton.Post event) {
+        boolean pressed = event.getAction() == 1;
+        PlayerActivity.getPlayerStatusManagerClient().onMouse(pressed);
+    }
+
+    @SubscribeEvent
+    public void onKeyEvent(InputEvent.Key event) {
+        if (event.getAction() == 1) { // PRESS
+            PlayerActivity.getPlayerStatusManagerClient().onKey();
+        }
     }
 }
