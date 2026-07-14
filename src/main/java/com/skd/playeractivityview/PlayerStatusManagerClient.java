@@ -89,7 +89,11 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
     public static ParticleEngineCustom getParticleEngine() {
         if (customParticleEngine == null) {
             customParticleEngine = new ParticleEngineCustom(Minecraft.getInstance().level, Minecraft.getInstance().getTextureManager());
-            ((ReloadableResourceManager)Minecraft.getInstance().getResourceManager()).registerReloadListener(customParticleEngine);
+            try {
+                ((ReloadableResourceManager)Minecraft.getInstance().getResourceManager()).registerReloadListener(customParticleEngine);
+            } catch (Exception e) {
+                // ModernFix freezes the listener list after reload; skip registration at runtime
+            }
         }
         return customParticleEngine;
     }
