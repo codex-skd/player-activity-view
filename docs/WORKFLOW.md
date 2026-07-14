@@ -186,6 +186,64 @@ git push origin curseforge-1.0.0
 
 ---
 
+## Mixins
+
+Los mixins se declaran en `<mod_id>.mixins.json` y se habilitan en `neoforge.mods.toml`:
+
+```toml
+[[mixins]]
+config="${mod_id}.mixins.json"
+```
+
+### Reglas para mixins
+
+- Usar `require = 0` en métodos que pueden no existir en todas las versiones de Minecraft
+- Si un mixin no compila porque el método objetivo no existe en la versión actual, **eliminarlo** y buscar alternativas (eventos NeoForge, APIs públicas)
+- Preferir eventos NeoForge sobre mixins cuando sea posible
+- Los mixins de client van en `mixin/client/`, los comunes en `mixin/`
+
+### Mixins actuales implementados
+
+| Mixin | Target | Propósito |
+|-------|--------|-----------|
+| `PostChainResizeMixin` | `PostChain.resize` | Redimensionar `ScreenParticleRenderer` |
+| `BlockBehaviorUseMixin` | `Block.useItemOn` | Registrar bloque abierto para inventory tracking |
+
+### Mixins pendientes (Fase 2 y 3)
+
+| Mixin | Fase | Estado |
+|-------|------|--------|
+| `SetupRotationsInjectMixin` | Fase 2 | Pendiente |
+| `RenderPingIconInjectMixin` | Fase 2 | Pendiente |
+| `GuiRenderMixin` | Fase 2 | Pendiente |
+| `ScreenRenderBackgroundMixin` | Fase 2 | Pendiente |
+| `ScreenRenderWithTooltipMixin` | Fase 2 | Pendiente |
+| `ParticleEngineMixin` | Fase 3 | Pendiente |
+| `AbstractContainerMenuDoClickMixin` | Fase 3 | Pendiente |
+| `GameRendererReloadShadersMixin` | Fase 3 | Pendiente |
+
+## Implementación por fases
+
+El desarrollo se organiza en fases, cada una con su propio commit y testeo:
+
+### Fase 1 — Mixins básicos e input (bajo esfuerzo)
+- PostChainResize, BlockBehaviorUse, input events
+- **Commit por feature**, testear antes de pasar a la siguiente
+
+### Fase 2 — Animaciones y overlay (medio esfuerzo)
+- Arm animations, idle en tab list, typing overlay, screen background
+- Requiere restaurar mixins + implementar hooks
+
+### Fase 3 — Sistema completo (alto esfuerzo)
+- ParticleEngine integration, inventory diff, shaders, screen capture
+- Mayor riesgo por cambios de API en Minecraft 26.1.2
+
+## Testeo
+
+- **Después de cada fase**: copiar JAR a la instancia de pruebas y verificar funcionamiento básico
+- **No avanzar a la siguiente feature hasta que la actual esté verificada**
+- Si una feature no funciona, revertir el commit y analizar alternativa
+
 ## Buenas prácticas
 
 - **Un commit por cambio lógico**: no acumular múltiples cambios en un solo commit
@@ -193,3 +251,12 @@ git push origin curseforge-1.0.0
 - **Versionar antes de subir a CurseForge**: el tag debe apuntar al commit exacto del JAR que se sube
 - **CHANGELOG.md siempre actualizado**: reflejar todos los cambios de cada versión
 - **Siempre hacer `clean build` antes de generar el JAR final**: la caché de Gradle puede dejar artefactos obsoletos o corruptos que no se detectan en compilaciones incrementales; `clean` fuerza una compilación desde cero
+
+## Idioma
+
+| Ámbito | Idioma |
+|--------|--------|
+| Código, commits, documentación interna, GitLab | **Castellano** (es-ES) |
+| CurseForge (descripción del proyecto, release notes) | **Inglés** (en-US) |
+
+El proyecto se dirige a la comunidad hispanohablante, pero CurseForge es una plataforma global donde el inglés es el idioma estándar para llegar a la mayor audiencia posible.
