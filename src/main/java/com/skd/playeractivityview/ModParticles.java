@@ -40,7 +40,11 @@ public class ModParticles {
     public static void textureAtlasUpload(TextureAtlas atlas) {
         if (atlas.location().equals(TextureAtlas.LOCATION_PARTICLES)) {
             for (SpriteInfo info : particles) {
-                info.setupSprites(atlas);
+                try {
+                    info.setupSprites(atlas);
+                } catch (Exception e) {
+                    // Sprite may not be available yet
+                }
             }
         }
     }

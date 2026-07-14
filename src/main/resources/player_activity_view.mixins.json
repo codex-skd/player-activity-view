@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "player_activity_view.refmap.json",
   "client": [
-    "client.PostChainResizeMixin",
-    "client.TextureAtlasUploadMixin"
+    "client.PostChainResizeMixin"
   ],
   "mixins": [
     "BlockBehaviorUseMixin"

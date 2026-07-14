@@ -94,6 +94,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
             } catch (Exception e) {
                 // ModernFix freezes the listener list after reload; skip registration at runtime
             }
+
         }
         return customParticleEngine;
     }
