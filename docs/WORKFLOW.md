@@ -1,6 +1,6 @@
-# Flujo de trabajo — Armor Cosmetic (NeoForge)
+# Flujo de trabajo — Player Activity View (NeoForge)
 
-> Este archivo pertenece al proyecto **Armor Cosmetic**. Cada proyecto tiene su propio `WORKFLOW.md`.
+> Este archivo pertenece al proyecto **Player Activity View**. Cada proyecto tiene su propio `WORKFLOW.md`.
 > No es un archivo central ni template compartido. Los cambios aquí solo afectan a este proyecto.
 
 ## Estructura del proyecto
@@ -109,16 +109,18 @@ El changelog se envía en formato **HTML**, no Markdown. Aunque CurseForge acept
 #### Ejemplo de estructura HTML para release notes
 
 ```html
-<h2>v1.0.21 - Tombstone Compatibility: Real Armor Captured</h2>
+<h2>v0.0.0-beta.7 - WORKFLOW.md alignment and JAR naming</h2>
 
-<h3>Fix</h3>
+<h3>Changed</h3>
 <ul>
-<li><strong>Real armor lost on death with Tombstone</strong>: The player&#8217;s real armor is now added to <code>LivingDropsEvent</code> alongside cosmetic armor.</li>
+<li><strong>JAR naming</strong>: aligned to <code>&lt;mod_id&gt;-&lt;minecraft_version&gt;-&lt;framework&gt;-&lt;version&gt;.jar</code></li>
+<li><strong>Branch structure</strong>: <code>minecraft/&lt;mc-version&gt;/neoforge-&lt;neo-version&gt;/production</code></li>
+<li><strong>Tag format</strong>: <code>&lt;mc-version&gt;-neoforge-beta.X</code></li>
 </ul>
 
 <h3>Technical Changes</h3>
 <ul>
-<li><code>InventoryManager.handlePlayerDrops()</code> now iterates the player&#8217;s armor slots...</li>
+<li><code>docs/WORKFLOW.md</code> synchronized with project conventions</li>
 </ul>
 ```
 
@@ -186,7 +188,7 @@ El JAR generado sigue el formato `<mod_id>-<minecraft_version>-<framework>-<mod_
 
 | Ejemplo | Significado |
 |---------|-------------|
-| `player_animation_core-26.1.2-neoforge-0.0.0-beta.21.jar` | NeoForge 26.1.2, beta 21 |
+| `player_activity_view-26.1.2-neoforge-0.0.0-beta.7.jar` | NeoForge 26.1.2, beta 7 |
 
 El framework puede ser `neoforge`, `forge` o `fabric` según corresponda. Se configura en `build.gradle`:
 
@@ -249,7 +251,7 @@ Cada vez que se sube una versión a CurseForge se debe crear un tag en GitLab.
 
 | Estado | Formato | Ejemplo |
 |--------|---------|---------|
-| Beta | `<mc-version>-neoforge-beta.X` | `26.1.2-neoforge-beta.21` |
+| Beta | `<mc-version>-neoforge-beta.X` | `26.1.2-neoforge-beta.7` |
 | Release | `<mc-version>-neoforge-X.Y.Z` | `26.1.2-neoforge-1.0.0` |
 
 El prefijo `<mc-version>-neoforge` se adapta según la versión de Minecraft y el framework de la rama actual.
@@ -258,8 +260,8 @@ El prefijo `<mc-version>-neoforge` se adapta según la versión de Minecraft y e
 
 ```bash
 # Beta
-git tag -a 26.1.2-neoforge-beta.21 -m "v0.0.0-beta.21: Update WORKFLOW.md"
-git push origin 26.1.2-neoforge-beta.21
+git tag -a 26.1.2-neoforge-beta.7 -m "v0.0.0-beta.7: WORKFLOW.md alignment and JAR naming"
+git push origin 26.1.2-neoforge-beta.7
 
 # Release estable
 git tag -a 26.1.2-neoforge-1.0.0 -m "v1.0.0: First stable release"
