@@ -40,6 +40,23 @@
 
 ---
 
+## Ramas
+
+### Estructura
+
+| Rama | Propósito |
+|------|-----------|
+| `main` | Vacía. Solo contiene un commit inicial. No se usa para desarrollo |
+| `minecraft/<mc-version>/neoforge-<neo-version>/production` | Rama de trabajo para una versión específica de Minecraft/NeoForge |
+
+### Ejemplos
+
+| Rama | Versión |
+|------|---------|
+| `minecraft/26.1.2/neoforge-26.1.2.78/production` | Minecraft 26.1.2, NeoForge 26.1.2.78 |
+
+---
+
 ## Versionado
 
 ### Esquema
@@ -71,8 +88,9 @@ El JAR generado sigue el formato `<mod_id>-<minecraft_version>-<framework>-<mod_
 
 | Ejemplo | Significado |
 |---------|-------------|
+| `player_activity_view-1.21.1-neoforge-0.0.0-beta.2.jar` | NeoForge 1.21.1, beta 2 |
+| `player_activity_view-1.21.1-neoforge-1.0.0.jar` | NeoForge 1.21.1, release 1.0.0 |
 | `player_activity_view-26.1.2-neoforge-0.0.0-beta.6.jar` | NeoForge 26.1.2, beta 6 |
-| `player_activity_view-26.1.2-neoforge-1.0.0.jar` | NeoForge 26.1.2, release 1.0.0 |
 
 El framework puede ser `neoforge`, `forge` o `fabric` según corresponda. Se configura en `build.gradle`:
 
@@ -135,14 +153,21 @@ Cada vez que se sube una versión a CurseForge se debe crear un tag en GitLab.
 
 | Estado | Formato | Ejemplo |
 |--------|---------|---------|
-| Beta | `curseforge-beta.X` | `curseforge-beta.1`, `curseforge-beta.2` |
-| Release | `curseforge-X.Y.Z` | `curseforge-1.0.0`, `curseforge-1.2.3` |
+| `26.1.2-neoforge-beta.1` | `26.1.2-neoforge-beta.1`, `26.1.2-neoforge-beta.2` |
+| Release | `26.1.2-neoforge-X.Y.Z` | `26.1.2-neoforge-1.0.0`, `26.1.2-neoforge-1.2.3` |
 
-### Ejemplo
+El prefijo `<mc-version>-neoforge` se adapta según la versión de Minecraft y el framework de la rama actual.
+
+### Ejemplos
 
 ```bash
-git tag -a curseforge-beta.1 -m "v0.0.0-beta.1: Initial release"
-git push origin curseforge-beta.1
+# Beta
+git tag -a 26.1.2-neoforge-beta.15 -m "v0.0.0-beta.15: Updated WORKFLOW.md"
+git push origin 26.1.2-neoforge-beta.15
+
+# Release estable
+git tag -a 26.1.2-neoforge-1.0.0 -m "v1.0.0: First stable release"
+git push origin 26.1.2-neoforge-1.0.0
 ```
 
 ---
@@ -152,6 +177,9 @@ git push origin curseforge-beta.1
 ### 1. Desarrollo
 
 ```bash
+# Situarse en la rama de la versión correspondiente
+git checkout minecraft/26.1.2/neoforge-26.1.2.78/production
+
 # Hacer cambios en el código
 # Compilar para verificar
 ./gradlew.bat build
@@ -176,7 +204,7 @@ git push
 #    mod_version=0.0.0-beta.3
 
 # 3. Crear release notes
-#    docs/versions/0.0.0-beta.3.md
+#    docs/curseforge/versions/0.0.0-beta.3.md
 
 # 4. Actualizar CHANGELOG.md
 
@@ -189,7 +217,7 @@ git tag -a curseforge-beta.3 -m "v0.0.0-beta.3: Bugfix release"
 git push origin curseforge-beta.3
 
 # 7. Subir JAR a CurseForge manualmente
-#    El JAR está en build/libs/<mod_id>-<minecraft_version>-neoforge-<version>.jar
+#    El JAR está en build/libs/<mod_id>-<minecraft_version>-<framework>-<version>.jar
 ```
 
 ### 3. Release estable
