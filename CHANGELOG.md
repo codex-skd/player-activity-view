@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.0-beta.7] - 2025-07-16
+
+### Changed
+- JAR naming: `<mod_id>-<minecraft_version>-<framework>-<version>.jar`
+- Branch structure: `minecraft/<mc-version>/neoforge-<neo-version>/production`
+- Tag format: `<mc-version>-neoforge-beta.X`
+- WORKFLOW.md synchronized with player_animation_core conventions
+- Commit language set to English
+
+### Technical
+- All project documentation aligned across repositories
+
 ## [0.0.0-beta.6] - 2025-07-14
 
 ### Added (Phase 2)
