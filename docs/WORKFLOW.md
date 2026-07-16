@@ -65,6 +65,23 @@ La versión se define en `gradle.properties`:
 mod_version=0.0.0-beta.1
 ```
 
+### Nombre del JAR
+
+El JAR generado sigue el formato `<mod_id>-<minecraft_version>-<framework>-<mod_version>.jar`:
+
+| Ejemplo | Significado |
+|---------|-------------|
+| `player_activity_view-26.1.2-neoforge-0.0.0-beta.6.jar` | NeoForge 26.1.2, beta 6 |
+| `player_activity_view-26.1.2-neoforge-1.0.0.jar` | NeoForge 26.1.2, release 1.0.0 |
+
+El framework puede ser `neoforge`, `forge` o `fabric` según corresponda. Se configura en `build.gradle`:
+
+```groovy
+base {
+    archivesName = "${mod_id}-${minecraft_version}-neoforge"
+}
+```
+
 ---
 
 ## Commits (Conventional Commits)
@@ -172,7 +189,7 @@ git tag -a curseforge-beta.3 -m "v0.0.0-beta.3: Bugfix release"
 git push origin curseforge-beta.3
 
 # 7. Subir JAR a CurseForge manualmente
-#    El JAR está en build/libs/<mod_id>-<version>.jar
+#    El JAR está en build/libs/<mod_id>-<minecraft_version>-neoforge-<version>.jar
 ```
 
 ### 3. Release estable
