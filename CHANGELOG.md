@@ -1,8 +1,20 @@
 # Changelog
 
-## [0.0.0-beta.7] - 2025-07-16
+## [0.0.0-beta.8] - 2026-07-21
 
 ### Changed
+- Workflow file renamed to `WORKFLOW_PLAYER_ACTIVITY_VIEW_26-1-2.md`
+- Templates moved from `src/main/templates/` to `src/main/resources/templates/`
+- Removed `TEMPLATE_LICENSE.txt`
+- Added `temp/` directory (gitignored)
+- `build.gradle` template path updated
+
+### Technical
+- WORKFLOW updated to v1.0.0 (aligned with WORKFLOW_GENERIC)
+- Added CI/CD, Graphify, naming conventions, typography, fork attribution
+- Project structure now matches the generic template
+
+## [0.0.0-beta.7] - 2025-07-16
 - JAR naming: `<mod_id>-<minecraft_version>-<framework>-<version>.jar`
 - Branch structure: `minecraft/<mc-version>/neoforge-<neo-version>/production`
 - Tag format: `<mc-version>-neoforge-beta.X`
