@@ -1,6 +1,6 @@
 # Flujo de trabajo — Player Activity View (NeoForge)
 
-> **Versión del workflow**: 1.0.0 (codex-docs)
+> **Versión del workflow**: 1.1.0 (codex-docs)
 > Este archivo pertenece al proyecto **Player Activity View**. Cada proyecto tiene su propio `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`.
 > No es un archivo central ni template compartido. Los cambios aquí solo afectan a este proyecto.
 > Para actualizar este workflow, revisar la última versión en `codex-docs/WORKFLOW_GENERIC.md`.
@@ -91,6 +91,8 @@ Reglas:
 | `docs/curseforge/versions/<version>.md` | Release notes de cada versión que se sube a CurseForge. Solo se agrega cuando se va a publicar esa versión |
 
 Las variables de cada proyecto (project ID, API token, versiones de Minecraft/NeoForge/Java) se documentan en `docs/curseforge/project_vars.md`. No duplicar aquí.
+
+> El API token de CurseForge es el mismo para todos los mods (token de cuenta, no de proyecto). Se copia en cada `project_vars.md` individualmente.
 
 ### Formato de descripciones CurseForge
 
@@ -368,7 +370,8 @@ publish-public:
     - sed -i 's/^mod_version=.*/mod_version=0.0.0/' gradle.properties
     - sed -i 's/^mod_group_id=.*/mod_group_id=com\.skd\.placeholder/' gradle.properties
     - sed -i 's/^mod_curseforge_project_id=.*/mod_curseforge_project_id=/' gradle.properties
-    - sed -i 's/^mod_curseforge_token=.*/mod_curseforge_token=/' gradle.properties
+    # Nota: el API token de CurseForge está en docs/curseforge/project_vars.md,
+    # no en gradle.properties. No se sanitiza aquí porque GitLab es privado.
     - git add -A
     - |
       if ! git diff --cached --quiet; then
@@ -452,6 +455,13 @@ git push origin 26.1.2-neoforge-beta.3
 
 # PREGUNTAR: "¿Subir JAR a CurseForge ahora?"
 # JAR en: build/libs/<mod_id>-<minecraft_version>-<framework>-<version>.jar
+
+# 9. Subir a CurseForge usando el script compartido
+#    powershell -File ../codex-docs/scripts/curseforge-upload.ps1
+#
+#    Este script lee project_vars.md (project_id, api_token) y gradle.properties
+#    (mod_id, mod_name, mod_version) y sube el JAR automáticamente.
+#    Es el mismo script para todos los mods, vive en codex-docs.
 ```
 
 ### 5. Release estable
@@ -507,4 +517,5 @@ git push
 
 | Versión | Fecha | Cambios |
 |---|---|---|
+| 1.1.0 | 2026-07-21 | CI: eliminado `mod_curseforge_token` (nunca en gradle.properties). Script: displayName usa `mod_name`. Workflow: añadido paso de subida con el script compartido |
 | 1.0.0 | 2026-07-21 | Versión inicial: estructura, naming, tipografía, CI/CD, Graphify, fork attribution, temp/ |
