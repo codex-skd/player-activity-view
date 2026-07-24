@@ -11,7 +11,6 @@
     "client.ScreenExtractRenderStateWithTooltipMixin",
     "client.GameRendererPreloadUiShaderMixin",
     "client.NativeImageAccessorMixin",
-    "client.ParticleEngineMixin",
     "client.EntityRenderStateTrackerMixin",
     "client.SetupAnimInjectMixin"
   ],
