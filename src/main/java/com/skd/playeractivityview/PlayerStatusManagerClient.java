@@ -1,7 +1,6 @@
 package com.skd.playeractivityview;
 
 import com.mojang.datafixers.util.Pair;
-import com.skd.playeractivityview.client.ParticleEngineCustom;
 import com.skd.playeractivityview.client.screen.RenderHelper;
 import com.skd.playeractivityview.client.screen.ScreenParticleRenderer;
 import com.skd.playeractivityview.config.ConfigClient;
@@ -47,10 +46,10 @@ import net.minecraft.client.gui.screens.inventory.HorseInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.LoomScreen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.PlayerInfo;
+import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
@@ -58,7 +57,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -90,20 +88,10 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
     public ShaderInstanceBlur positionTexBlur;
     public ShaderInstanceBlur positionTexBlurHorizontal;
     public ShaderInstanceBlur positionTexBlurVertical;
-    private static ParticleEngineCustom customParticleEngine;
     private static final HashMap<String, Boolean> lookupPlayersReceivedLatestGUIRender = new HashMap<>();
 
-    public static ParticleEngineCustom getParticleEngine() {
-        if (customParticleEngine == null) {
-            customParticleEngine = new ParticleEngineCustom(Minecraft.getInstance().level, Minecraft.getInstance().getTextureManager());
-            try {
-                ((ReloadableResourceManager)Minecraft.getInstance().getResourceManager()).registerReloadListener(customParticleEngine);
-            } catch (Exception e) {
-                // ModernFix freezes the listener list after reload; skip registration at runtime
-            }
-
-        }
-        return customParticleEngine;
+    public static ParticleEngine getParticleEngine() {
+        return Minecraft.getInstance().particleEngine;
     }
 
     public void tickGame() {
@@ -514,28 +502,30 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         if (uuid == null) return;
         PlayerStatus ps = lookupPlayerToStatus.get(uuid);
         if (ps == null) return;
-        if (!ps.isLerping()) return;
-        float partial = state.partialTick;
-        ps.lastPartialTick = partial;
-        Lerpables target = ps.getLerpTarget();
-        Lerpables prev = ps.getLerpPrev();
-        float lerp = ps.getPartialLerp(partial);
-        if (ps.isPressing()) {
-            model.rightArm.x = prev.rightArm.x + (target.rightArm.x - prev.rightArm.x) * lerp;
-            model.rightArm.y = prev.rightArm.y + (target.rightArm.y - prev.rightArm.y) * lerp;
-            model.rightArm.z = prev.rightArm.z + (target.rightArm.z - prev.rightArm.z) * lerp;
-        } else {
-            model.rightArm.x = 0; model.rightArm.y = 0; model.rightArm.z = 0;
+        PlayerStatus.PlayerGuiState guiState = ps.getPlayerGuiState();
+        PlayerStatus.PlayerChatState chatState = ps.getPlayerChatState();
+        boolean isIdle = ps.isIdle();
+        boolean pointing = PlayerStatus.PlayerGuiState.isPointingGui(guiState) && ConfigClient.SHOW_PLAYER_ANIMATION_GUI.get();
+        boolean typing = chatState == PlayerStatus.PlayerChatState.CHAT_TYPING && ConfigClient.SHOW_PLAYER_ANIMATION_TYPING.get();
+
+        if (pointing) {
+            float xPercent = ps.getScreenPosPercentX();
+            float yPercent = ps.getScreenPosPercentY();
+            model.rightArm.xRot = (float)(-Math.toRadians(67.5) - yPercent * 0.5);
+            model.rightArm.yRot = (float)(-Math.toRadians(15) + xPercent * 0.5);
+            model.leftArm.xRot = (float)(-Math.toRadians(70));
+            model.leftArm.yRot = (float)Math.toRadians(25);
+            model.head.xRot = (float)(Math.toRadians(15) + yPercent * 0.3);
+            model.head.yRot = (float)(xPercent * 0.5);
+        } else if (typing) {
+            model.rightArm.xRot = (float)(-Math.toRadians(67.5));
+            model.leftArm.xRot = (float)(-Math.toRadians(67.5));
+            model.rightArm.yRot = (float)(-Math.toRadians(20));
+            model.leftArm.yRot = (float)Math.toRadians(20);
+            model.head.xRot = (float)Math.toRadians(15);
+        } else if (isIdle && ConfigClient.SHOW_PLAYER_ANIMATION_IDLE.get()) {
+            model.head.xRot = (float)Math.toRadians(70);
         }
-        model.rightArm.xRot = prev.rightArm.xRot + (target.rightArm.xRot - prev.rightArm.xRot) * lerp;
-        model.rightArm.yRot = prev.rightArm.yRot + (target.rightArm.yRot - prev.rightArm.yRot) * lerp;
-        model.rightArm.zRot = prev.rightArm.zRot + (target.rightArm.zRot - prev.rightArm.zRot) * lerp;
-        model.leftArm.xRot = prev.leftArm.xRot + (target.leftArm.xRot - prev.leftArm.xRot) * lerp;
-        model.leftArm.yRot = prev.leftArm.yRot + (target.leftArm.yRot - prev.leftArm.yRot) * lerp;
-        model.leftArm.zRot = prev.leftArm.zRot + (target.leftArm.zRot - prev.leftArm.zRot) * lerp;
-        model.head.xRot = prev.head.xRot + (target.head.xRot - prev.head.xRot) * lerp;
-        model.head.yRot = prev.head.yRot + (target.head.yRot - prev.head.yRot) * lerp;
-        model.head.zRot = prev.head.zRot + (target.head.zRot - prev.head.zRot) * lerp;
     }
 
     public void setPoseTarget(UUID uuid, boolean becauseMousePress) {

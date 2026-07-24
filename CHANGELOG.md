@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.0.0-beta.9] - 2026-07-24
+
+### Fix
+- Particles not visible: replaced custom ParticleEngine with vanilla ParticleEngine
+- Weird arm animations: simplified onSetupAnim to direct rotation computation
+
+### Removed
+- ParticleEngineCustom (dead code)
+- ParticleEngineMixin (no longer needed)
+
 ## [0.0.0-beta.8] - 2026-07-21
 
 ### Changed
