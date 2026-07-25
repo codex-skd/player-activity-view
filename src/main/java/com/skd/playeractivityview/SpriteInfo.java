@@ -19,11 +19,11 @@ public class SpriteInfo {
     }
 
     public void setupSprites(TextureAtlas atlas) {
-        sprite = atlas.getSprite(Identifier.fromNamespaceAndPath("player_activity_view", name));
+        sprite = atlas.getSprite(Identifier.fromNamespaceAndPath("player_activity_view", "particle/" + name));
         if (frames > 0) {
             TextureAtlasSprite[] sprites = new TextureAtlasSprite[frames];
             for (int i = 0; i < frames; i++) {
-                sprites[i] = atlas.getSprite(Identifier.fromNamespaceAndPath("player_activity_view", name + i));
+                sprites[i] = atlas.getSprite(Identifier.fromNamespaceAndPath("player_activity_view", "particle/" + name + i));
             }
             spriteSet = new SpriteSetPlayer(sprites, tickDelay);
         }
