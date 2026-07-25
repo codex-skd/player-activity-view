@@ -51,6 +51,7 @@ public abstract class ParticleRotating extends SingleQuadParticle {
     }
 
     protected void extractRotatedQuadForParticle(QuadParticleRenderState particleTypeRenderState, Quaternionf rotation, float x, float y, float z, float partialTickTime) {
+        if (sprite == null) return;
         particleTypeRenderState.add(
             getLayer(),
             x,
