@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.0-beta.10] - 2026-07-26
+
+### Fix
+- Critical crash: NullPointerException in ParticleRotating due to null sprite
+- Added null-safety check before particle quad extraction
+
 ## [0.0.0-beta.9] - 2026-07-24
 
 ### Fix
