@@ -42,7 +42,7 @@ Ejemplo: `26.1.2-neoforge-1.0.21`
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Player Activity View (0.0.0-beta.9)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Player Activity View (0.0.0-beta.11)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
 | `releaseType` | `release` o `beta` | Según el tipo de versión |
@@ -78,7 +78,7 @@ Ejemplo: `26.1.2-neoforge-1.0.21`
 import json, uuid, urllib.request
 
 boundary = uuid.uuid4().hex
-version = "0.0.0-beta.9"
+version = "0.0.0-beta.11"
 
 metadata = {
     "displayName": f"Player Activity View ({version})",

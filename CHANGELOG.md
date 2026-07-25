@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.0-beta.11] - 2026-07-26
+
+### Fix
+- Particle indicators now visible: textures moved to textures/particle/ for atlas
+- Sprite initialization wired in PlayerActivityClient
+- Crash prevention: null-safety in ParticleRotating
+
 ## [0.0.0-beta.10] - 2026-07-26
 
 ### Fix
