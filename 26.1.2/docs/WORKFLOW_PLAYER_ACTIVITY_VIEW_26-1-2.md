@@ -35,32 +35,30 @@ Reglas:
 Todos los mods siguen esta estructura en el directorio raíz (`Mods_Minecraft/`), tengan una o varias versiones de Minecraft:
 
 ```
-<mod_id>/                    # Carpeta padre del mod (solo organizativa, sin .git)
-└── <minecraft_version>/     # Proyecto real con su propio .git y repositorio GitLab
-    ├── .git/
-    ├── build.gradle
-    ├── gradle.properties
+<mod_id>/                      # Único repositorio Git (un solo .git/)
+└── <minecraft_version>/       # Solo existe en su rama: minecraft/<mc-version>/neoforge-<neo-version>/production
     ├── src/
     ├── docs/
     └── ...
 ```
 
+Cada versión de Minecraft es una **rama** dentro del mismo repositorio. La carpeta de cada versión **solo existe en su propia rama** — no hay rastro de otras versiones al cambiar de rama.
+
 Ejemplo para este proyecto:
 
 ```
-player_activity_view/
-└── 26.1.2/
-    ├── .git/
-    ├── build.gradle
+player_activity_view/          # Un solo repositorio Git
+└── 26.1.2/                    # Rama: minecraft/26.1.2/neoforge-26.1.2.78/production
     ├── gradle.properties → minecraft_version=26.1.2
     └── ...
 ```
 
 **Reglas:**
-- La carpeta padre `<mod_id>/` es solo organizativa, **no tiene `.git`**
-- Cada `<minecraft_version>/` tiene su propio `.git/` y es un repositorio independiente en GitLab
+- `<mod_id>/` es el repositorio Git, contiene el `.git/`
+- Cada `<minecraft_version>/` es una subcarpeta **sin `.git/` propio**
+- Cada versión tiene su propia rama `minecraft/<mc-version>/neoforge-<neo-version>/production`
+- Cada rama solo contiene los archivos de su versión. Las carpetas de otras versiones **no existen** en esa rama
 - El `mod_id` en `gradle.properties` debe coincidir con la carpeta padre
-- La rama default del repo es `minecraft/<mc-version>/neoforge-<neo-version>/production`
 - El nombre del workflow sigue el patrón `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`
 
 ## Tipografía
@@ -74,45 +72,32 @@ player_activity_view/
 ## Estructura del proyecto
 
 ```
-<mod>/
-├── build.gradle                        # Build con net.neoforged.moddev
-├── gradle.properties                   # mod_id, mod_version, mod_group_id...
-├── settings.gradle
-├── src/
-│   ├── main/
-│   │   ├── java/<package>/             # Código fuente del mod
-│   │   ├── resources/
-│   │   │   ├── assets/<mod_id>/        # Texturas, shaders, lang, modelos...
-│   │   │   │   └── icon.png           # Logo del mod (64x64, referenciado en neoforge.mods.toml)
-│   │   │   ├── templates/
-│   │   │   │   └── META-INF/
-│   │   │   │       └── neoforge.mods.toml  # Template con placeholders ${...}
-│   │   │   ├── META-INF/
-│   │   │   │   └── accesstransformer.cfg
-│   │   │   ├── <mod_id>.mixins.json
-│   │   │   └── <mod_id>.png           # Logo del mod
-│   │   └── templates/                 # (alternativa legacy, evitar)
-│   │       └── META-INF/
-│   │           └── neoforge.mods.toml
-│   ├── main/java/<package>/...         # Código fuente
-├── libs/                               # Dependencias reales del mod (JARs necesarios para compilar). Versionado.
-├── lib_ext/                            # Librerías externas para análisis de la sesión. NO versionado (.gitignore).
-├── temp/                               # Archivos temporales: investigaciones, prototipos, JARs extraídos, pruebas. NO versionado (.gitignore).
-├── docs/
-│   ├── WORKFLOW_PLAYER_ACTIVITY_VIEW_26-1-2.md  # Este documento
-│   └── curseforge/                    # Documentación para publicación en CurseForge
-│       ├── project_vars.md             # Variables del proyecto (ID, token, versiones)
-│       ├── project_description.md      # Descripción del proyecto
-│       └── versions/                   # Release notes por versión
-│           ├── 0.0.0-beta.1.md
-│           └── ...
-├── CHANGELOG.md
-├── README.md
-├── graphify-out/                       # Knowledge Graph (generado por Graphify). Versionado en GitLab, NO va a GitHub (excluido por CI).
-│   ├── graph.html
-│   ├── GRAPH_REPORT.md
-│   └── graph.json
-└── .gitlab-ci.yml                      # CI/CD: publica código limpio a */main para mirror a GitHub
+<mod>/                            # Raíz del repositorio
+├── .gitlab-ci.yml               # CI/CD en raíz del repo
+├── <minecraft_version>/         # Código fuente y docs de la versión
+│   ├── build.gradle             # Build con net.neoforged.moddev
+│   ├── gradle.properties        # mod_id, mod_version, mod_group_id...
+│   ├── settings.gradle
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/<package>/  # Código fuente del mod
+│   │   │   └── resources/
+│   │   │       ├── assets/<mod_id>/
+│   │   │       ├── META-INF/
+│   │   │       ├── <mod_id>.mixins.json
+│   │   │       └── <mod_id>.png
+│   ├── libs/                    # Dependencias reales. Versionado.
+│   ├── lib_ext/                 # Librerías externas. NO versionado.
+│   ├── temp/                    # Archivos temporales. NO versionado.
+│   ├── docs/
+│   │   ├── WORKFLOW_<MOD_ID>_<MC-VERSION>.md
+│   │   └── curseforge/
+│   │       ├── project_vars.md
+│   │       ├── project_description.md
+│   │       └── versions/
+│   ├── CHANGELOG.md
+│   ├── README.md
+│   └── graphify-out/            # Knowledge Graph. NO va a GitHub.
 ```
 
 ### Archivos de CurseForge
@@ -429,6 +414,10 @@ publish-public:
     - MAIN_BRANCH=$(echo "$CI_COMMIT_BRANCH" | sed 's|/production$|/main|')
     - echo "Publishing to $MAIN_BRANCH"
 
+    # Extraer versión de Minecraft de la rama: minecraft/X/N/production → X
+    - MC_VERSION=$(echo "$CI_COMMIT_BRANCH" | cut -d'/' -f2)
+    - echo "MC version: $MC_VERSION"
+
     # Obtener la rama main hermana. Si no existe, falla — el agente debe crearla manualmente.
     - |
       if ! git fetch origin "$MAIN_BRANCH" 2>/dev/null; then
@@ -440,11 +429,16 @@ publish-public:
     # Limpiar y copiar solo archivos públicos desde production
     - git rm -rf --ignore-unmatch --quiet . 2>/dev/null || true
 
-    # Archivos obligatorios (deben existir en todos los mods)
-    - git checkout "$CI_COMMIT_SHA" -- src/ build.gradle settings.gradle gradle.properties gradlew gradlew.bat .gitignore README.md CHANGELOG.md
+    # Archivos obligatorios (prefijados con la versión)
+    - git checkout "$CI_COMMIT_SHA" -- "${MC_VERSION}/src/" "${MC_VERSION}/build.gradle" "${MC_VERSION}/settings.gradle" "${MC_VERSION}/gradle.properties" "${MC_VERSION}/gradlew" "${MC_VERSION}/gradlew.bat" "${MC_VERSION}/.gitignore" "${MC_VERSION}/README.md" "${MC_VERSION}/CHANGELOG.md"
 
-    # Archivos opcionales (pueden no existir en algunos mods)
-    - git checkout "$CI_COMMIT_SHA" -- libs/ 2>/dev/null || true
+    # Archivos opcionales
+    - git checkout "$CI_COMMIT_SHA" -- "${MC_VERSION}/libs/" 2>/dev/null || true
+
+    # Mover archivos de la subcarpeta de versión a la raíz para la rama main
+    - mv "${MC_VERSION}"/* . 2>/dev/null || true
+    - mv "${MC_VERSION}"/.* . 2>/dev/null || true
+    - rm -rf "${MC_VERSION}"
 
     # Sanitizar secrets en gradle.properties
     - sed -i 's/^mod_version=.*/mod_version=0.0.0/' gradle.properties
@@ -468,18 +462,18 @@ publish-public:
 
 | Archivo/Carpeta | GitLab production | GitLab */main → GitHub |
 |---|---|---|
-| `src/` | ✅ | ✅ |
-| `build.gradle`, `settings.gradle` | ✅ | ✅ |
-| `gradle.properties` | ✅ (tokens reales) | ✅ (placeholders) |
-| `gradlew`, `gradlew.bat` | ✅ | ✅ |
-| `README.md` | ✅ | ✅ |
-| `CHANGELOG.md` | ✅ | ✅ |
-| `libs/` | ✅ | ✅ |
-| `.gitignore` | ✅ | ✅ |
-| `docs/` | ✅ | ❌ |
-| `lib_ext/` | ✅ | ❌ |
-| `graphify-out/` | ✅ | ❌ (excluido por CI) |
-| `build/` | ❌ (.gitignore) | ❌ |
+| `<version>/src/` | ✅ | ✅ |
+| `<version>/build.gradle`, `<version>/settings.gradle` | ✅ | ✅ |
+| `<version>/gradle.properties` | ✅ (tokens reales) | ✅ (placeholders) |
+| `<version>/gradlew`, `<version>/gradlew.bat` | ✅ | ✅ |
+| `<version>/README.md` | ✅ | ✅ |
+| `<version>/CHANGELOG.md` | ✅ | ✅ |
+| `<version>/libs/` | ✅ | ✅ |
+| `<version>/.gitignore` | ✅ | ✅ |
+| `<version>/docs/` | ✅ | ❌ |
+| `<version>/lib_ext/` | ✅ | ❌ |
+| `<version>/graphify-out/` | ✅ | ❌ (excluido por CI) |
+| `<version>/build/` | ❌ (.gitignore) | ❌ |
 
 ---
 
