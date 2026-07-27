@@ -414,10 +414,6 @@ publish-public:
     - MAIN_BRANCH=$(echo "$CI_COMMIT_BRANCH" | sed 's|/production$|/main|')
     - echo "Publishing to $MAIN_BRANCH"
 
-    # Extraer versión de Minecraft de la rama: minecraft/X/N/production → X
-    - MC_VERSION=$(echo "$CI_COMMIT_BRANCH" | cut -d'/' -f2)
-    - echo "MC version: $MC_VERSION"
-
     # Obtener la rama main hermana. Si no existe, falla — el agente debe crearla manualmente.
     - |
       if ! git fetch origin "$MAIN_BRANCH" 2>/dev/null; then
@@ -429,16 +425,11 @@ publish-public:
     # Limpiar y copiar solo archivos públicos desde production
     - git rm -rf --ignore-unmatch --quiet . 2>/dev/null || true
 
-    # Archivos obligatorios (prefijados con la versión)
-    - git checkout "$CI_COMMIT_SHA" -- "${MC_VERSION}/src/" "${MC_VERSION}/build.gradle" "${MC_VERSION}/settings.gradle" "${MC_VERSION}/gradle.properties" "${MC_VERSION}/gradlew" "${MC_VERSION}/gradlew.bat" "${MC_VERSION}/.gitignore" "${MC_VERSION}/README.md" "${MC_VERSION}/CHANGELOG.md"
+    # Archivos obligatorios
+    - git checkout "$CI_COMMIT_SHA" -- src/ build.gradle settings.gradle gradle.properties gradlew gradlew.bat .gitignore README.md CHANGELOG.md
 
     # Archivos opcionales
-    - git checkout "$CI_COMMIT_SHA" -- "${MC_VERSION}/libs/" 2>/dev/null || true
-
-    # Mover archivos de la subcarpeta de versión a la raíz para la rama main
-    - mv "${MC_VERSION}"/* . 2>/dev/null || true
-    - mv "${MC_VERSION}"/.* . 2>/dev/null || true
-    - rm -rf "${MC_VERSION}"
+    - git checkout "$CI_COMMIT_SHA" -- libs/ 2>/dev/null || true
 
     # Sanitizar secrets en gradle.properties
     - sed -i 's/^mod_version=.*/mod_version=0.0.0/' gradle.properties
