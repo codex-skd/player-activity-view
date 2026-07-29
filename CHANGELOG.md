@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.0-beta.13] - 2026-07-29
+
+### Fix
+- Crash on startup/main menu: `RenderFrameEvent.Post` fires before joining a server, but
+  `captureScreenIfNeeded()` read `ServerSyncedConfig` (server-synced, not populated until connected)
+  before checking whether a level/player even existed, crashing with
+  `IllegalStateException: Cannot get config value before config is loaded`
+
 ## [0.0.0-beta.12] - 2026-07-29
 
 ### Fix

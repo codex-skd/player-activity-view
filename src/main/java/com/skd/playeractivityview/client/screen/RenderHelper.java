@@ -70,10 +70,12 @@ public class RenderHelper {
      * Must run after the frame (including GUI) has been fully drawn, i.e. from RenderFrameEvent.Post.
      */
     public static void captureScreenIfNeeded() {
-        if (!useDynamicGUISystem()) return;
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null || mc.player == null) return;
         if (PlayerActivity.getPlayerStatusManagerClient() == null) return;
+        // ServerSyncedConfig (used by useDynamicGUISystem) is only populated after connecting to a server,
+        // so it must not be touched before the level/player null-check above.
+        if (!useDynamicGUISystem()) return;
         PlayerStatus local = PlayerActivity.getPlayerStatusManagerClient().getStatusLocal();
         ScreenData screenData = local.getScreenData();
         if (!screenData.isNeedsNewRenderToPixelData()) return;
