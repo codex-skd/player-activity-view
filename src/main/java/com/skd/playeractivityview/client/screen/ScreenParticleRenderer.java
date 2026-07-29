@@ -1,9 +1,5 @@
 package com.skd.playeractivityview.client.screen;
 
-import com.mojang.blaze3d.pipeline.RenderTarget;
-import com.mojang.blaze3d.pipeline.TextureTarget;
-import net.minecraft.client.Minecraft;
-
 public class ScreenParticleRenderer {
     private static ScreenParticleRenderer instance;
     public int width;
