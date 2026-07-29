@@ -11,6 +11,9 @@ import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.navigation.ScreenRectangle;
+import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.Identifier;
 
@@ -81,22 +84,70 @@ public class RenderHelper {
         if (!screenData.isNeedsNewRenderToPixelData()) return;
         screenData.setNeedsNewRenderToPixelData(false);
 
+        ScreenRectangle guiBounds = computeGuiPanelBounds(mc);
         RenderTarget target = mc.getMainRenderTarget();
         Screenshot.takeScreenshot(target, 1, image -> {
             try {
-                onScreenshotCaptured(image, screenData, local);
+                onScreenshotCaptured(image, screenData, local, guiBounds, mc.getWindow().getGuiScale());
             } finally {
                 image.close();
             }
         });
     }
 
-    private static void onScreenshotCaptured(NativeImage image, ScreenData screenData, PlayerStatus local) {
+    /**
+     * Cheaply re-extracts the current screen's layout (no GPU work) to find the on-screen pixel bounds
+     * of its GUI elements, so the capture can be cropped to just the menu panel instead of the whole
+     * frame (world + dark background included). Returns null if the screen has no boundable elements.
+     */
+    private static ScreenRectangle computeGuiPanelBounds(Minecraft mc) {
+        if (mc.screen == null) return null;
+        int mouseX = (int) (mc.mouseHandler.xpos() * mc.getWindow().getGuiScaledWidth() / mc.getWindow().getScreenWidth());
+        int mouseY = (int) (mc.mouseHandler.ypos() * mc.getWindow().getGuiScaledHeight() / mc.getWindow().getScreenHeight());
+        GuiRenderState guiRenderState = new GuiRenderState();
+        GuiGraphicsExtractor extractor = new GuiGraphicsExtractor(mc, guiRenderState, mouseX, mouseY);
+        float partialTick = mc.getDeltaTracker().getGameTimeDeltaPartialTick(true);
+        mc.screen.extractRenderState(extractor, mouseX, mouseY, partialTick);
+
+        int[] box = {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE};
+        guiRenderState.forEachElement(element -> {
+            ScreenRectangle r = element.bounds();
+            if (r == null) return;
+            box[0] = Math.min(box[0], r.left());
+            box[1] = Math.min(box[1], r.top());
+            box[2] = Math.max(box[2], r.right());
+            box[3] = Math.max(box[3], r.bottom());
+        }, GuiRenderState.TraverseRange.ALL);
+        if (box[0] > box[2] || box[1] > box[3]) return null;
+
+        int padding = 8;
+        int guiWidth = mc.getWindow().getGuiScaledWidth();
+        int guiHeight = mc.getWindow().getGuiScaledHeight();
+        int left = Math.max(0, box[0] - padding);
+        int top = Math.max(0, box[1] - padding);
+        int right = Math.min(guiWidth, box[2] + padding);
+        int bottom = Math.min(guiHeight, box[3] + padding);
+        if (right <= left || bottom <= top) return null;
+        return new ScreenRectangle(left, top, right - left, bottom - top);
+    }
+
+    private static void onScreenshotCaptured(NativeImage image, ScreenData screenData, PlayerStatus local, ScreenRectangle guiBounds, double guiScale) {
         int srcWidth = image.getWidth();
         int srcHeight = image.getHeight();
         if (srcWidth <= 0 || srcHeight <= 0) return;
-        int outWidth = srcWidth;
-        int outHeight = srcHeight;
+
+        int cropX0 = 0, cropY0 = 0, cropWidth = srcWidth, cropHeight = srcHeight;
+        if (guiBounds != null) {
+            cropX0 = clamp((int) Math.round(guiBounds.left() * guiScale), 0, srcWidth - 1);
+            cropY0 = clamp((int) Math.round(guiBounds.top() * guiScale), 0, srcHeight - 1);
+            int cropX1 = clamp((int) Math.round(guiBounds.right() * guiScale), cropX0 + 1, srcWidth);
+            int cropY1 = clamp((int) Math.round(guiBounds.bottom() * guiScale), cropY0 + 1, srcHeight);
+            cropWidth = cropX1 - cropX0;
+            cropHeight = cropY1 - cropY0;
+        }
+
+        int outWidth = cropWidth;
+        int outHeight = cropHeight;
         if (Math.max(outWidth, outHeight) > MAX_CAPTURE_DIMENSION) {
             if (outWidth >= outHeight) {
                 outHeight = Math.max(1, outHeight * MAX_CAPTURE_DIMENSION / outWidth);
@@ -110,9 +161,9 @@ public class RenderHelper {
         byte[] packed = new byte[outWidth * outHeight * 4];
         int idx = 0;
         for (int y = 0; y < outHeight; y++) {
-            int srcY = Math.min(srcHeight - 1, y * srcHeight / outHeight);
+            int srcY = cropY0 + Math.min(cropHeight - 1, y * cropHeight / outHeight);
             for (int x = 0; x < outWidth; x++) {
-                int srcX = Math.min(srcWidth - 1, x * srcWidth / outWidth);
+                int srcX = cropX0 + Math.min(cropWidth - 1, x * cropWidth / outWidth);
                 packPixel(packed, idx, image.getPixel(srcX, srcY));
                 idx += 4;
             }
@@ -124,6 +175,10 @@ public class RenderHelper {
         screenData.setUncompressedSize(packed.length);
         screenData.setTexturePixelData(ByteBuffer.wrap(compressed));
         PlayerActivity.getPlayerStatusManagerClient().sendScreenRenderData(local);
+    }
+
+    private static int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
     }
 
     private static void packPixel(byte[] out, int offset, int argb) {
