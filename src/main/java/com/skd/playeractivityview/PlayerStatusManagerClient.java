@@ -9,7 +9,6 @@ import com.skd.playeractivityview.config.ServerConfigSyncHelper;
 import com.skd.playeractivityview.config.ServerSyncedConfig;
 import com.skd.playeractivityview.math.Lerpables;
 import com.skd.playeractivityview.particle.ParticleAnimated;
-import com.skd.playeractivityview.particle.ParticleDynamic;
 import com.skd.playeractivityview.particle.ParticleItem;
 import com.skd.playeractivityview.particle.ParticleRotating;
 import com.skd.playeractivityview.particle.ParticleStatic;
@@ -416,10 +415,11 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                     TextureAtlasSprite sprite = null;
                     float brightness = 0.7F;
                     int subX = 0, subY = 0;
-                    if (newRender && ps.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE
+                    boolean dynamicScreenReady = newRender && ps.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE
                         && ps.getPlayerGuiState() != PlayerStatus.PlayerGuiState.CHAT_SCREEN
-                        && ps.getScreenData().getParticleRenderType() != null) {
-                        particle = new ParticleDynamic((ClientLevel)player.level(), pos.x, pos.y, pos.z, ps.getScreenData().getParticleRenderType(), 0.7F);
+                        && ps.getScreenData().getImage() != null;
+                    if (dynamicScreenReady) {
+                        // Rendered separately as a world-space billboard by DynamicScreenRenderer, not a Particle.
                     } else {
                         switch (ps.getPlayerGuiState()) {
                             case INVENTORY: particle = new ParticleStaticLoD((ClientLevel)player.level(), pos.x, pos.y, pos.z, ModParticles.inventory.getSpriteSet()); break;
@@ -427,7 +427,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                             case ESCAPE: particle = new ParticleStaticLoD((ClientLevel)player.level(), pos.x, pos.y, pos.z, ModParticles.escape.getSpriteSet()); break;
                             case CHEST: particle = new ParticleStaticLoD((ClientLevel)player.level(), pos.x, pos.y, pos.z, ModParticles.chest.getSpriteSet()); break;
                             case EDIT_SIGN: particle = new ParticleStatic((ClientLevel)player.level(), pos.x, pos.y, pos.z, ModParticles.sign.getSprite(), 0.7F); break;
-                            case EDIT_BOOK: if (ps.getScreenData().getParticleRenderType() != null) particle = new ParticleDynamic((ClientLevel)player.level(), pos.x, pos.y, pos.z, ps.getScreenData().getParticleRenderType(), 0.7F); break;
+                            case EDIT_BOOK: break;
                             case ENCHANTING_TABLE: sprite = ModParticles.enchanting_table.getSprite(); subX = 176; subY = 166; break;
                             case ANVIL: sprite = ModParticles.anvil.getSprite(); subX = 176; subY = 166; break;
                             case BEACON: sprite = ModParticles.beacon.getSprite(); subX = 231; subY = 219; break;
@@ -684,7 +684,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                 else part = Arrays.copyOfRange(inputBytes, idx, size);
                 idx += part.length;
                 data = new CompoundTag();
-                data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataSize, status.getScreenData().getTexturePixelData().capacity());
+                data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataSize, status.getScreenData().getUncompressedSize());
                 data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenWidth, ScreenParticleRenderer.getInstance().widthScaledDown);
                 data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenHeight, ScreenParticleRenderer.getInstance().heightScaledDown);
                 data.putByteArray(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelData, part);
@@ -797,6 +797,8 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                                 status.getScreenData().setTexturePixelData(RenderHelper.decompress(status.getScreenData(), ByteBuffer.wrap(status.getScreenData().getTexturePixelDataPartial()), decompSize));
                                 status.getScreenData().markNeedsNewRenderFromPixelData(true);
                                 status.getScreenData().getIsBufferReady().set(true);
+                                RenderHelper.updateScreenTexture(status.getScreenData(), status.getScreenData().getTexturePixelData(),
+                                    status.getScreenData().getWidth(), status.getScreenData().getHeight(), uuid);
                             } catch (Exception e) { e.printStackTrace(); }
                         }
                     }
@@ -806,6 +808,8 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                     status.getScreenData().setTexturePixelData(RenderHelper.decompress(status.getScreenData(), ByteBuffer.wrap(pixelData), decompSize));
                     status.getScreenData().markNeedsNewRenderFromPixelData(true);
                     status.getScreenData().getIsBufferReady().set(true);
+                    RenderHelper.updateScreenTexture(status.getScreenData(), status.getScreenData().getTexturePixelData(),
+                        status.getScreenData().getWidth(), status.getScreenData().getHeight(), uuid);
                 } catch (Exception e) { e.printStackTrace(); }
             }
         }

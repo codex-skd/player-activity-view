@@ -2,13 +2,20 @@ package com.skd.playeractivityview.loader;
 
 import com.skd.playeractivityview.CommandReloadConfig;
 import com.skd.playeractivityview.PlayerActivity;
+import com.skd.playeractivityview.client.screen.RenderHelper;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
+import net.neoforged.neoforge.client.event.RenderFrameEvent;
 
 public class ClientEvents {
     public void getRegisteredParticles(net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event) {}
+
+    @SubscribeEvent
+    public void onRenderFramePost(RenderFrameEvent.Post event) {
+        RenderHelper.captureScreenIfNeeded();
+    }
 
     @SubscribeEvent
     public void onRegisterCommandsClient(RegisterClientCommandsEvent event) {

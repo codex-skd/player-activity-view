@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.0.0-beta.12] - 2026-07-29
+
+### Fix
+- Live screen mirror (the "watut" arm/GUI preview feature) was completely non-functional: the capture pipeline
+  was stubbed out during the 26.1.2 port and never replaced, so remote players never received or rendered
+  anything for it
+- Fixed a network payload bug that sent the compressed byte count instead of the decompressed size, which
+  would have corrupted screen data as soon as capture started producing any
+
+### Added
+- New screen capture pipeline built on this version's rendering API: captures the main render target via
+  `Screenshot.takeScreenshot` on `RenderFrameEvent.Post`, downscales on CPU, compresses and sends
+- New `DynamicScreenRenderer`: renders the received screen mirror as a camera-facing world-space billboard
+  via `SubmitCustomGeometryEvent`, since `ParticleRenderType` no longer supports arbitrary per-instance
+  textures in this Minecraft version
+
+### Technical
+- `RenderHelper.captureScreenIfNeeded()` / `updateScreenTexture()` replace the old offscreen-framebuffer
+  capture and the unused `ParticleDynamic`/custom `ParticleRenderType` approach
+- `ScreenData` now tracks a registered texture `Identifier` and the pre-compression payload size instead of
+  a `ParticleRenderType`
+
 ## [0.0.0-beta.11] - 2026-07-26
 
 ### Fix

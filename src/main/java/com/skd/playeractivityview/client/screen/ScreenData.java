@@ -3,16 +3,17 @@ package com.skd.playeractivityview.client.screen;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.resources.Identifier;
 
 public class ScreenData {
     private ByteBuffer texturePixelData;
     private byte[] texturePixelDataPartial;
     private DynamicTexture image;
+    private Identifier textureId;
     private int width;
     private int height;
-    private ParticleRenderType particleRenderType;
+    private int uncompressedSize;
     private final AtomicBoolean isBufferReady = new AtomicBoolean(false);
     private long gameTicksSinceLastScreenSend = 0L;
     private Screen lastScreen;
@@ -26,12 +27,15 @@ public class ScreenData {
     public void setTexturePixelDataPartial(byte[] data) { this.texturePixelDataPartial = data; }
     public DynamicTexture getImage() { return image; }
     public void setImage(DynamicTexture t) { this.image = t; }
+    public Identifier getTextureId() { return textureId; }
+    public void setTextureId(Identifier id) { this.textureId = id; }
     public int getWidth() { return width; }
     public void setWidth(int w) { this.width = w; }
     public int getHeight() { return height; }
     public void setHeight(int h) { this.height = h; }
-    public ParticleRenderType getParticleRenderType() { return particleRenderType; }
-    public void setParticleRenderType(ParticleRenderType t) { this.particleRenderType = t; }
+    /** Size in bytes of the pixel data before compression, needed by the receiver to size its inflate buffer. */
+    public int getUncompressedSize() { return uncompressedSize; }
+    public void setUncompressedSize(int size) { this.uncompressedSize = size; }
     public AtomicBoolean getIsBufferReady() { return isBufferReady; }
     public long getGameTicksSinceLastScreenSend() { return gameTicksSinceLastScreenSend; }
     public void setGameTicksSinceLastScreenSend(long t) { this.gameTicksSinceLastScreenSend = t; }

@@ -72,6 +72,10 @@ public class PlayerActivity {
             NeoForge.EVENT_BUS.addListener(clientEvents::onGameTick);
             NeoForge.EVENT_BUS.addListener(clientEvents::onMouseEvent);
             NeoForge.EVENT_BUS.addListener(clientEvents::onKeyEvent);
+            NeoForge.EVENT_BUS.addListener(clientEvents::onRenderFramePost);
+
+            com.skd.playeractivityview.render.DynamicScreenRenderer dynamicScreenRenderer = new com.skd.playeractivityview.render.DynamicScreenRenderer();
+            NeoForge.EVENT_BUS.addListener(dynamicScreenRenderer::onSubmitCustomGeometry);
         }
 
         generateJsonConfigFile(configJSONName);
