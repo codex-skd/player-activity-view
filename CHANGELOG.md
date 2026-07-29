@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.0-beta.14] - 2026-07-29
+
+### Fix
+- Screen mirror captured the whole frame (3D world + dark overlay + GUI) instead of just the menu panel:
+  now crops to the actual on-screen bounds of the current screen's GUI elements (plus a small padding
+  border), computed via a cheap CPU-side re-extraction of the screen's layout — no extra GPU render pass
+
 ## [0.0.0-beta.13] - 2026-07-29
 
 ### Fix
