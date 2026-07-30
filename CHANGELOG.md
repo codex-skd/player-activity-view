@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.0-beta.17] - 2026-07-30
+
+### Fix
+- Screen mirror still invisible after beta.16: `sendScreenRenderData`'s single-packet branch (used for
+  most captures once beta.15 added cropping, since cropped captures are small enough to fit in one
+  packet) still sent the compressed byte count as the expected decompressed size — only the multi-packet
+  branch had been fixed earlier. The receiver's decompression buffer ended up far too small, so
+  `updateScreenTexture` always rejected the data and the texture was never built.
+
+### Added
+- Debug logging across the capture/send/receive/texture/render pipeline (`[capture]`, `[send]`, `[recv]`,
+  `[texture]`, `[render]` tags) to make the next issue (if any) diagnosable straight from logs.
+
 ## [0.0.0-beta.16] - 2026-07-30
 
 ### Fix

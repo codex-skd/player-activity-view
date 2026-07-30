@@ -18,6 +18,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.event.SubmitCustomGeometryEvent;
 import org.joml.Quaternionf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Draws the live "screen mirror" of remote players as a plane held up in front of them, tilted like a
@@ -26,7 +28,9 @@ import org.joml.Quaternionf;
  * arbitrary per-instance GPU textures in this Minecraft version.
  */
 public class DynamicScreenRenderer {
+    private static final Logger LOGGER = LoggerFactory.getLogger("player_activity_view/render");
     private static final float TILT_DEGREES = 20.0F;
+    private final java.util.Set<UUID> loggedOnce = new java.util.HashSet<>();
 
     public void onSubmitCustomGeometry(SubmitCustomGeometryEvent event) {
         Minecraft mc = Minecraft.getInstance();
@@ -46,6 +50,11 @@ public class DynamicScreenRenderer {
             if (player == mc.player) {
                 boolean firstPerson = mc.options.getCameraType().isFirstPerson();
                 if (firstPerson || !ConfigClient.SHOW_GUIS_FOR_YOUR_OWN_PLAYER_IN_3RD_PERSON.get()) continue;
+            }
+
+            if (loggedOnce.add(entry.getKey())) {
+                LOGGER.info("[render] first submit for {} textureId={} dims={}x{}", player.getGameProfile().name(),
+                    ps.getScreenData().getTextureId(), ps.getScreenData().getWidth(), ps.getScreenData().getHeight());
             }
 
             Vec3 pos = PlayerActivity.getPlayerStatusManagerClient().getParticlePosition(player);
