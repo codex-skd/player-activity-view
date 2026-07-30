@@ -60,7 +60,7 @@
 
 <h2>🙏 Credits</h2>
 
-<p>Originally inspired by <strong>WATUT</strong> (What Are They Up To) by <em>Corosus</em>. This is a complete ground-up rewrite and modernization for current NeoForge versions, with no dependency on CoroUtil.</p>
+<p>This mod is a fork of <strong>WATUT</strong> (What Are They Up To) by <em>Corosus</em>. This is a complete ground-up rewrite and modernization for current NeoForge versions, with no dependency on CoroUtil.</p>
 
 <br>
 <br>

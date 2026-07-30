@@ -1,6 +1,6 @@
 # Flujo de trabajo — Player Activity View (NeoForge)
 
-> **Versión del workflow**: 1.4.0 (codex-docs)
+> **Versión del workflow**: 1.5.0 (codex-docs)
 > Este archivo pertenece al proyecto **Player Activity View**. Cada proyecto tiene su propio `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`.
 > No es un archivo central ni template compartido. Los cambios aquí solo afectan a este proyecto.
 > Para actualizar este workflow, revisar la última versión en `codex-docs/WORKFLOW_GENERIC.md`.
@@ -542,15 +542,27 @@ git push origin 26.1.2-neoforge-1.0.0
 
 ### 6. Actualizar Knowledge Graph (Graphify)
 
+**`build` no es un comando válido** (versión instalada: 0.9.12) — usar `extract` (primera vez) o `update` (refrescos, sin LLM):
+
 ```bash
-"C:\Users\llagu\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts\graphify.exe" build .
+GRAPHIFY="C:\Users\llagu\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts\graphify.exe"
+
+# Si graphify-out/ NO existe todavía (primera vez): extracción completa con LLM
+"$GRAPHIFY" extract .
+
+# Si graphify-out/ YA existe (actualización tras cambios de código): más barato, sin LLM
+"$GRAPHIFY" update . --force
 
 git add graphify-out/
 git commit -m "chore: update knowledge graph"
 git push
 ```
 
-> **Nota**: El grafo permite a los asistentes de IA entender la arquitectura del mod sin leer todo el código fuente, reduciendo el consumo de tokens hasta 71×.
+**Nunca crear copias fechadas** de `graphify-out/` (p. ej. `graphify-out/2026-07-27/`) — el historial ya vive en `git log -- graphify-out/`.
+
+**Qué archivo leer**: siempre `GRAPH_REPORT.md` (resumen legible). Nunca `graph.json`/`graph.html` directamente como contexto — `graph.json` puede pesar >1MB y anula el ahorro de tokens.
+
+> **Nota**: El grafo permite a los asistentes de IA entender la arquitectura del mod sin leer todo el código fuente, reduciendo el consumo de tokens hasta 71×. Ver la sección de Graphify en `codex-docs/WORKFLOW_GENERIC.md` para el backend Ollama local usado en `extract`/`label`.
 
 ---
 
@@ -584,6 +596,7 @@ git push
 
 | Versión | Fecha | Cambios |
 |---|---|---|
+| 1.5.0 | 2026-07-30 | Sincronizado con WORKFLOW_GENERIC.md 1.12.0: corregido comando de Graphify (`build` no existe, usar `extract`/`update --force`), regla de no crear copias fechadas, qué archivo leer (`GRAPH_REPORT.md`) |
 | 1.4.0 | 2026-07-23 | Añadida sección de organización en workspace con estructura `<mod_id>/<mc-version>/` |
 | 1.2.7 | 2026-07-23 | Versión actual: Ramas reescritas con roles, CI con variables de grupo, libs/ opcional, sin orphan creation |
 | 1.1.0 | 2026-07-21 | CI: eliminado `mod_curseforge_token` (nunca en gradle.properties). Script: displayName usa `mod_name`. Workflow: añadido paso de subida con el script compartido |
