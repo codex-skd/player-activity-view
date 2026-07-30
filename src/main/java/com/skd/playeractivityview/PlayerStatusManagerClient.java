@@ -71,6 +71,7 @@ import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public class PlayerStatusManagerClient extends PlayerStatusManager {
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger("player_activity_view/net");
     private static final int SCREEN_TYPING_CHAR_LIMIT = 50;
 
     private final PlayerStatus selfPlayerStatus = new PlayerStatus(PlayerStatus.PlayerGuiState.NONE, null);
@@ -668,12 +669,14 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         byte[] inputBytes = new byte[size];
         status.getScreenData().getTexturePixelData().get(inputBytes);
         if (size < limit) {
-            data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataSize, status.getScreenData().getTexturePixelData().capacity());
+            data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataSize, status.getScreenData().getUncompressedSize());
             data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenWidth, ScreenParticleRenderer.getInstance().widthScaledDown);
             data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenHeight, ScreenParticleRenderer.getInstance().heightScaledDown);
             data.putByteArray(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelData, inputBytes);
             data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataPacketCount, 1);
             data.putInt(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataPacketIndex, 1);
+            LOGGER.info("[send] single-packet compressedBytes={} uncompressedSize={} dims={}x{}",
+                size, status.getScreenData().getUncompressedSize(), ScreenParticleRenderer.getInstance().widthScaledDown, ScreenParticleRenderer.getInstance().heightScaledDown);
             PlayerActivityNetworking.instance().clientSendToServer(data);
         } else {
             int count = Mth.ceil((float)size / limit);
@@ -778,6 +781,8 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
             int packetIndex = data.getIntOr(PlayerActivityNetworking.NBTDataPlayerScreenCompressedPixelDataPacketIndex, 0);
             status.getScreenData().setWidth(data.getIntOr(PlayerActivityNetworking.NBTDataPlayerScreenWidth, 0));
             status.getScreenData().setHeight(data.getIntOr(PlayerActivityNetworking.NBTDataPlayerScreenHeight, 0));
+            LOGGER.info("[recv] uuid={} decompSize={} packetCount={} packetIndex={} chunkBytes={} dims={}x{}",
+                uuid, decompSize, packetCount, packetIndex, pixelData.length, status.getScreenData().getWidth(), status.getScreenData().getHeight());
             long gameTime = Minecraft.getInstance().level != null ? Minecraft.getInstance().level.getGameTime() : 0;
             if (packetCount > 1) {
                 if (packetIndex == 0) {

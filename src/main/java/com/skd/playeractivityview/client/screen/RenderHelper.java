@@ -16,8 +16,11 @@ import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RenderHelper {
+    private static final Logger LOGGER = LoggerFactory.getLogger("player_activity_view/screen");
     private static final int MAX_CAPTURE_DIMENSION = 192;
 
     public static boolean useDynamicGUISystem() {
@@ -83,12 +86,16 @@ public class RenderHelper {
         ScreenData screenData = local.getScreenData();
         if (!screenData.isNeedsNewRenderToPixelData()) return;
         screenData.setNeedsNewRenderToPixelData(false);
+        LOGGER.info("[capture] triggered, screen={}", mc.screen == null ? "null" : mc.screen.getClass().getSimpleName());
 
         ScreenRectangle guiBounds = computeGuiPanelBounds(mc);
+        LOGGER.info("[capture] guiBounds={}", guiBounds);
         RenderTarget target = mc.getMainRenderTarget();
         Screenshot.takeScreenshot(target, 1, image -> {
             try {
                 onScreenshotCaptured(image, screenData, local, guiBounds, mc.getWindow().getGuiScale());
+            } catch (Throwable t) {
+                LOGGER.error("[capture] onScreenshotCaptured threw", t);
             } finally {
                 image.close();
             }
@@ -174,6 +181,8 @@ public class RenderHelper {
         ScreenParticleRenderer.getInstance().heightScaledDown = outHeight;
         screenData.setUncompressedSize(packed.length);
         screenData.setTexturePixelData(ByteBuffer.wrap(compressed));
+        LOGGER.info("[capture] srcSize={}x{} crop=({},{})+{}x{} out={}x{} packedBytes={} compressedBytes={}",
+            srcWidth, srcHeight, cropX0, cropY0, cropWidth, cropHeight, outWidth, outHeight, packed.length, compressed.length);
         PlayerActivity.getPlayerStatusManagerClient().sendScreenRenderData(local);
     }
 
@@ -201,10 +210,15 @@ public class RenderHelper {
      * decompressed pixel bytes (ARGB, 4 bytes/pixel, produced by {@link #packPixel}).
      */
     public static void updateScreenTexture(ScreenData screenData, ByteBuffer rgba, int width, int height, UUID owner) {
-        if (width <= 0 || height <= 0 || rgba == null || rgba.remaining() < width * height * 4) return;
+        if (width <= 0 || height <= 0 || rgba == null || rgba.remaining() < width * height * 4) {
+            LOGGER.warn("[texture] rejected update owner={} width={} height={} remaining={}",
+                owner, width, height, rgba == null ? -1 : rgba.remaining());
+            return;
+        }
 
         DynamicTexture texture = screenData.getImage();
-        if (texture == null || texture.getPixels().getWidth() != width || texture.getPixels().getHeight() != height) {
+        boolean created = texture == null || texture.getPixels().getWidth() != width || texture.getPixels().getHeight() != height;
+        if (created) {
             if (texture != null) texture.close();
             Identifier id = Identifier.fromNamespaceAndPath(PlayerActivity.MODID, "dynamic_screen/" + owner);
             final Identifier labelId = id;
@@ -212,6 +226,7 @@ public class RenderHelper {
             Minecraft.getInstance().getTextureManager().register(id, texture);
             screenData.setImage(texture);
             screenData.setTextureId(id);
+            LOGGER.info("[texture] created owner={} id={} {}x{}", owner, id, width, height);
         }
 
         NativeImage pixels = texture.getPixels();
@@ -223,5 +238,6 @@ public class RenderHelper {
             }
         }
         texture.upload();
+        if (created) LOGGER.info("[texture] first upload done owner={} samplePixel(0,0)=0x{}", owner, Integer.toHexString(pixels.getPixel(0, 0)));
     }
 }
