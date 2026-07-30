@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.0-beta.18] - 2026-07-30
+
+### Fix
+- Screen mirror read mirror-flipped (like looking at your own menu reflected) from the back-facing side
+  of the double-sided quad: it reused the front face's UVs unmirrored, but a flat plane viewed from
+  behind needs horizontally-flipped UVs to read correctly. Both sides now show the content readable.
+
+### Added
+- Screen mirror now also shows while the shown player is typing in chat (previously excluded), gated by
+  the existing chat-GUI visibility toggle. Replaces the small animated chat icon when active, instead of
+  showing both.
+
 ## [0.0.0-beta.17] - 2026-07-30
 
 ### Fix

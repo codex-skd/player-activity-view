@@ -124,8 +124,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         Screen screen = Minecraft.getInstance().screen;
         boolean guiBlacklisted = false;
         boolean validGui = !guiBlacklisted && screen != null
-            && selfPlayerStatus.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE
-            && selfPlayerStatus.getPlayerGuiState() != PlayerStatus.PlayerGuiState.CHAT_SCREEN;
+            && selfPlayerStatus.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE;
         boolean stillActiveInGUI = selfPlayerStatus.getTicksSinceLastAction() < 100;
         boolean delayPassed = selfPlayerStatus.getScreenData().getGameTicksSinceLastScreenSend()
             + ServerSyncedConfig.DYNAMIC_GUI_TICK_SEND_RATE.get() < gameTime;
@@ -403,9 +402,13 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                 ParticleRotating particle = null;
                 Vec3 pos = getParticlePosition(player);
                 boolean newRender = RenderHelper.useDynamicGUISystem() && !ps.isPlayerGuiDontSendDetailedGUIInfo();
+                boolean isChatScreen = ps.getPlayerGuiState() == PlayerStatus.PlayerGuiState.CHAT_SCREEN;
+                boolean chatDynamicScreenReady = isChatScreen && newRender && ps.getScreenData().getImage() != null
+                    && ConfigClient.SHOW_PLAYER_ACTIVE_CHAT_GUI.get() && ServerSyncedConfig.SHOW_PLAYER_ACTIVE_CHAT_GUI.get();
 
                 if (ConfigClient.SHOW_PLAYER_ACTIVE_CHAT_GUI.get() && ServerSyncedConfig.SHOW_PLAYER_ACTIVE_CHAT_GUI.get()
-                    && PlayerStatus.PlayerGuiState.isTypingGui(getStatus(player).getPlayerGuiState())) {
+                    && PlayerStatus.PlayerGuiState.isTypingGui(getStatus(player).getPlayerGuiState())
+                    && !chatDynamicScreenReady) {
                     if (getStatus(player).getPlayerChatState() == PlayerStatus.PlayerChatState.CHAT_FOCUSED) {
                         particle = new ParticleAnimated((ClientLevel)player.level(), pos.x, pos.y, pos.z, ModParticles.chat_idle.getSpriteSet());
                     } else if (getStatus(player).getPlayerChatState() == PlayerStatus.PlayerChatState.CHAT_TYPING) {
@@ -416,8 +419,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                     TextureAtlasSprite sprite = null;
                     float brightness = 0.7F;
                     int subX = 0, subY = 0;
-                    boolean dynamicScreenReady = newRender && ps.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE
-                        && ps.getPlayerGuiState() != PlayerStatus.PlayerGuiState.CHAT_SCREEN
+                    boolean dynamicScreenReady = !isChatScreen && newRender && ps.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE
                         && ps.getScreenData().getImage() != null;
                     if (dynamicScreenReady) {
                         // Rendered separately as a world-space billboard by DynamicScreenRenderer, not a Particle.
