@@ -54,7 +54,7 @@ public class DynamicScreenRenderer {
             float halfW = size * Math.max(aspect, 1F);
             float halfH = size * Math.max(1F / aspect, 1F);
 
-            Quaternionf rotation = Axis.YP.rotationDegrees(180.0F - player.yBodyRot);
+            Quaternionf rotation = Axis.YP.rotationDegrees(-player.yBodyRot);
             rotation.mul(Axis.XP.rotationDegrees(TILT_DEGREES));
 
             poseStack.pushPose();
@@ -64,22 +64,29 @@ public class DynamicScreenRenderer {
             float hw = halfW;
             float hh = halfH;
             event.getSubmitNodeCollector().submitCustomGeometry(poseStack, renderType, (pose, buffer) -> {
-                quadVertex(buffer, pose, -hw, hh, 0, 0, 0);
-                quadVertex(buffer, pose, hw, hh, 0, 1, 0);
-                quadVertex(buffer, pose, hw, -hh, 0, 1, 1);
-                quadVertex(buffer, pose, -hw, -hh, 0, 0, 1);
+                // Emitted double-sided (both winding orders) so it's visible regardless of which way
+                // the render pipeline culls — a fixed (non-camera-facing) quad only shows its "front"
+                // winding, and we can't test in-game to confirm which one that is.
+                quadVertex(buffer, pose, -hw, hh, 0, 0, 0, 1);
+                quadVertex(buffer, pose, hw, hh, 0, 1, 0, 1);
+                quadVertex(buffer, pose, hw, -hh, 0, 1, 1, 1);
+                quadVertex(buffer, pose, -hw, -hh, 0, 0, 1, 1);
+                quadVertex(buffer, pose, -hw, hh, 0, 0, 0, -1);
+                quadVertex(buffer, pose, -hw, -hh, 0, 0, 1, -1);
+                quadVertex(buffer, pose, hw, -hh, 0, 1, 1, -1);
+                quadVertex(buffer, pose, hw, hh, 0, 1, 0, -1);
             });
             poseStack.popPose();
         }
     }
 
-    private void quadVertex(VertexConsumer buffer, PoseStack.Pose pose, float x, float y, float z, float u, float v) {
+    private void quadVertex(VertexConsumer buffer, PoseStack.Pose pose, float x, float y, float z, float u, float v, float normalZ) {
         buffer.addVertex(pose, x, y, z)
             .setColor(255, 255, 255, 255)
             .setUv(u, v)
             .setOverlay(OverlayTexture.NO_OVERLAY)
             .setLight(0xF000F0)
-            .setNormal(pose, 0, 0, 1);
+            .setNormal(pose, 0, 0, normalZ);
     }
 
     private boolean isVisible(PlayerStatus ps) {

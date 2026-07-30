@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.0-beta.16] - 2026-07-30
+
+### Fix
+- Screen mirror invisible after beta.15's orientation fix: the quad's vertex winding didn't match its
+  declared normal, so once the billboard stopped always facing the camera (beta.15 locked it to the
+  shown player's body yaw instead), the visible/uncullled face ended up pointing away from typical
+  viewing angles. Now emitted double-sided (both winding orders) so it renders regardless of which way
+  the pipeline culls. Also dropped the 180° yaw offset, matching the original mod's own convention.
+
 ## [0.0.0-beta.15] - 2026-07-30
 
 ### Fix
