@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.0.0-beta.15] - 2026-07-30
+
+### Fix
+- Screen mirror rendered solid red / heavily red-tinted: vertex overlay UV was set to `(0,0)`, which lands
+  on the entity "hurt" red-flash band of the overlay texture instead of the neutral/no-overlay coordinate
+  (`(0,10)`). Now uses `OverlayTexture.NO_OVERLAY`.
+- Screen mirror billboard was camera-facing (always turned to look at whoever's viewing it), instead of
+  being a fixed tilted plane locked to the shown player's body rotation, like the original mod. Now
+  oriented from the observed player's `yBodyRot` with a fixed tilt, independent of the viewer's camera.
+
 ## [0.0.0-beta.14] - 2026-07-29
 
 ### Fix

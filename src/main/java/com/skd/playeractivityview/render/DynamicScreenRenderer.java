@@ -2,6 +2,7 @@ package com.skd.playeractivityview.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.skd.playeractivityview.PlayerActivity;
 import com.skd.playeractivityview.PlayerStatus;
 import com.skd.playeractivityview.config.ConfigClient;
@@ -12,17 +13,20 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.event.SubmitCustomGeometryEvent;
 import org.joml.Quaternionf;
 
 /**
- * Draws the live "screen mirror" of remote players as a camera-facing billboard, positioned the same way
- * as the old ParticleDynamic used to be. Kept out of the particle engine because ParticleRenderType no
- * longer supports arbitrary per-instance GPU textures in this Minecraft version.
+ * Draws the live "screen mirror" of remote players as a plane held up in front of them, tilted like a
+ * tablet and locked to their body yaw (not camera-facing) — same look as the old particle-based
+ * ParticleDynamic. Kept out of the particle engine because ParticleRenderType no longer supports
+ * arbitrary per-instance GPU textures in this Minecraft version.
  */
 public class DynamicScreenRenderer {
+    private static final float TILT_DEGREES = 20.0F;
 
     public void onSubmitCustomGeometry(SubmitCustomGeometryEvent event) {
         Minecraft mc = Minecraft.getInstance();
@@ -31,7 +35,6 @@ public class DynamicScreenRenderer {
 
         Camera camera = mc.gameRenderer.getMainCamera();
         Vec3 camPos = camera.position();
-        Quaternionf camRotation = camera.rotation();
         PoseStack poseStack = event.getPoseStack();
 
         for (Entry<UUID, PlayerStatus> entry : PlayerActivity.getPlayerStatusManagerClient().lookupPlayerToStatus.entrySet()) {
@@ -51,9 +54,12 @@ public class DynamicScreenRenderer {
             float halfW = size * Math.max(aspect, 1F);
             float halfH = size * Math.max(1F / aspect, 1F);
 
+            Quaternionf rotation = Axis.YP.rotationDegrees(180.0F - player.yBodyRot);
+            rotation.mul(Axis.XP.rotationDegrees(TILT_DEGREES));
+
             poseStack.pushPose();
             poseStack.translate(pos.x - camPos.x, pos.y - camPos.y, pos.z - camPos.z);
-            poseStack.mulPose(camRotation);
+            poseStack.mulPose(rotation);
             RenderType renderType = RenderTypes.entityTranslucent(ps.getScreenData().getTextureId());
             float hw = halfW;
             float hh = halfH;
@@ -71,7 +77,7 @@ public class DynamicScreenRenderer {
         buffer.addVertex(pose, x, y, z)
             .setColor(255, 255, 255, 255)
             .setUv(u, v)
-            .setUv1(0, 0)
+            .setOverlay(OverlayTexture.NO_OVERLAY)
             .setLight(0xF000F0)
             .setNormal(pose, 0, 0, 1);
     }
