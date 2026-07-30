@@ -573,9 +573,12 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
             ps.getLerpTarget().leftArm.xRot = (float)(-Math.toRadians(70));
             ps.getLerpTarget().leftArm.yRot = (float)Math.toRadians(25);
         } else if (typing) {
+            long gameTime = Minecraft.getInstance().level != null ? Minecraft.getInstance().level.getGameTime() : 0L;
+            double rightWave = Math.sin(gameTime * 0.3) * Math.toRadians(12);
+            double leftWave = Math.sin(gameTime * 0.3 + Math.PI) * Math.toRadians(12);
             double x = Math.toRadians(90) - Math.toRadians(22.5);
-            ps.getLerpTarget().rightArm.xRot = (float)(-x);
-            ps.getLerpTarget().leftArm.xRot = (float)(-x);
+            ps.getLerpTarget().rightArm.xRot = (float)(-x + rightWave);
+            ps.getLerpTarget().leftArm.xRot = (float)(-x + leftWave);
             ps.getLerpTarget().rightArm.yRot = (float)(-Math.toRadians(20));
             ps.getLerpTarget().leftArm.yRot = (float)Math.toRadians(20);
         }

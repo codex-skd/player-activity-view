@@ -14,6 +14,9 @@ import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
+import net.minecraft.client.renderer.state.gui.GuiItemRenderState;
+import net.minecraft.client.renderer.state.gui.GuiTextRenderState;
+import net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
@@ -107,6 +110,14 @@ public class RenderHelper {
      * of its GUI elements, so the capture can be cropped to just the menu panel instead of the whole
      * frame (world + dark background included). Returns null if the screen has no boundable elements.
      */
+    private static void expandBox(int[] box, ScreenRectangle r) {
+        if (r == null) return;
+        box[0] = Math.min(box[0], r.left());
+        box[1] = Math.min(box[1], r.top());
+        box[2] = Math.max(box[2], r.right());
+        box[3] = Math.max(box[3], r.bottom());
+    }
+
     private static ScreenRectangle computeGuiPanelBounds(Minecraft mc) {
         if (mc.screen == null) return null;
         int mouseX = (int) (mc.mouseHandler.xpos() * mc.getWindow().getGuiScaledWidth() / mc.getWindow().getScreenWidth());
@@ -117,14 +128,10 @@ public class RenderHelper {
         mc.screen.extractRenderState(extractor, mouseX, mouseY, partialTick);
 
         int[] box = {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE};
-        guiRenderState.forEachElement(element -> {
-            ScreenRectangle r = element.bounds();
-            if (r == null) return;
-            box[0] = Math.min(box[0], r.left());
-            box[1] = Math.min(box[1], r.top());
-            box[2] = Math.max(box[2], r.right());
-            box[3] = Math.max(box[3], r.bottom());
-        }, GuiRenderState.TraverseRange.ALL);
+        guiRenderState.forEachElement(element -> expandBox(box, element.bounds()), GuiRenderState.TraverseRange.ALL);
+        guiRenderState.forEachItem(item -> expandBox(box, item.bounds()));
+        guiRenderState.forEachText(text -> expandBox(box, text.bounds()));
+        guiRenderState.forEachPictureInPicture(pip -> expandBox(box, pip.bounds()));
         if (box[0] > box[2] || box[1] > box[3]) return null;
 
         int padding = 8;

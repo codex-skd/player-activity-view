@@ -1,6 +1,19 @@
 # Changelog
 
-## [0.0.0-beta.18] - 2026-07-30
+## [0.0.0-beta.19] - 2026-07-31
+
+### Fix
+- Own player no longer sees their own screen mirror — the 3rd-person exemption was letting the local
+  player preview their own menu, which is useless and awkward since they are already interacting with
+  the real GUI
+- Chat screen mirror no longer renders as an extremely oversized/distorted panel: the crop bounding-
+  box spanned the full-width message history, producing a huge aspect ratio that blew up the panel
+  size. The renderer now clamps the effective aspect ratio and max panel half-dimension.
+- Inventory screen mirror crop now covers the full inventory panel instead of a cut-off subset: the
+  bounding-box computation only iterated GUI element (blit/glyph) bounds, missing item slots, text
+  labels and the player-model picture-in-picture preview. All four element types are now included.
+- Typing hand animation is now an alternating motion: the arms bob up/down over time using a sine
+  wave per hand (phase-shifted), giving a natural typing look instead of a static pose.
 
 ### Fix
 - Screen mirror read mirror-flipped (like looking at your own menu reflected) from the back-facing side
