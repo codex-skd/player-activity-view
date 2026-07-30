@@ -74,16 +74,17 @@ public class DynamicScreenRenderer {
             float hh = halfH;
             event.getSubmitNodeCollector().submitCustomGeometry(poseStack, renderType, (pose, buffer) -> {
                 // Emitted double-sided (both winding orders) so it's visible regardless of which way
-                // the render pipeline culls — a fixed (non-camera-facing) quad only shows its "front"
-                // winding, and we can't test in-game to confirm which one that is.
+                // the render pipeline culls. The back face reuses the same screen-space corners but with
+                // U mirrored: viewed from behind, world-left/right swap for the viewer, so without this
+                // the back face would show the mirror image of the screen instead of reading correctly.
                 quadVertex(buffer, pose, -hw, hh, 0, 0, 0, 1);
                 quadVertex(buffer, pose, hw, hh, 0, 1, 0, 1);
                 quadVertex(buffer, pose, hw, -hh, 0, 1, 1, 1);
                 quadVertex(buffer, pose, -hw, -hh, 0, 0, 1, 1);
-                quadVertex(buffer, pose, -hw, hh, 0, 0, 0, -1);
-                quadVertex(buffer, pose, -hw, -hh, 0, 0, 1, -1);
-                quadVertex(buffer, pose, hw, -hh, 0, 1, 1, -1);
-                quadVertex(buffer, pose, hw, hh, 0, 1, 0, -1);
+                quadVertex(buffer, pose, -hw, hh, 0, 1, 0, -1);
+                quadVertex(buffer, pose, -hw, -hh, 0, 1, 1, -1);
+                quadVertex(buffer, pose, hw, -hh, 0, 0, 1, -1);
+                quadVertex(buffer, pose, hw, hh, 0, 0, 0, -1);
             });
             poseStack.popPose();
         }
@@ -101,7 +102,9 @@ public class DynamicScreenRenderer {
     private boolean isVisible(PlayerStatus ps) {
         if (ps.getScreenData().getImage() == null || ps.getScreenData().getTextureId() == null) return false;
         if (ps.getPlayerGuiState() == PlayerStatus.PlayerGuiState.NONE) return false;
-        if (ps.getPlayerGuiState() == PlayerStatus.PlayerGuiState.CHAT_SCREEN) return false;
+        if (ps.getPlayerGuiState() == PlayerStatus.PlayerGuiState.CHAT_SCREEN) {
+            return ConfigClient.SHOW_PLAYER_ACTIVE_CHAT_GUI.get() && ServerSyncedConfig.SHOW_PLAYER_ACTIVE_CHAT_GUI.get();
+        }
         return ConfigClient.SHOW_PLAYER_ACTIVE_NON_CHAT_GUI.get() && ServerSyncedConfig.SHOW_PLAYER_ACTIVE_NON_CHAT_GUI.get();
     }
 }

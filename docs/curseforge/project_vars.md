@@ -42,7 +42,7 @@ Ejemplo: `26.1.2-neoforge-1.0.21`
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Player Activity View (0.0.0-beta.17)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Player Activity View (0.0.0-beta.18)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
 | `releaseType` | `release` o `beta` | Según el tipo de versión |
