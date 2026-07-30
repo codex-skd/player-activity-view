@@ -47,10 +47,7 @@ public class DynamicScreenRenderer {
 
             Player player = mc.level.getPlayerByUUID(entry.getKey());
             if (player == null || player.isInvisible()) continue;
-            if (player == mc.player) {
-                boolean firstPerson = mc.options.getCameraType().isFirstPerson();
-                if (firstPerson || !ConfigClient.SHOW_GUIS_FOR_YOUR_OWN_PLAYER_IN_3RD_PERSON.get()) continue;
-            }
+            if (player == mc.player) continue;
 
             if (loggedOnce.add(entry.getKey())) {
                 LOGGER.info("[render] first submit for {} textureId={} dims={}x{}", player.getGameProfile().name(),
@@ -59,9 +56,13 @@ public class DynamicScreenRenderer {
 
             Vec3 pos = PlayerActivity.getPlayerStatusManagerClient().getParticlePosition(player);
             float aspect = (float) ps.getScreenData().getWidth() / Math.max(1, ps.getScreenData().getHeight());
+            aspect = Math.min(aspect, 3.0F);
             float size = 0.6F;
             float halfW = size * Math.max(aspect, 1F);
             float halfH = size * Math.max(1F / aspect, 1F);
+            float maxHalf = 0.9F;
+            halfW = Math.min(halfW, maxHalf);
+            halfH = Math.min(halfH, maxHalf);
 
             Quaternionf rotation = Axis.YP.rotationDegrees(-player.yBodyRot);
             rotation.mul(Axis.XP.rotationDegrees(TILT_DEGREES));
