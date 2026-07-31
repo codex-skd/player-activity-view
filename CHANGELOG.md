@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.0-beta.21] - 2026-07-31
+
+### Fix
+- Chat typing hands no longer stay static: a subtle sine-wave sway for the arms while typing already
+  existed in the lerp target computation (`setPoseTarget`), but `onSetupAnim` — the method that
+  actually sets the rendered model pose every frame — ignored it and overwrote the arms with fixed
+  rotations, so the wave never rendered. The typing pose now applies the same wave directly in
+  `onSetupAnim`.
+- Screen mirror no longer cuts off with a hard edge at the top: the chat/GUI mirror plane rendered at
+  uniform opacity, so the top of the captured screen ended abruptly instead of blending into the world.
+  Vertex alpha is now derived from vertical position, keeping the bottom (chat input area) fully opaque
+  and fading the top edge to transparent, on both faces of the double-sided quad.
+
 ## [0.0.0-beta.20] - 2026-07-31
 
 ### Fix
