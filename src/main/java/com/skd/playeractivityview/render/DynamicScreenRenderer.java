@@ -92,8 +92,9 @@ public class DynamicScreenRenderer {
     }
 
     private void quadVertex(VertexConsumer buffer, PoseStack.Pose pose, float x, float y, float z, float u, float v, float normalZ) {
+        int alpha = (int)(255.0F * v);
         buffer.addVertex(pose, x, y, z)
-            .setColor(255, 255, 255, 255)
+            .setColor(255, 255, 255, alpha)
             .setUv(u, v)
             .setOverlay(OverlayTexture.NO_OVERLAY)
             .setLight(0xF000F0)
