@@ -521,8 +521,11 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
             model.head.xRot = (float)(Math.toRadians(15) + yPercent * 0.3);
             model.head.yRot = (float)(xPercent * 0.5);
         } else if (typing) {
-            model.rightArm.xRot = (float)(-Math.toRadians(67.5));
-            model.leftArm.xRot = (float)(-Math.toRadians(67.5));
+            long gameTime = Minecraft.getInstance().level != null ? Minecraft.getInstance().level.getGameTime() : 0L;
+            double rightWave = Math.sin(gameTime * 0.3) * Math.toRadians(12);
+            double leftWave = Math.sin(gameTime * 0.3 + Math.PI) * Math.toRadians(12);
+            model.rightArm.xRot = (float)(-Math.toRadians(67.5) + rightWave);
+            model.leftArm.xRot = (float)(-Math.toRadians(67.5) + leftWave);
             model.rightArm.yRot = (float)(-Math.toRadians(20));
             model.leftArm.yRot = (float)Math.toRadians(20);
             model.head.xRot = (float)Math.toRadians(15);
