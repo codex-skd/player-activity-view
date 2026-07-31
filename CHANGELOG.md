@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.0.0-beta.20] - 2026-07-31
+
+### Fix
+- Survival inventory screen mirror no longer crops badly or wrong: the bounding box was computed purely
+  from whatever elements the screen happened to extract, and empty slots (no item and no placeholder
+  sprite) contribute no bounds, so the crop's right/bottom edges shrank depending on what the player
+  happened to have in their inventory. The creative palette is always full of items so it was
+  unaffected — same function, different screen contents, different result. The crop now unions the
+  deterministic panel rectangle (`leftPos`/`topPos`/`imageWidth`/`imageHeight`) for every container
+  screen, so the full panel is always captured regardless of contents, active potion effects or recipe
+  book state.
+- Chat screen mirror no longer captures the whole message scrollback: the generic element bounding box
+  spanned the full-width message log (most of the screen height), which made the mirrored content tiny
+  and illegible once squeezed into the small panel. ChatScreen now gets a dedicated crop anchored at the
+  text input field plus the four most recent message lines, matching where vanilla chat actually renders
+  the input (`EditBox` at `(4, height-12)`) and the message log (ending at `(height-40)/chatScale` with
+  entries of `9 * (lineSpacing + 1) * chatScale` pixels).
+
 ## [0.0.0-beta.19] - 2026-07-31
 
 ### Fix
