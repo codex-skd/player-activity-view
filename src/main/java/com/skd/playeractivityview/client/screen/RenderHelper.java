@@ -5,6 +5,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import com.skd.playeractivityview.PlayerActivity;
 import com.skd.playeractivityview.PlayerStatus;
 import com.skd.playeractivityview.config.ServerSyncedConfig;
+import com.skd.playeractivityview.mixin.client.AbstractContainerScreenAccessorMixin;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 import java.util.zip.Deflater;
@@ -13,10 +14,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
-import net.minecraft.client.renderer.state.gui.GuiItemRenderState;
-import net.minecraft.client.renderer.state.gui.GuiTextRenderState;
-import net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
@@ -106,6 +106,13 @@ public class RenderHelper {
     }
 
     /**
+     * How many of the most recent message lines to include in the dedicated ChatScreen crop, on top
+     * of the input field. Mirrored chat is unreadable if the whole scrollback is captured, so the
+     * crop is intentionally kept to the input area plus a handful of recent lines.
+     */
+    private static final int CHAT_CROP_MESSAGE_LINES = 4;
+
+    /**
      * Cheaply re-extracts the current screen's layout (no GPU work) to find the on-screen pixel bounds
      * of its GUI elements, so the capture can be cropped to just the menu panel instead of the whole
      * frame (world + dark background included). Returns null if the screen has no boundable elements.
@@ -134,6 +141,20 @@ public class RenderHelper {
         guiRenderState.forEachPictureInPicture(pip -> expandBox(box, pip.bounds()));
         if (box[0] > box[2] || box[1] > box[3]) return null;
 
+        if (mc.screen instanceof ChatScreen) {
+            ScreenRectangle chatBounds = computeChatScreenBounds(mc);
+            if (chatBounds != null) return chatBounds;
+        }
+
+        if (mc.screen instanceof AbstractContainerScreen<?> containerScreen) {
+            AbstractContainerScreenAccessorMixin accessor = (AbstractContainerScreenAccessorMixin) containerScreen;
+            expandBox(box, new ScreenRectangle(
+                accessor.playerActivityView$getLeftPos(),
+                accessor.playerActivityView$getTopPos(),
+                accessor.playerActivityView$getImageWidth(),
+                accessor.playerActivityView$getImageHeight()));
+        }
+
         int padding = 8;
         int guiWidth = mc.getWindow().getGuiScaledWidth();
         int guiHeight = mc.getWindow().getGuiScaledHeight();
@@ -143,6 +164,28 @@ public class RenderHelper {
         int bottom = Math.min(guiHeight, box[3] + padding);
         if (right <= left || bottom <= top) return null;
         return new ScreenRectangle(left, top, right - left, bottom - top);
+    }
+
+    /**
+     * Dedicated crop for ChatScreen: the generic bounding box of the chat's GUI elements spans the
+     * full-width message scrollback (most of the screen height), which is unreadable once squeezed
+     * into the small mirrored panel. Instead bound the capture to the input field area plus a handful
+     * of the most recent message lines, matching where the vanilla chat input and lines actually render:
+     * the input is an EditBox at (4, height-12) spanning the window width, and the message log ends at
+     * (height-40)/chatScale with entries of height 9*(lineSpacing+1)*chatScale (see ChatScreen.init and
+     * ChatComponent.extractRenderState).
+     */
+    private static ScreenRectangle computeChatScreenBounds(Minecraft mc) {
+        int guiWidth = mc.getWindow().getGuiScaledWidth();
+        int guiHeight = mc.getWindow().getGuiScaledHeight();
+        double scale = Math.max(mc.options.chatScale().get(), 0.1);
+        int entryHeight = (int) Math.round(scale * 9.0 * (mc.options.chatLineSpacing().get() + 1.0));
+        int messagesTop = guiHeight - 40 - CHAT_CROP_MESSAGE_LINES * entryHeight;
+        int top = Math.max(0, Math.min(guiHeight - 14, messagesTop) - 2);
+        int left = 2;
+        int right = guiWidth - 2;
+        if (right <= left || top >= guiHeight) return null;
+        return new ScreenRectangle(left, top, right - left, guiHeight - top);
     }
 
     private static void onScreenshotCaptured(NativeImage image, ScreenData screenData, PlayerStatus local, ScreenRectangle guiBounds, double guiScale) {

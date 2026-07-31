@@ -12,7 +12,8 @@
     "client.GameRendererPreloadUiShaderMixin",
     "client.NativeImageAccessorMixin",
     "client.EntityRenderStateTrackerMixin",
-    "client.SetupAnimInjectMixin"
+    "client.SetupAnimInjectMixin",
+    "client.AbstractContainerScreenAccessorMixin"
   ],
   "mixins": [
     "BlockBehaviorUseMixin",
