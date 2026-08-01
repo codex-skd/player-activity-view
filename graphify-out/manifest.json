@@ -95,8 +95,8 @@
     "semantic_hash": "7a9831ab166373bcadc89b95a0fc08cf"
   },
   "src/main/java/com/skd/playeractivityview/client/screen/RenderHelper.java": {
-    "mtime": 1785546390.8033383,
-    "ast_hash": "286cb398ff73c5f67ea876bb0c9c98d9",
+    "mtime": 1785611443.5390575,
+    "ast_hash": "420c85238250dd02ce457d9d1ab16a47",
     "semantic_hash": ""
   },
   "src/main/java/com/skd/playeractivityview/client/screen/ScreenData.java": {
@@ -190,9 +190,9 @@
     "semantic_hash": "ff260a9280a512f687a070c090d71556"
   },
   "src/main/java/com/skd/playeractivityview/mixin/client/GuiExtractRenderStateMixin.java": {
-    "mtime": 1785546161.5385191,
-    "ast_hash": "268a19f07cdcf0755775db17861fb688",
-    "semantic_hash": "268a19f07cdcf0755775db17861fb688"
+    "mtime": 1785611432.5262046,
+    "ast_hash": "1a707e90933b72fb77fd3cb97e22cbe2",
+    "semantic_hash": ""
   },
   "src/main/java/com/skd/playeractivityview/mixin/client/NativeImageAccessorMixin.java": {
     "mtime": 1785546161.5385191,
@@ -335,8 +335,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1785546454.509977,
-    "ast_hash": "3be8d0b742f75144f5fa43462ab2f9d3",
+    "mtime": 1785611764.4576328,
+    "ast_hash": "e166718fbd06ab4bc7617f90ed2e0ec5",
     "semantic_hash": ""
   },
   "README.md": {
@@ -350,8 +350,8 @@
     "semantic_hash": ""
   },
   "docs/curseforge/project_vars.md": {
-    "mtime": 1785546229.4083033,
-    "ast_hash": "2a9d6354e24b82b245144db8d3242de8",
+    "mtime": 1785611776.8984506,
+    "ast_hash": "f68add4ae6f43445bc37c5b4cef42d95",
     "semantic_hash": ""
   },
   "src/main/resources/assets/player_activity_view/textures/particle/anvil.png": {
@@ -557,6 +557,11 @@
   "docs/curseforge/versions/0.0.0-beta.1.md": {
     "mtime": 1785546459.009474,
     "ast_hash": "2b931c0a2d93d436e9aaaa48fbdec467",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.2.md": {
+    "mtime": 1785611771.3800302,
+    "ast_hash": "169958b299ca47e10ff88de0a65cd0e4",
     "semantic_hash": ""
   }
 }
