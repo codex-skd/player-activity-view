@@ -148,11 +148,19 @@ public class RenderHelper {
 
         if (mc.gui.screen() instanceof AbstractContainerScreen<?> containerScreen) {
             AbstractContainerScreenAccessorMixin accessor = (AbstractContainerScreenAccessorMixin) containerScreen;
-            expandBox(box, new ScreenRectangle(
-                accessor.playerActivityView$getLeftPos(),
-                accessor.playerActivityView$getTopPos(),
-                accessor.playerActivityView$getImageWidth(),
-                accessor.playerActivityView$getImageHeight()));
+            int left = accessor.playerActivityView$getLeftPos();
+            int top = accessor.playerActivityView$getTopPos();
+            int width = accessor.playerActivityView$getImageWidth();
+            int height = accessor.playerActivityView$getImageHeight();
+            if (width > 0 && height > 0) {
+                // In 26.2 the container background is extracted as a full-screen element, so the
+                // element box spans the whole window. Clamp to the deterministic panel rectangle
+                // instead of unioning it, so the mirror shows just the inventory panel.
+                box[0] = Math.max(box[0], left);
+                box[1] = Math.max(box[1], top);
+                box[2] = Math.min(box[2], left + width);
+                box[3] = Math.min(box[3], top + height);
+            }
         }
 
         int padding = 8;
