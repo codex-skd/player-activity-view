@@ -4,7 +4,7 @@
 
 | Variable | Valor |
 |----------|-------|
-| `curseforge_project_id` | `1608907` |
+| `project_id` | `1608907` |
 | `mod_id` | `player_activity_view` |
 | `display_name` | `Player Activity View` (separado, no junto) |
 
@@ -36,22 +36,44 @@ minecraft/26.1.2/neoforge-26.1.2.78/production
 ## Tag
 
 Formato: `<mc-version>-<framework>-<version>`
-Ejemplo: `26.1.2-neoforge-1.0.21`
+Ejemplo: `26.1.2-neoforge-1.0.0`
 
 ## Parámetros del upload
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Player Activity View (0.0.0-beta.18)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Player Activity View (1.0.0)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
 | `releaseType` | `release` o `beta` | Según el tipo de versión |
-| `gameVersionNames` | `["Client", "Server", "26.1.2", "NeoForge"]` | Entorno + MC + modloader |
+| `gameVersions` | `[9638, 9639, 10150, 16082]` | **IDs numéricos**, no nombres (la API devuelve 400 "Expected Integer but got String" si se envían strings como `"Client"`). Ver tabla de IDs abajo |
+
+### IDs de `gameVersions` para 26.1.2
+
+Obtenidos de `sortableGameVersions` de un archivo ya subido (`GET /v1/mods/1608907/files/<id>` con el token Core) y de `GET https://minecraft.curseforge.com/api/game/versions`:
+
+| Nombre | ID | gameVersionTypeId |
+|--------|-----|--------|
+| `Client` | `9638` | 75208 |
+| `Server` | `9639` | 75208 |
+| `NeoForge` | `10150` | 68441 |
+| `26.1.2` | `16082` | 83806 |
+
+> Ojo: `GET https://minecraft.curseforge.com/api/game/versions` (con `X-Api-Token`) devuelve **varias entradas duplicadas** con el mismo nombre `26.1.2` pero distinto `id`/`gameVersionTypeID` (p. ej. `16082`, `16130`). Solo una es la correcta (la que ya usan los archivos existentes, `16082` con typeId `83806`) — verificarlo siempre contra un archivo ya publicado antes de asumir un ID.
+
+## Claves parseables por el script genérico
+
+```
+project_id = 1608907
+api_token = ee776b0a-ee95-4850-b554-06be02a8657f
+game_versions = 9638, 9639, 10150, 16082
+release_type = release
+```
 
 ## Estructura del changelog (HTML)
 
 ```html
-<h2>v1.0.21 - Titulo descriptivo</h2>
+<h2>v1.0.0 - Titulo descriptivo</h2>
 
 <h3>Fix</h3>
 <ul>
@@ -69,53 +91,15 @@ Ejemplo: `26.1.2-neoforge-1.0.21`
 
 <hr>
 
-<p><strong>JAR</strong>: <code>player_activity_view-26.1.2-neoforge-1.0.21.jar</code></p>
+<p><strong>JAR</strong>: <code>player_activity_view-26.1.2-neoforge-1.0.0.jar</code></p>
 ```
 
-## Subir archivo (JAR) con Python
+## Subir archivo (JAR)
 
-```python
-import json, uuid, urllib.request
+**No usar `urllib.request` de Python** — el body multipart hecho a mano (concatenando bytes de texto UTF-8 con los bytes crudos del JAR) provoca un `500 An unhandled exception occurred` del lado de CurseForge por razones no diagnosticadas. Usar el script genérico `codex-docs/scripts/curseforge-upload.ps1` (PowerShell con `System.Net.Http.MultipartFormDataContent`, binary-safe):
 
-boundary = uuid.uuid4().hex
-version = "0.0.0-beta.11"
-
-metadata = {
-    "displayName": f"Player Activity View ({version})",
-    "changelog": "<h2>v1.0.21 - Titulo</h2>",
-    "changelogType": "html",
-    "gameVersionNames": ["Client", "Server", "26.1.2", "NeoForge"],
-    "releaseType": "release"
-}
-
-with open(f"build/libs/player_activity_view-26.1.2-neoforge-{version}.jar", "rb") as f:
-    jar_data = f.read()
-
-meta_bytes = json.dumps(metadata, ensure_ascii=False).encode("utf-8")
-
-body = b""
-body += f"--{boundary}\r\n".encode()
-body += b'Content-Disposition: form-data; name="metadata"\r\n'
-body += b"Content-Type: application/json\r\n\r\n"
-body += meta_bytes + b"\r\n"
-body += f"--{boundary}\r\n".encode()
-body += b'Content-Disposition: form-data; name="file"; filename="player_activity_view-26.1.2-neoforge-{version}.jar"\r\n'
-body += b"Content-Type: application/java-archive\r\n\r\n"
-body += jar_data + b"\r\n"
-body += f"--{boundary}--\r\n".encode()
-
-req = urllib.request.Request(
-    f"https://minecraft.curseforge.com/api/projects/1608907/upload-file",
-    data=body,
-    headers={
-        "X-Api-Token": "ee776b0a-ee95-4850-b554-06be02a8657f",
-        "Content-Type": f"multipart/form-data; boundary={boundary}"
-    },
-    method="POST"
-)
-
-resp = urllib.request.urlopen(req)
-print(resp.read().decode())
+```powershell
+powershell -File ../../codex-docs/scripts/curseforge-upload.ps1
 ```
 
 ## Verificar con GET
@@ -143,6 +127,6 @@ No hay endpoint API para actualizar la descripcion. Se edita manualmente desde l
 3. Actualizar `CHANGELOG.md`
 4. `git commit -m "fix: descripcion\n\nvX.Y.Z"` + `git push`
 5. `git tag -a 26.1.2-neoforge-<version> -m "vX.Y.Z: descripcion"` + `git push origin <tag>`
-6. Subir JAR a CurseForge con Python
+6. Subir JAR a CurseForge con el script genérico
 7. Verificar con GET que el changelog se vea bien
 8. Liberar manualmente desde la web si es necesario
