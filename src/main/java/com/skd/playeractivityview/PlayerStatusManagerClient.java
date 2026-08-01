@@ -121,7 +121,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         lastLevel = level;
 
         long gameTime = level.getGameTime();
-        Screen screen = Minecraft.getInstance().screen;
+        Screen screen = Minecraft.getInstance().gui.screen();
         boolean guiBlacklisted = false;
         boolean validGui = !guiBlacklisted && screen != null
             && selfPlayerStatus.getPlayerGuiState() != PlayerStatus.PlayerGuiState.NONE;
@@ -189,38 +189,38 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         prevLocal.setPlayerGuiState(local.getPlayerGuiState());
 
         if (!ConfigClient.SEND_ACTIVE_GUI.get() || local.isIdle()) sendGuiStatus(PlayerStatus.PlayerGuiState.NONE);
-        else if (mc.screen instanceof ChatScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.CHAT_SCREEN);
-        else if (mc.screen instanceof CraftingScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.CRAFTING);
-        else if (mc.screen instanceof PauseScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.ESCAPE);
-        else if (mc.screen instanceof BookEditScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.EDIT_BOOK);
-        else if (mc.screen instanceof AbstractSignEditScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.EDIT_SIGN);
-        else if (mc.screen instanceof ContainerScreen || mc.screen instanceof ShulkerBoxScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.CHEST);
-        else if (mc.screen instanceof EnchantmentScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.ENCHANTING_TABLE);
-        else if (mc.screen instanceof AnvilScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.ANVIL);
-        else if (mc.screen instanceof BeaconScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.BEACON);
-        else if (mc.screen instanceof BrewingStandScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.BREWING_STAND);
-        else if (mc.screen instanceof DispenserScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.DISPENSER);
-        else if (mc.screen instanceof AbstractFurnaceScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.FURNACE);
-        else if (mc.screen instanceof GrindstoneScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.GRINDSTONE);
-        else if (mc.screen instanceof HopperScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.HOPPER);
-        else if (mc.screen instanceof HorseInventoryScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.HORSE);
-        else if (mc.screen instanceof LoomScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.LOOM);
-        else if (mc.screen instanceof MerchantScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.VILLAGER);
-        else if (mc.screen instanceof AbstractCommandBlockEditScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.COMMAND_BLOCK);
-        else if (mc.screen != null && !(mc.screen instanceof DeathScreen)) sendGuiStatus(PlayerStatus.PlayerGuiState.MISC);
-        else if (mc.screen == null) sendGuiStatus(PlayerStatus.PlayerGuiState.NONE);
+        else if (mc.gui.screen() instanceof ChatScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.CHAT_SCREEN);
+        else if (mc.gui.screen() instanceof CraftingScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.CRAFTING);
+        else if (mc.gui.screen() instanceof PauseScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.ESCAPE);
+        else if (mc.gui.screen() instanceof BookEditScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.EDIT_BOOK);
+        else if (mc.gui.screen() instanceof AbstractSignEditScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.EDIT_SIGN);
+        else if (mc.gui.screen() instanceof ContainerScreen || mc.gui.screen() instanceof ShulkerBoxScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.CHEST);
+        else if (mc.gui.screen() instanceof EnchantmentScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.ENCHANTING_TABLE);
+        else if (mc.gui.screen() instanceof AnvilScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.ANVIL);
+        else if (mc.gui.screen() instanceof BeaconScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.BEACON);
+        else if (mc.gui.screen() instanceof BrewingStandScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.BREWING_STAND);
+        else if (mc.gui.screen() instanceof DispenserScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.DISPENSER);
+        else if (mc.gui.screen() instanceof AbstractFurnaceScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.FURNACE);
+        else if (mc.gui.screen() instanceof GrindstoneScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.GRINDSTONE);
+        else if (mc.gui.screen() instanceof HopperScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.HOPPER);
+        else if (mc.gui.screen() instanceof HorseInventoryScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.HORSE);
+        else if (mc.gui.screen() instanceof LoomScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.LOOM);
+        else if (mc.gui.screen() instanceof MerchantScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.VILLAGER);
+        else if (mc.gui.screen() instanceof AbstractCommandBlockEditScreen) sendGuiStatus(PlayerStatus.PlayerGuiState.COMMAND_BLOCK);
+        else if (mc.gui.screen() != null && !(mc.gui.screen() instanceof DeathScreen)) sendGuiStatus(PlayerStatus.PlayerGuiState.MISC);
+        else if (mc.gui.screen() == null) sendGuiStatus(PlayerStatus.PlayerGuiState.NONE);
 
         String chatText = "";
-        if (mc.screen instanceof ChatScreen cs) chatText = "";
-        else if (mc.screen instanceof BookEditScreen bes) chatText = "";
-        else if (mc.screen instanceof AbstractSignEditScreen ses) chatText = "";
-        else if (mc.screen instanceof AbstractCommandBlockEditScreen cbes) chatText = "";
+        if (mc.gui.screen() instanceof ChatScreen cs) chatText = "";
+        else if (mc.gui.screen() instanceof BookEditScreen bes) chatText = "";
+        else if (mc.gui.screen() instanceof AbstractSignEditScreen ses) chatText = "";
+        else if (mc.gui.screen() instanceof AbstractCommandBlockEditScreen cbes) chatText = "";
 
         if (checkIfTyping(chatText, player)) sendChatStatus(PlayerStatus.PlayerChatState.CHAT_TYPING);
-        else if (isGuiFocusedOnTextBox(mc.screen)) sendChatStatus(PlayerStatus.PlayerChatState.CHAT_FOCUSED);
+        else if (isGuiFocusedOnTextBox(mc.gui.screen())) sendChatStatus(PlayerStatus.PlayerChatState.CHAT_FOCUSED);
         else sendChatStatus(PlayerStatus.PlayerChatState.NONE);
 
-        if (ConfigClient.SEND_MOUSE_INFO.get() && mc.screen != null && mc.level.getGameTime() % armMouseTickRate == 0L) {
+        if (ConfigClient.SEND_MOUSE_INFO.get() && mc.gui.screen() != null && mc.level.getGameTime() % armMouseTickRate == 0L) {
             PlayerStatus.PlayerGuiState guiState = local.getPlayerGuiState();
             if (PlayerStatus.PlayerGuiState.canPreventIdleInGui(guiState)) {
                 Pair<Float, Float> pos = getMousePos();
@@ -267,12 +267,12 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
             else wasMousePressed = false;
             sendMouse(getMousePos(), mousePressedCountdown > 0);
         }
-        if (mc.screen == null || (pressedAnything && PlayerStatus.PlayerGuiState.canPreventIdleInGui(guiState))) onAction();
+        if (mc.gui.screen() == null || (pressedAnything && PlayerStatus.PlayerGuiState.canPreventIdleInGui(guiState))) onAction();
     }
 
     public void onKey() {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level != null && mc.player != null && (mc.screen == null || isGuiFocusedOnTextBox(mc.screen))) onAction();
+        if (mc.level != null && mc.player != null && (mc.gui.screen() == null || isGuiFocusedOnTextBox(mc.gui.screen()))) onAction();
     }
 
     public void onAction() {
@@ -832,7 +832,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         if (data.contains(PlayerActivityNetworking.NBTDataItemTransferItemStack)) {
             java.util.Optional<ItemStack> parsed = ItemStack.CODEC.parse(Minecraft.getInstance().level.registryAccess().createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE), data.getCompound(PlayerActivityNetworking.NBTDataItemTransferItemStack).orElse(new net.minecraft.nbt.CompoundTag())).result();
             ItemStack stack = parsed.orElse(ItemStack.EMPTY);
-            ParticleItem pi = new ParticleItem(Minecraft.getInstance().level, 1.0F, stack, Minecraft.getInstance().renderBuffers(),
+            ParticleItem pi = new ParticleItem(Minecraft.getInstance().level, 1.0F, stack, Minecraft.getInstance().gameRenderer.renderBuffers(),
                 Minecraft.getInstance().getEntityRenderDispatcher(),
                 data.getFloatOr(PlayerActivityNetworking.NBTDataItemTransferFromX, 0f), data.getFloatOr(PlayerActivityNetworking.NBTDataItemTransferFromY, 0f), data.getFloatOr(PlayerActivityNetworking.NBTDataItemTransferFromZ, 0f),
                 data.getFloatOr(PlayerActivityNetworking.NBTDataItemTransferToX, 0f), data.getFloatOr(PlayerActivityNetworking.NBTDataItemTransferToY, 0f), data.getFloatOr(PlayerActivityNetworking.NBTDataItemTransferToZ, 0f));
@@ -852,7 +852,7 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) return;
         PlayerStatus local = getStatusLocal();
-        if (local.isIdle() && mc.screen != null && !(mc.screen instanceof ChatScreen)) {
+        if (local.isIdle() && mc.gui.screen() != null && !(mc.gui.screen() instanceof ChatScreen)) {
             ci.cancel();
         }
     }

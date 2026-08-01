@@ -89,11 +89,11 @@ public class RenderHelper {
         ScreenData screenData = local.getScreenData();
         if (!screenData.isNeedsNewRenderToPixelData()) return;
         screenData.setNeedsNewRenderToPixelData(false);
-        LOGGER.info("[capture] triggered, screen={}", mc.screen == null ? "null" : mc.screen.getClass().getSimpleName());
+        LOGGER.info("[capture] triggered, screen={}", mc.gui.screen() == null ? "null" : mc.gui.screen().getClass().getSimpleName());
 
         ScreenRectangle guiBounds = computeGuiPanelBounds(mc);
         LOGGER.info("[capture] guiBounds={}", guiBounds);
-        RenderTarget target = mc.getMainRenderTarget();
+        RenderTarget target = mc.gameRenderer.mainRenderTarget();
         Screenshot.takeScreenshot(target, 1, image -> {
             try {
                 onScreenshotCaptured(image, screenData, local, guiBounds, mc.getWindow().getGuiScale());
@@ -126,13 +126,13 @@ public class RenderHelper {
     }
 
     private static ScreenRectangle computeGuiPanelBounds(Minecraft mc) {
-        if (mc.screen == null) return null;
+        if (mc.gui.screen() == null) return null;
         int mouseX = (int) (mc.mouseHandler.xpos() * mc.getWindow().getGuiScaledWidth() / mc.getWindow().getScreenWidth());
         int mouseY = (int) (mc.mouseHandler.ypos() * mc.getWindow().getGuiScaledHeight() / mc.getWindow().getScreenHeight());
         GuiRenderState guiRenderState = new GuiRenderState();
         GuiGraphicsExtractor extractor = new GuiGraphicsExtractor(mc, guiRenderState, mouseX, mouseY);
         float partialTick = mc.getDeltaTracker().getGameTimeDeltaPartialTick(true);
-        mc.screen.extractRenderState(extractor, mouseX, mouseY, partialTick);
+        mc.gui.screen().extractRenderState(extractor, mouseX, mouseY, partialTick);
 
         int[] box = {Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE};
         guiRenderState.forEachElement(element -> expandBox(box, element.bounds()), GuiRenderState.TraverseRange.ALL);
@@ -141,12 +141,12 @@ public class RenderHelper {
         guiRenderState.forEachPictureInPicture(pip -> expandBox(box, pip.bounds()));
         if (box[0] > box[2] || box[1] > box[3]) return null;
 
-        if (mc.screen instanceof ChatScreen) {
+        if (mc.gui.screen() instanceof ChatScreen) {
             ScreenRectangle chatBounds = computeChatScreenBounds(mc);
             if (chatBounds != null) return chatBounds;
         }
 
-        if (mc.screen instanceof AbstractContainerScreen<?> containerScreen) {
+        if (mc.gui.screen() instanceof AbstractContainerScreen<?> containerScreen) {
             AbstractContainerScreenAccessorMixin accessor = (AbstractContainerScreenAccessorMixin) containerScreen;
             expandBox(box, new ScreenRectangle(
                 accessor.playerActivityView$getLeftPos(),

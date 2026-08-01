@@ -37,7 +37,7 @@ public class DynamicScreenRenderer {
         if (mc.level == null || mc.player == null) return;
         if (PlayerActivity.getPlayerStatusManagerClient() == null) return;
 
-        Camera camera = mc.gameRenderer.getMainCamera();
+        Camera camera = mc.gameRenderer.mainCamera();
         Vec3 camPos = camera.position();
         PoseStack poseStack = event.getPoseStack();
 
