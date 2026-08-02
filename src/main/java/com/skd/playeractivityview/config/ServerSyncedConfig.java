@@ -1,12 +1,9 @@
 package com.skd.playeractivityview.config;
 
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import com.skd.playeractivityview.config.spec.ModConfigSpec;
 
 public class ServerSyncedConfig {
-    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder("player_activity_view-server");
 
     public static final ModConfigSpec.BooleanValue DYNAMIC_GUI_USE_OLD_SIMPLE = BUILDER
             .comment("Disable new dynamic gui system and use old simple visual")

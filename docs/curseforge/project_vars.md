@@ -23,26 +23,26 @@ Autenticación Core: cabecera `x-api-key`
 | Variable | Valor |
 |----------|-------|
 | `minecraft_version` | `26.2` |
-| `framework` | `neoforge` |
+| `framework` | `fabric` |
 | `java_version` | `25` |
 | `environment` | `Client`, `Server` |
 
 ## Rama
 
 ```
-minecraft/26.2/neoforge-26.2.0.32-beta/production
+minecraft/26.2/fabric-0.19.3/production
 ```
 
 ## Tag
 
 Formato: `<mc-version>-<framework>-<version>`
-Ejemplo: `26.2-neoforge-0.0.0-beta.3`
+Ejemplo: `26.2-fabric-0.0.0-beta.1`
 
 ## Parámetros del upload
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Player Activity View (0.0.0-beta.3)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Player Activity View (0.0.0-beta.1)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
 | `releaseType` | `release` o `beta` | Según el tipo de versión |
@@ -82,7 +82,7 @@ release_type = beta
 
 <hr>
 
-<p><strong>JAR</strong>: <code>player_activity_view-26.2-neoforge-0.0.0-beta.3.jar</code></p>
+<p><strong>JAR</strong>: <code>player_activity_view-26.2-fabric-0.0.0-beta.1.jar</code></p>
 ```
 
 ## Subir archivo (JAR)
@@ -117,7 +117,7 @@ No hay endpoint API para actualizar la descripcion. Se edita manualmente desde l
 2. Actualizar `docs/curseforge/versions/<version>.md` con HTML
 3. Actualizar `CHANGELOG.md`
 4. `git commit -m "fix: descripcion\n\nvX.Y.Z"` + `git push`
-5. `git tag -a 26.2-neoforge-<version> -m "vX.Y.Z: descripcion"` + `git push origin <tag>`
+5. `git tag -a 26.2-fabric-<version> -m "vX.Y.Z: descripcion"` + `git push origin <tag>`
 6. Subir JAR a CurseForge con el script genérico
 7. Verificar con GET que el changelog se vea bien
 8. Liberar manualmente desde la web si es necesario

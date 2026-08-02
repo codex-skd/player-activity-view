@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import org.apache.commons.io.FileUtils;
@@ -44,12 +45,7 @@ public class CustomArmCorrections {
     public static Vector3f getAdjustmentForArm(ItemStack mainHand, ItemStack offHand, EquipmentSlot slot) {
         for (HeldItemArmAdjustment adj : adjustmentList) {
             if (adj.only_if_mod_installed != null && !adj.only_if_mod_installed.isEmpty()) {
-                try {
-                    Class.forName("net.neoforged.fml.ModList");
-                    if (!net.neoforged.fml.ModList.get().isLoaded(adj.only_if_mod_installed)) continue;
-                } catch (Exception e) {
-                    continue;
-                }
+                if (!FabricLoader.getInstance().isModLoaded(adj.only_if_mod_installed)) continue;
             }
             for (String filter : adj.filters) {
                 String itemName = (slot == EquipmentSlot.MAINHAND ? mainHand : offHand).getItem().toString();

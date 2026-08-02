@@ -1,7 +1,7 @@
 package com.skd.playeractivityview;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.player.Player;
 
 public class FakePlayerHelper {
@@ -14,15 +14,11 @@ public class FakePlayerHelper {
         if (className.contains("fake") || className.contains("Fake")) {
             result = true;
         } else {
-            try {
-                Class<?> clazz = Class.forName("net.neoforged.neoforge.common.util.FakePlayer");
-                result = clazz.isInstance(player);
-            } catch (Exception e) {}
-            if (!result) {
+            if (FabricLoader.getInstance().isModLoaded("fabric-api")) {
                 try {
                     Class<?> clazz = Class.forName("net.fabricmc.fabric.api.entity.FakePlayer");
                     result = clazz.isInstance(player);
-                } catch (Exception e2) {}
+                } catch (Exception e) {}
             }
         }
         cache.put(className, result);

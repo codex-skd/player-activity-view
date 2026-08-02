@@ -1,9 +1,9 @@
 package com.skd.playeractivityview.config;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import com.skd.playeractivityview.config.spec.ModConfigSpec;
 
 public class ConfigCommon {
-    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder("player_activity_view-common");
 
     public static final ModConfigSpec.BooleanValue ANNOUNCE_IDLE_STATES_IN_CHAT = BUILDER
             .comment("Announce idle state changes in chat")

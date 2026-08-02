@@ -4,113 +4,74 @@ import com.skd.playeractivityview.config.ConfigClient;
 import com.skd.playeractivityview.config.ConfigCommon;
 import com.skd.playeractivityview.config.CustomArmCorrections;
 import com.skd.playeractivityview.config.ServerSyncedConfig;
-import com.skd.playeractivityview.network.PacketNBTFromClient;
-import com.skd.playeractivityview.network.PacketNBTFromServer;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.players.PlayerList;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Mod(PlayerActivity.MODID)
-public class PlayerActivity {
+public class PlayerActivity implements ModInitializer {
     public static final String MODID = "player_activity_view";
     private static final Logger LOGGER = LoggerFactory.getLogger(MODID);
     public static String configJSONName = "player_activity_view-item-arm-adjustments.json";
 
-    private static PlayerStatusManagerClient playerStatusManagerClient;
     private static PlayerStatusManagerServer playerStatusManagerServer;
     private static PlayerActivity instance;
+    private static MinecraftServer currentServer;
 
     public static PlayerActivity instance() { return instance; }
-
-    public static PlayerStatusManagerClient getPlayerStatusManagerClient() {
-        if (playerStatusManagerClient == null) playerStatusManagerClient = new PlayerStatusManagerClient();
-        return playerStatusManagerClient;
-    }
 
     public static PlayerStatusManagerServer getPlayerStatusManagerServer() {
         if (playerStatusManagerServer == null) playerStatusManagerServer = new PlayerStatusManagerServer();
         return playerStatusManagerServer;
     }
 
-    public PlayerActivity(ModContainer container) {
+    @Override
+    public void onInitialize() {
         instance = this;
 
-        container.registerConfig(ModConfig.Type.COMMON, ConfigCommon.SPEC);
-        container.registerConfig(ModConfig.Type.CLIENT, ConfigClient.SPEC);
-        container.registerConfig(ModConfig.Type.SERVER, ServerSyncedConfig.SPEC);
+        new PlayerActivityNetworkingFabric();
 
-        new PlayerActivityNetworkingNeoForge();
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> currentServer = server);
+        ServerLifecycleEvents.SERVER_STOPPING.register(server -> currentServer = null);
 
-        container.getEventBus().addListener(this::setup);
-        container.getEventBus().addListener(this::registerPackets);
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            if (handler.getPlayer() != null) {
+                getPlayerStatusManagerServer().playerLoggedIn(handler.getPlayer());
+            }
+        });
 
-        NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
-        NeoForge.EVENT_BUS.addListener(this::onPlayerJoin);
-
-        if (FMLEnvironment.getDist().isClient()) {
-            com.skd.playeractivityview.loader.ClientEvents clientEvents = new com.skd.playeractivityview.loader.ClientEvents();
-            container.getEventBus().addListener(clientEvents::getRegisteredParticles);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onRegisterCommandsClient);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onGameTick);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onMouseEvent);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onKeyEvent);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onRenderFramePost);
-
-            com.skd.playeractivityview.render.DynamicScreenRenderer dynamicScreenRenderer = new com.skd.playeractivityview.render.DynamicScreenRenderer();
-            NeoForge.EVENT_BUS.addListener(dynamicScreenRenderer::onSubmitCustomGeometry);
-        }
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            if (server.getPlayerList() != null) {
+                for (net.minecraft.server.level.ServerPlayer sp : server.getPlayerList().getPlayers()) {
+                    getPlayerStatusManagerServer().tickPlayer(sp);
+                }
+            }
+        });
 
         generateJsonConfigFile(configJSONName);
         CustomArmCorrections.loadJsonConfigs();
     }
 
-    private void setup(FMLCommonSetupEvent event) {}
-
-    public void registerPackets(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("1.0.0");
-        PlayerActivityNetworkingNeoForge.register(registrar);
-    }
-
     public PlayerList getPlayerList() {
-        return ServerLifecycleHooks.getCurrentServer() == null ? null : ServerLifecycleHooks.getCurrentServer().getPlayerList();
+        return currentServer == null ? null : currentServer.getPlayerList();
     }
 
     public boolean isModInstalled(String modID) {
-        return ModList.get().isLoaded(modID);
+        return FabricLoader.getInstance().isModLoaded(modID);
     }
 
     public float getFarPlane() {
         return 250.0F;
-    }
-
-    public void onPlayerTick(PlayerTickEvent.Post event) {
-        if (event.getEntity().level().isClientSide()) {
-            getPlayerStatusManagerClient().tickPlayer(event.getEntity());
-        } else {
-            getPlayerStatusManagerServer().tickPlayer(event.getEntity());
-        }
-    }
-
-    public void onPlayerJoin(PlayerLoggedInEvent event) {
-        getPlayerStatusManagerServer().playerLoggedIn(event.getEntity());
     }
 
     public static void generateJsonConfigFile(String filename) {

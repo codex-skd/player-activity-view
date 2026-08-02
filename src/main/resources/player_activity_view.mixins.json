@@ -1,26 +1,15 @@
 {
-  "required": false,
-  "package": "com.skd.playeractivityview.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "refmap": "player_activity_view.refmap.json",
-  "client": [
-    "client.PostChainResizeMixin",
-    "client.GuiExtractRenderStateMixin",
-    "client.ExtractPingIconInjectMixin",
-    "client.ScreenExtractBackgroundMixin",
-    "client.ScreenExtractRenderStateWithTooltipMixin",
-    "client.GameRendererPreloadUiShaderMixin",
-    "client.NativeImageAccessorMixin",
-    "client.EntityRenderStateTrackerMixin",
-    "client.SetupAnimInjectMixin",
-    "client.AbstractContainerScreenAccessorMixin"
-  ],
-  "mixins": [
-    "BlockBehaviorUseMixin",
-    "AbstractContainerMenuDoClickMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 0
-  },
-  "minVersion": "0.8"
+	"required": false,
+	"package": "com.skd.playeractivityview.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"BlockBehaviorUseMixin",
+		"AbstractContainerMenuDoClickMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
 }

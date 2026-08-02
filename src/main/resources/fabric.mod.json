@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "player_activity_view",
+	"version": "${version}",
+	"name": "Player Activity View",
+	"description": "See what other players are doing: active GUI screens mirrored in the world, typing indicators, idle detection and arm animations.",
+	"authors": [
+		"stalking-dragons"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://gitlab.com/stalking-dragons/minecraft/player-activity-view"
+	},
+	"license": "All Rights Reserved",
+	"icon": "assets/player_activity_view/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.skd.playeractivityview.PlayerActivity"
+		],
+		"client": [
+			"com.skd.playeractivityview.PlayerActivityClient"
+		]
+	},
+	"mixins": [
+		"player_activity_view.mixins.json",
+		{
+			"config": "player_activity_view.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

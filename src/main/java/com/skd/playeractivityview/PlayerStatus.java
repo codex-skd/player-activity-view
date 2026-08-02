@@ -1,6 +1,5 @@
 package com.skd.playeractivityview;
 
-import com.skd.playeractivityview.client.screen.ScreenData;
 import com.skd.playeractivityview.math.Lerpables;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -8,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 
@@ -67,8 +65,6 @@ public class PlayerStatus {
     private boolean isPressing = false;
     private int ticksSinceLastAction = 0;
     private int ticksToMarkPlayerIdleSyncedForClient = 6000;
-    private Particle particle;
-    private Particle particleIdle;
     private long lastTypeTime;
     private String lastTypeString = "";
     private boolean flagForRemoval = false;
@@ -87,7 +83,6 @@ public class PlayerStatus {
     public float xRotHeadBeforeOverriding = 0.0F;
     private float typingAmplifierSmooth = 0.5F;
     private final CompoundTag nbtCache = new CompoundTag();
-    private ScreenData screenData;
     private BlockPos lastBlockOpened = BlockPos.ZERO;
     private final InventorySnapshot inventorySnapshotPlayer = new InventorySnapshot();
     private final InventorySnapshot inventorySnapshotContainer = new InventorySnapshot();
@@ -117,15 +112,7 @@ public class PlayerStatus {
         return Math.min(lerpPrev + (lerp - lerpPrev) * partialTick, lerpTicksMax);
     }
 
-    public void resetParticles() {
-        if (particle != null) particle.remove();
-        if (particleIdle != null) particleIdle.remove();
-        particle = null;
-        particleIdle = null;
-    }
-
     public void reset() {
-        resetParticles();
         ticksSinceLastAction = 0;
     }
 
@@ -138,8 +125,6 @@ public class PlayerStatus {
     public void setPlayerGuiDontSendDetailedGUIInfo(boolean val) { this.playerGuiDontSendDetailedGUIInfo = val; }
     public boolean isPlayerGuiDontSendItemInfo() { return playerGuiDontSendItemInfo; }
     public void setPlayerGuiDontSendItemInfo(boolean val) { this.playerGuiDontSendItemInfo = val; }
-    public Particle getParticle() { return particle; }
-    public void setParticle(Particle p) { this.particle = p; }
     public long getLastTypeTime() { return lastTypeTime; }
     public void setLastTypeTime(long t) { this.lastTypeTime = t; }
     public String getLastTypeString() { return lastTypeString; }
@@ -167,19 +152,12 @@ public class PlayerStatus {
     public void setTypingAmplifierSmooth(float v) { this.typingAmplifierSmooth = v; }
     public boolean isFlagForRemoval() { return flagForRemoval; }
     public void setFlagForRemoval(boolean v) { this.flagForRemoval = v; }
-    public Particle getParticleIdle() { return particleIdle; }
-    public void setParticleIdle(Particle p) { this.particleIdle = p; }
     public boolean isIdle() { return ticksSinceLastAction > ticksToMarkPlayerIdleSyncedForClient; }
     public CompoundTag getNbtCache() { return nbtCache; }
     public int getTicksToMarkPlayerIdleSyncedForClient() { return ticksToMarkPlayerIdleSyncedForClient; }
     public void setTicksToMarkPlayerIdleSyncedForClient(int v) { this.ticksToMarkPlayerIdleSyncedForClient = v; }
     public PlayerChatState getPlayerChatState() { return playerChatState; }
     public void setPlayerChatState(PlayerChatState s) { this.playerChatState = s; }
-    public ScreenData getScreenData() {
-        if (screenData == null) screenData = new ScreenData();
-        return screenData;
-    }
-    public void setScreenData(ScreenData sd) { this.screenData = sd; }
     public BlockPos getLastBlockOpened() { return lastBlockOpened; }
     public void setLastBlockOpened(BlockPos pos) { this.lastBlockOpened = pos; }
     public InventorySnapshot getInventorySnapshotPlayer() { return inventorySnapshotPlayer; }

@@ -1,9 +1,9 @@
 package com.skd.playeractivityview.config;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import com.skd.playeractivityview.config.spec.ModConfigSpec;
 
 public class ConfigClient {
-    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder("player_activity_view-client");
 
     public static final ModConfigSpec.BooleanValue SEND_MOUSE_INFO = BUILDER
             .comment("Sends relative mouse position and clicking")

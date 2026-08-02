@@ -1,39 +1,26 @@
 # Changelog
 
-## [0.0.0-beta.3] - 2026-08-02
-
-### Fix
-- Chat hands now raise when the chat screen is open, not only once text is being typed: the typing
-  pose (arms raised toward the screen, alternating anti-phase sway so one arm rises while the other
-  falls) previously only triggered on `CHAT_TYPING`. Since opening the chat reports `CHAT_FOCUSED`
-  (text box focused, nothing typed yet), the arms stayed down. The pose now applies to any typing
-  GUI (`CHAT_SCREEN`, `EDIT_BOOK`, `EDIT_SIGN`, `COMMAND_BLOCK`) with a chat state other than
-  `NONE`, so the "writing" animation plays from the moment the screen opens.
-
-## [0.0.0-beta.2] - 2026-08-01
-
-### Fix
-- Typing indicator ("X is typing...") no longer renders on screen: `GuiExtractRenderStateMixin` was
-  left with the 26.1.2 signature `(GuiGraphicsExtractor, DeltaTracker)` but NeoForge 26.2.0.37-beta
-  changed `Gui.extractRenderState` to `(DeltaTracker, boolean, boolean)` (it no longer receives the
-  extractor — the HUD extraction now lives in `Hud.extractRenderState`). The mixin failed to apply,
-  so `onGuiRender` never drew the typing overlay. Retargeted the mixin to `Hud.extractRenderState`.
-- Inventory screen mirror no longer shows the whole window: in 26.2 the container background is
-  extracted as a full-screen element, so the element bounding box spanned the entire window and the
-  union with the deterministic panel rectangle could not shrink it. The crop now clamps to the
-  `AbstractContainerScreen` panel rectangle (`leftPos`/`topPos`/`imageWidth`/`imageHeight`) instead
-  of unioning, so the mirror shows just the inventory panel again.
-
-## [0.0.0-beta.1] - 2026-08-01
+## [0.0.0-beta.1] - 2026-08-02
 
 ### Port
-- Full port to Minecraft 26.2 / NeoForge 26.2.0.32-beta from the `26.1.2` branch (v1.0.0). Build
-  metadata updated (`gradle.properties`, `build.gradle`, moddev plugin 2.0.142) and 26.2 API
-  accessors adopted:
-  - `mc.screen` → `mc.gui.screen()` (screen field moved from `Minecraft` to `Gui`)
-  - `mc.getMainRenderTarget()` → `mc.gameRenderer.mainRenderTarget()`
-  - `mc.renderBuffers()` → `mc.gameRenderer.renderBuffers()`
-  - `mc.gameRenderer.getMainCamera()` → `mc.gameRenderer.mainCamera()`
-- Includes the complete feature set of the stable 26.1.2 release: typing indicators, GUI visualizer,
-  live screen mirror, idle detection, inventory animations, arm animations, privacy controls and
-  server-synced config.
+- First Fabric port of the NeoForge 26.2 build. Everything compiles against Minecraft 26.2 + Fabric API
+  0.156.0 with Loom split environment source sets: server/common code lives in `src/main/java`, client-only
+  code (particles, screen mirror, arm animation hooks, input mixins) in `src/client/java`.
+- Networking reimplemented on Fabric `PayloadTypeRegistry` + `ClientPlayNetworking`/`ServerPlayNetworking`
+  (same custom payload records as the NeoForge build; dispatch of serverbound packets stays in the server
+  entrypoint, clientbound dispatch lives in the client source set).
+- Config reimplemented without NeoForge `ModConfigSpec`: `config/spec/ModConfigSpec` persists the same
+  keys to JSON files in the Fabric config dir (`player_activity_view-common/client/server.json`), keeping
+  the `get()`/`set()` API so all consumers are unchanged.
+- `SubmitCustomGeometryEvent` (NeoForge render hook) replaced with Fabric `LevelRenderEvents.COLLECT_SUBMITS`
+  for the live screen mirror billboard. `RenderFrameEvent.Post`, client input and command registration
+  replaced with Fabric events/mixins (`GameRenderer.render`, `MouseHandler.onButton`, `KeyboardHandler.keyPress`,
+  `ClientCommandRegistrationCallback`).
+- `PlayerStatus` split: the shared class is client-neutral; `PlayerStatusClient` (client source set) holds the
+  particle handles and `ScreenData` of the mirror. The `accesstransformer.cfg` entries that were still needed
+  are covered by existing accessor mixins.
+
+## [0.0.0-beta.1] - 2026-08-02
+
+### Port
+- Same as above (initial Fabric port, single entry).

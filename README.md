@@ -2,7 +2,7 @@
 
 See what other players are doing at a glance — typing, idling, browsing menus, crafting, and more — shown live on their in-game model.
 
-This mod is a fork of WATUT (What Are They Up To) by Corosus. This is a complete ground-up rewrite and modernization for current NeoForge versions, with no dependency on CoroUtil.
+This mod is a fork of WATUT (What Are They Up To) by Corosus. This is a complete ground-up rewrite and modernization for current Minecraft versions, with no dependency on CoroUtil. This build targets Fabric for Minecraft 26.2 (a NeoForge build is maintained in parallel).
 
 ## Features
 
@@ -20,7 +20,8 @@ This mod is a fork of WATUT (What Are They Up To) by Corosus. This is a complete
 | | |
 |---|---|
 | Minecraft | 26.2 |
-| NeoForge | 26.2.0.32-beta+ |
+| Fabric Loader | 0.19.3+ |
+| Fabric API | 0.156.0+26.2 |
 
 ## Commands
 
@@ -28,12 +29,16 @@ This mod is a fork of WATUT (What Are They Up To) by Corosus. This is a complete
 
 ## Building from source
 
-```
+```bash
 ./gradlew build
 ```
 
-The built jar is placed in `build/libs/`.
+The built JAR is in `build/libs/`.
 
 ## Credits
 
-Originally inspired by **WATUT** (What Are They Up To) by *Corosus*.
+- Fork of **WATUT (What Are They Up To)** by **Corosus**.
+
+## License
+
+All Rights Reserved.
