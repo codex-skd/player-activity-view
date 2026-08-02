@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.1] - 2026-08-02
+
+### Fix
+- Chat hands now raise when the chat screen is open, not only once text is being typed: the typing
+  pose (arms raised toward the screen, alternating anti-phase sway so one arm rises while the other
+  falls) previously only triggered on `CHAT_TYPING`. Since opening the chat reports `CHAT_FOCUSED`
+  (text box focused, nothing typed yet), the arms stayed down. The pose now applies to any typing
+  GUI (`CHAT_SCREEN`, `EDIT_BOOK`, `EDIT_SIGN`, `COMMAND_BLOCK`) with a chat state other than
+  `NONE`, so the "writing" animation plays from the moment the screen opens.
+
 ## [1.0.0] - 2026-08-01
 
 ### Release

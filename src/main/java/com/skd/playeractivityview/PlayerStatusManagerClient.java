@@ -509,7 +509,9 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         PlayerStatus.PlayerChatState chatState = ps.getPlayerChatState();
         boolean isIdle = ps.isIdle();
         boolean pointing = PlayerStatus.PlayerGuiState.isPointingGui(guiState) && ConfigClient.SHOW_PLAYER_ANIMATION_GUI.get();
-        boolean typing = chatState == PlayerStatus.PlayerChatState.CHAT_TYPING && ConfigClient.SHOW_PLAYER_ANIMATION_TYPING.get();
+        boolean typing = chatState != PlayerStatus.PlayerChatState.NONE
+            && PlayerStatus.PlayerGuiState.isTypingGui(guiState)
+            && ConfigClient.SHOW_PLAYER_ANIMATION_TYPING.get();
 
         if (pointing) {
             float xPercent = ps.getScreenPosPercentX();
@@ -543,7 +545,8 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
         if (Float.isNaN(ps.getLerpPrev().rightArm.xRot)) ps.getLerpPrev().rightArm.xRot = 0;
 
         boolean pointing = PlayerStatus.PlayerGuiState.isPointingGui(ps.getPlayerGuiState());
-        boolean typing = ps.getPlayerChatState() == PlayerStatus.PlayerChatState.CHAT_TYPING;
+        boolean typing = ps.getPlayerChatState() != PlayerStatus.PlayerChatState.NONE
+            && PlayerStatus.PlayerGuiState.isTypingGui(ps.getPlayerGuiState());
         boolean idle = ps.isIdle();
         if (!ConfigClient.SHOW_PLAYER_ANIMATION_GUI.get() || !ServerSyncedConfig.SHOW_PLAYER_ANIMATION_GUI.get()) pointing = false;
         if (!ConfigClient.SHOW_PLAYER_ANIMATION_TYPING.get() || !ServerSyncedConfig.SHOW_PLAYER_ANIMATION_TYPING.get()) typing = false;
