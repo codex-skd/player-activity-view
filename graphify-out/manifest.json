@@ -20,8 +20,8 @@
     "semantic_hash": "9937b62820eb594f73c1ae9868c71dc4"
   },
   "src/client/java/com/skd/playeractivityview/PlayerActivityClient.java": {
-    "mtime": 1785680444.6771934,
-    "ast_hash": "e4692aff65b5852ec6d45c351e9fc4c7",
+    "mtime": 1785691450.2074482,
+    "ast_hash": "aa32776e5908bdef98d0d4125eacb404",
     "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/PlayerStatusClient.java": {
@@ -30,9 +30,9 @@
     "semantic_hash": "2adb0b1dc4139352bcfb3e4f2063aa94"
   },
   "src/client/java/com/skd/playeractivityview/PlayerStatusManagerClient.java": {
-    "mtime": 1785675460.2550845,
-    "ast_hash": "1c829274fb4932ad8e0e7b38ebcaaa08",
-    "semantic_hash": "1c829274fb4932ad8e0e7b38ebcaaa08"
+    "mtime": 1785693976.1534803,
+    "ast_hash": "f15ab5a60deb6cc0e4d1f574f25ac575",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/ShaderInstanceBlur.java": {
     "mtime": 1785674228.5514007,
@@ -70,69 +70,69 @@
     "semantic_hash": "e1a7d6bcbe8510d5652b0b467a4a397f"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/AbstractContainerScreenAccessorMixin.java": {
-    "mtime": 1785674225.4363914,
+    "mtime": 1785690643.8084579,
     "ast_hash": "309fad8d2ce0c6e1588fd92827810034",
     "semantic_hash": "309fad8d2ce0c6e1588fd92827810034"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/EntityRenderStateTrackerMixin.java": {
-    "mtime": 1785674225.532007,
+    "mtime": 1785690643.8100185,
     "ast_hash": "e71bb8aee8a5465249c4b30d9d85fe19",
     "semantic_hash": "e71bb8aee8a5465249c4b30d9d85fe19"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/ExtractPingIconInjectMixin.java": {
-    "mtime": 1785675202.4346063,
-    "ast_hash": "c78177d7cac638c43cb0fddfce89bb5a",
-    "semantic_hash": "c78177d7cac638c43cb0fddfce89bb5a"
+    "mtime": 1785690643.81153,
+    "ast_hash": "398c07f7071f6cab736eec31f18eefe9",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/GameRendererPreloadUiShaderMixin.java": {
-    "mtime": 1785674225.7448473,
+    "mtime": 1785690643.81153,
     "ast_hash": "ff260a9280a512f687a070c090d71556",
     "semantic_hash": "ff260a9280a512f687a070c090d71556"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/GuiExtractRenderStateMixin.java": {
-    "mtime": 1785675202.4429762,
-    "ast_hash": "a65401b5ffc71aa133b35b2fce9b077d",
-    "semantic_hash": "a65401b5ffc71aa133b35b2fce9b077d"
+    "mtime": 1785690643.8125317,
+    "ast_hash": "be9ed383d34393d311e119d08fddcfe0",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/KeyPressMixin.java": {
-    "mtime": 1785675122.3298461,
-    "ast_hash": "77241b56219cc3e4b703a79006246407",
-    "semantic_hash": "77241b56219cc3e4b703a79006246407"
+    "mtime": 1785690643.8135417,
+    "ast_hash": "386f2ff33ad2ec7f9d87439180435e30",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/MouseButtonPostMixin.java": {
-    "mtime": 1785675121.1723728,
-    "ast_hash": "e152e893deaa0c313768015cbcfe277f",
-    "semantic_hash": "e152e893deaa0c313768015cbcfe277f"
+    "mtime": 1785690643.8145368,
+    "ast_hash": "418f5ed53052a042c0b9edc861986ccd",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/NativeImageAccessorMixin.java": {
-    "mtime": 1785674225.9768162,
+    "mtime": 1785690643.8145368,
     "ast_hash": "818dec9a17e541b4155ef47dced208ac",
     "semantic_hash": "818dec9a17e541b4155ef47dced208ac"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/PostChainResizeMixin.java": {
-    "mtime": 1785674226.1035044,
+    "mtime": 1785690643.815539,
     "ast_hash": "90aa21fe0f5b8597e706b3c9b3f72385",
     "semantic_hash": "90aa21fe0f5b8597e706b3c9b3f72385"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/RenderFramePostMixin.java": {
-    "mtime": 1785675123.4965708,
-    "ast_hash": "62b5a4f4ef06d110a88826e7e3fded9b",
-    "semantic_hash": "62b5a4f4ef06d110a88826e7e3fded9b"
+    "mtime": 1785690643.816079,
+    "ast_hash": "4fddd1bb08858f0bab2147982ec7c220",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/ScreenExtractBackgroundMixin.java": {
-    "mtime": 1785675202.4511263,
-    "ast_hash": "c1a6d06ab6cdcbde9e7c24babdfae564",
-    "semantic_hash": "c1a6d06ab6cdcbde9e7c24babdfae564"
+    "mtime": 1785690643.8165748,
+    "ast_hash": "f41a7878e302b57a2f52cd0632c33114",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/ScreenExtractRenderStateWithTooltipMixin.java": {
-    "mtime": 1785674226.3336504,
+    "mtime": 1785690643.8171165,
     "ast_hash": "26bb3d30827872188b997a95f556b1af",
     "semantic_hash": "26bb3d30827872188b997a95f556b1af"
   },
   "src/client/java/com/skd/playeractivityview/mixin/client/SetupAnimInjectMixin.java": {
-    "mtime": 1785675202.458231,
-    "ast_hash": "d4536692d3c8fd7d7ab610462bc6c83a",
-    "semantic_hash": "d4536692d3c8fd7d7ab610462bc6c83a"
+    "mtime": 1785690643.8176131,
+    "ast_hash": "9d1452c7bad5c9ddb0724100c58fea94",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/particle/ParticleAnimated.java": {
     "mtime": 1785674226.9935687,
@@ -290,12 +290,12 @@
     "semantic_hash": "cdf523456d521fbd6b8e89c9f9b6a91a"
   },
   "src/main/java/com/skd/playeractivityview/mixin/AbstractContainerMenuDoClickMixin.java": {
-    "mtime": 1785674225.1524446,
+    "mtime": 1785690643.8187132,
     "ast_hash": "e705d3e18106a93cd74e06971f8f39ca",
     "semantic_hash": "e705d3e18106a93cd74e06971f8f39ca"
   },
   "src/main/java/com/skd/playeractivityview/mixin/BlockBehaviorUseMixin.java": {
-    "mtime": 1785674225.2956634,
+    "mtime": 1785690643.8194602,
     "ast_hash": "14e324df6dee0ba527a7ac0cd49df7f4",
     "semantic_hash": "14e324df6dee0ba527a7ac0cd49df7f4"
   },
@@ -370,8 +370,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1785681319.5933726,
-    "ast_hash": "48ddbc012a1dcc00d08c733f7166b7aa",
+    "mtime": 1785694021.4234374,
+    "ast_hash": "7af08e72e2669d8cf60c953c64c0dd7f",
     "semantic_hash": ""
   },
   "README.md": {
@@ -390,8 +390,8 @@
     "semantic_hash": ""
   },
   "docs/curseforge/project_vars.md": {
-    "mtime": 1785681304.078235,
-    "ast_hash": "dfdc686ee0fc97e27e27e19d2dc70cc2",
+    "mtime": 1785694034.713719,
+    "ast_hash": "cfa5d11adc6f5cf142c7b54f9e67b2da",
     "semantic_hash": ""
   },
   "docs/curseforge/versions/0.0.0-beta.1.md": {
@@ -592,6 +592,11 @@
   "docs/curseforge/versions/0.0.0-beta.2.md": {
     "mtime": 1785681325.2897844,
     "ast_hash": "5460df39a1bded569bbae3dcc20db51e",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.3.md": {
+    "mtime": 1785694028.797024,
+    "ast_hash": "16f6085d5d31f128c50da088084e0eee",
     "semantic_hash": ""
   }
 }
