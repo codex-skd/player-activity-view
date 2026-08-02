@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.0-beta.2] - 2026-08-02
+
+### Fix
+- **Kick on join / ClassCastException**: `PayloadTypeRegistry.register()` was never invoked — only the
+  networking instance was constructed, so the server dispatched `nbt_client` as `DiscardedPayload` and
+  kicked players on join. The payload types are now registered in `onInitialize` and the clientbound
+  receiver registers directly in `PlayerActivityClient.onInitializeClient()` (the previous late-set hook
+  never ran because `ModInitializer.onInitialize` executes before `ClientModInitializer.onInitializeClient`).
+
 ## [0.0.0-beta.1] - 2026-08-02
 
 ### Port
@@ -19,8 +28,3 @@
 - `PlayerStatus` split: the shared class is client-neutral; `PlayerStatusClient` (client source set) holds the
   particle handles and `ScreenData` of the mirror. The `accesstransformer.cfg` entries that were still needed
   are covered by existing accessor mixins.
-
-## [0.0.0-beta.1] - 2026-08-02
-
-### Port
-- Same as above (initial Fabric port, single entry).
