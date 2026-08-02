@@ -326,7 +326,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient",
-      "community": 8,
+      "community": 46,
       "norm_label": "playerstatusmanagerclient.java"
     },
     {
@@ -336,7 +336,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient",
-      "community": 9,
+      "community": 46,
       "norm_label": "playerstatusmanagerclient"
     },
     {
@@ -346,7 +346,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_logger",
-      "community": 9,
+      "community": 46,
       "norm_label": "logger"
     },
     {
@@ -356,7 +356,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_level",
-      "community": 8,
+      "community": 46,
       "norm_label": "level"
     },
     {
@@ -366,7 +366,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getparticleengine",
-      "community": 9,
+      "community": 46,
       "norm_label": ".getparticleengine()"
     },
     {
@@ -376,7 +376,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "particleengine",
-      "community": 8,
+      "community": 46,
       "norm_label": "particleengine"
     },
     {
@@ -396,7 +396,7 @@
       "source_location": "L151",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_updatenearbyplayerlistandcheckifnewplayernear",
-      "community": 8,
+      "community": 46,
       "norm_label": ".updatenearbyplayerlistandcheckifnewplayernear()"
     },
     {
@@ -406,7 +406,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_tickplayerclient",
-      "community": 9,
+      "community": 51,
       "norm_label": ".tickplayerclient()"
     },
     {
@@ -416,7 +416,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_player",
-      "community": 9,
+      "community": 51,
       "norm_label": "player"
     },
     {
@@ -426,7 +426,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_override",
-      "community": 9,
+      "community": 51,
       "norm_label": "override"
     },
     {
@@ -436,7 +436,7 @@
       "source_location": "L181",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_ticklocalplayerclient",
-      "community": 9,
+      "community": 18,
       "norm_label": ".ticklocalplayerclient()"
     },
     {
@@ -446,7 +446,7 @@
       "source_location": "L247",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_isguifocusedontextbox",
-      "community": 9,
+      "community": 46,
       "norm_label": ".isguifocusedontextbox()"
     },
     {
@@ -456,7 +456,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_screen",
-      "community": 8,
+      "community": 46,
       "norm_label": "screen"
     },
     {
@@ -466,7 +466,7 @@
       "source_location": "L252",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_ticksyncing",
-      "community": 9,
+      "community": 18,
       "norm_label": ".ticksyncing()"
     },
     {
@@ -476,7 +476,7 @@
       "source_location": "L261",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onmouse",
-      "community": 9,
+      "community": 18,
       "norm_label": ".onmouse()"
     },
     {
@@ -486,7 +486,7 @@
       "source_location": "L273",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onkey",
-      "community": 9,
+      "community": 46,
       "norm_label": ".onkey()"
     },
     {
@@ -496,7 +496,7 @@
       "source_location": "L278",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onaction",
-      "community": 9,
+      "community": 18,
       "norm_label": ".onaction()"
     },
     {
@@ -506,7 +506,7 @@
       "source_location": "L287",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getmousepos",
-      "community": 9,
+      "community": 18,
       "norm_label": ".getmousepos()"
     },
     {
@@ -516,7 +516,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_pair",
-      "community": 9,
+      "community": 18,
       "norm_label": "pair"
     },
     {
@@ -536,7 +536,7 @@
       "source_location": "L337",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onguirender",
-      "community": 9,
+      "community": 46,
       "norm_label": ".onguirender()"
     },
     {
@@ -546,7 +546,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_guigraphicsextractor",
-      "community": 9,
+      "community": 46,
       "norm_label": "guigraphicsextractor"
     },
     {
@@ -556,7 +556,7 @@
       "source_location": "L347",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_gettypingplayers",
-      "community": 9,
+      "community": 46,
       "norm_label": ".gettypingplayers()"
     },
     {
@@ -566,7 +566,7 @@
       "source_location": "L368",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_shouldanimate",
-      "community": 9,
+      "community": 51,
       "norm_label": ".shouldanimate()"
     },
     {
@@ -576,7 +576,7 @@
       "source_location": "L373",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_tickotherplayerclient",
-      "community": 9,
+      "community": 51,
       "norm_label": ".tickotherplayerclient()"
     },
     {
@@ -586,7 +586,7 @@
       "source_location": "L493",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_renderpingiconhook",
-      "community": 9,
+      "community": 46,
       "norm_label": ".renderpingiconhook()"
     },
     {
@@ -596,7 +596,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_playerinfo",
-      "community": 8,
+      "community": 46,
       "norm_label": "playerinfo"
     },
     {
@@ -606,7 +606,7 @@
       "source_location": "L503",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onsetupanim",
-      "community": 9,
+      "community": 20,
       "norm_label": ".onsetupanim()"
     },
     {
@@ -616,7 +616,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "humanoidmodel",
-      "community": 9,
+      "community": 1,
       "norm_label": "humanoidmodel"
     },
     {
@@ -626,7 +626,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_humanoidrenderstate",
-      "community": 9,
+      "community": 46,
       "norm_label": "humanoidrenderstate"
     },
     {
@@ -636,7 +636,7 @@
       "source_location": "L539",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_setposetarget",
-      "community": 9,
+      "community": 20,
       "norm_label": ".setposetarget()"
     },
     {
@@ -646,7 +646,7 @@
       "source_location": "L607",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getparticleposition",
-      "community": 9,
+      "community": 51,
       "norm_label": ".getparticleposition()"
     },
     {
@@ -656,7 +656,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_vec3",
-      "community": 8,
+      "community": 46,
       "norm_label": "vec3"
     },
     {
@@ -666,7 +666,7 @@
       "source_location": "L613",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getstatuslocal",
-      "community": 9,
+      "community": 18,
       "norm_label": ".getstatuslocal()"
     },
     {
@@ -676,7 +676,7 @@
       "source_location": "L616",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_createstatus",
-      "community": 9,
+      "community": 51,
       "norm_label": ".createstatus()"
     },
     {
@@ -686,7 +686,7 @@
       "source_location": "L621",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getstatusprevlocal",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getstatusprevlocal()"
     },
     {
@@ -696,7 +696,7 @@
       "source_location": "L623",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getstatusprev",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getstatusprev()"
     },
     {
@@ -706,7 +706,7 @@
       "source_location": "L633",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_checkprev",
-      "community": 9,
+      "community": 20,
       "norm_label": ".checkprev()"
     },
     {
@@ -716,7 +716,7 @@
       "source_location": "L638",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendguistatus",
-      "community": 9,
+      "community": 18,
       "norm_label": ".sendguistatus()"
     },
     {
@@ -726,7 +726,7 @@
       "source_location": "L651",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendchatstatus",
-      "community": 9,
+      "community": 18,
       "norm_label": ".sendchatstatus()"
     },
     {
@@ -736,7 +736,7 @@
       "source_location": "L662",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendmouse",
-      "community": 9,
+      "community": 18,
       "norm_label": ".sendmouse()"
     },
     {
@@ -746,7 +746,7 @@
       "source_location": "L680",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendscreenrenderdata",
-      "community": 9,
+      "community": 18,
       "norm_label": ".sendscreenrenderdata()"
     },
     {
@@ -766,7 +766,7 @@
       "source_location": "L724",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendidle",
-      "community": 9,
+      "community": 18,
       "norm_label": ".sendidle()"
     },
     {
@@ -786,7 +786,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_compoundtag",
-      "community": 9,
+      "community": 18,
       "norm_label": "compoundtag"
     },
     {
@@ -796,7 +796,7 @@
       "source_location": "L745",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_receiveany",
-      "community": 9,
+      "community": 20,
       "norm_label": ".receiveany()"
     },
     {
@@ -806,7 +806,7 @@
       "source_location": "L856",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_receiveitemmove",
-      "community": 9,
+      "community": 46,
       "norm_label": ".receiveitemmove()"
     },
     {
@@ -816,7 +816,7 @@
       "source_location": "L868",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_receiveserverconfig",
-      "community": 9,
+      "community": 18,
       "norm_label": ".receiveserverconfig()"
     },
     {
@@ -826,7 +826,7 @@
       "source_location": "L873",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_renderscreencapture",
-      "community": 9,
+      "community": 46,
       "norm_label": ".renderscreencapture()"
     },
     {
@@ -836,7 +836,7 @@
       "source_location": "L876",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onextractbackground",
-      "community": 9,
+      "community": 20,
       "norm_label": ".onextractbackground()"
     },
     {
@@ -846,7 +846,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_playerstatusmanagerclient_java_callbackinfo",
-      "community": 8,
+      "community": 20,
       "norm_label": "callbackinfo"
     },
     {
@@ -1606,7 +1606,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_client_screen_screenparticlerenderer_screenparticlerenderer_getinstance",
-      "community": 9,
+      "community": 18,
       "norm_label": ".getinstance()"
     },
     {
@@ -1676,7 +1676,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_client_java_com_skd_playeractivityview_loader_clientevents_clientevents_onrenderframepost",
-      "community": 0,
+      "community": 14,
       "norm_label": ".onrenderframepost()"
     },
     {
@@ -3526,7 +3526,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_commandreloadconfig",
-      "community": 14,
+      "community": 8,
       "norm_label": "commandreloadconfig.java"
     },
     {
@@ -3536,7 +3536,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_commandreloadconfig_commandreloadconfig",
-      "community": 14,
+      "community": 8,
       "norm_label": "commandreloadconfig"
     },
     {
@@ -3546,7 +3546,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_commandreloadconfig_commandreloadconfig_register",
-      "community": 14,
+      "community": 8,
       "norm_label": ".register()"
     },
     {
@@ -3556,7 +3556,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "commanddispatcher",
-      "community": 14,
+      "community": 8,
       "norm_label": "commanddispatcher"
     },
     {
@@ -3566,7 +3566,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "commandsourcestack",
-      "community": 14,
+      "community": 8,
       "norm_label": "commandsourcestack"
     },
     {
@@ -3576,7 +3576,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_commandreloadconfig_commandreloadconfig_registerclient",
-      "community": 14,
+      "community": 8,
       "norm_label": ".registerclient()"
     },
     {
@@ -3586,7 +3586,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "fabricclientcommandsource",
-      "community": 14,
+      "community": 8,
       "norm_label": "fabricclientcommandsource"
     },
     {
@@ -3866,7 +3866,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking",
-      "community": 10,
+      "community": 47,
       "norm_label": "playeractivitynetworking.java"
     },
     {
@@ -3876,7 +3876,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking",
-      "community": 10,
+      "community": 47,
       "norm_label": "playeractivitynetworking"
     },
     {
@@ -3886,7 +3886,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_java_compoundtag",
-      "community": 10,
+      "community": 47,
       "norm_label": "compoundtag"
     },
     {
@@ -3896,7 +3896,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_instance",
-      "community": 9,
+      "community": 18,
       "norm_label": ".instance()"
     },
     {
@@ -3906,7 +3906,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_playeractivitynetworking",
-      "community": 10,
+      "community": 47,
       "norm_label": ".playeractivitynetworking()"
     },
     {
@@ -3916,7 +3916,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_clientsendtoserver",
-      "community": 10,
+      "community": 47,
       "norm_label": ".clientsendtoserver()"
     },
     {
@@ -3926,7 +3926,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_clientsendtoserveraddtoqueue",
-      "community": 10,
+      "community": 47,
       "norm_label": ".clientsendtoserveraddtoqueue()"
     },
     {
@@ -3936,7 +3936,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_process1itemfromqueue",
-      "community": 10,
+      "community": 47,
       "norm_label": ".process1itemfromqueue()"
     },
     {
@@ -3946,7 +3946,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_java_level",
-      "community": 10,
+      "community": 47,
       "norm_label": "level"
     },
     {
@@ -3956,7 +3956,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_serversendtoclientall",
-      "community": 10,
+      "community": 47,
       "norm_label": ".serversendtoclientall()"
     },
     {
@@ -3966,7 +3966,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_serversendtoclientplayer",
-      "community": 10,
+      "community": 47,
       "norm_label": ".serversendtoclientplayer()"
     },
     {
@@ -3976,7 +3976,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_java_player",
-      "community": 10,
+      "community": 47,
       "norm_label": "player"
     },
     {
@@ -3986,7 +3986,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_serversendtoclientnear",
-      "community": 10,
+      "community": 47,
       "norm_label": ".serversendtoclientnear()"
     },
     {
@@ -3996,7 +3996,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playeractivitynetworking_java_vec3",
-      "community": 10,
+      "community": 47,
       "norm_label": "vec3"
     },
     {
@@ -4496,7 +4496,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_setnewlerp",
-      "community": 9,
+      "community": 20,
       "norm_label": ".setnewlerp()"
     },
     {
@@ -4536,7 +4536,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getplayerguistate",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getplayerguistate()"
     },
     {
@@ -4546,7 +4546,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_setplayerguistate",
-      "community": 9,
+      "community": 51,
       "norm_label": ".setplayerguistate()"
     },
     {
@@ -4576,7 +4576,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_isplayerguidontsenditeminfo",
-      "community": 9,
+      "community": 3,
       "norm_label": ".isplayerguidontsenditeminfo()"
     },
     {
@@ -4636,7 +4636,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getscreenpospercentx",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getscreenpospercentx()"
     },
     {
@@ -4656,7 +4656,7 @@
       "source_location": "L134",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getscreenpospercenty",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getscreenpospercenty()"
     },
     {
@@ -4676,7 +4676,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getlerptarget",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getlerptarget()"
     },
     {
@@ -4686,7 +4686,7 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_setlerptarget",
-      "community": 9,
+      "community": 20,
       "norm_label": ".setlerptarget()"
     },
     {
@@ -4696,7 +4696,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getlerpprev",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getlerpprev()"
     },
     {
@@ -4706,7 +4706,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_ispressing",
-      "community": 9,
+      "community": 18,
       "norm_label": ".ispressing()"
     },
     {
@@ -4806,7 +4806,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_gettickssincelastaction",
-      "community": 9,
+      "community": 18,
       "norm_label": ".gettickssincelastaction()"
     },
     {
@@ -4816,7 +4816,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_settickssincelastaction",
-      "community": 9,
+      "community": 18,
       "norm_label": ".settickssincelastaction()"
     },
     {
@@ -4826,7 +4826,7 @@
       "source_location": "L151",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_gettypingamplifiersmooth",
-      "community": 9,
+      "community": 51,
       "norm_label": ".gettypingamplifiersmooth()"
     },
     {
@@ -4836,7 +4836,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_settypingamplifiersmooth",
-      "community": 9,
+      "community": 51,
       "norm_label": ".settypingamplifiersmooth()"
     },
     {
@@ -4866,7 +4866,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_isidle",
-      "community": 9,
+      "community": 20,
       "norm_label": ".isidle()"
     },
     {
@@ -4886,7 +4886,7 @@
       "source_location": "L157",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_gettickstomarkplayeridlesyncedforclient",
-      "community": 9,
+      "community": 18,
       "norm_label": ".gettickstomarkplayeridlesyncedforclient()"
     },
     {
@@ -4896,7 +4896,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_settickstomarkplayeridlesyncedforclient",
-      "community": 9,
+      "community": 20,
       "norm_label": ".settickstomarkplayeridlesyncedforclient()"
     },
     {
@@ -4906,7 +4906,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getplayerchatstate",
-      "community": 9,
+      "community": 20,
       "norm_label": ".getplayerchatstate()"
     },
     {
@@ -4996,7 +4996,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getuuid",
-      "community": 9,
+      "community": 18,
       "norm_label": ".getuuid()"
     },
     {
@@ -5006,7 +5006,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_setuuid",
-      "community": 9,
+      "community": 18,
       "norm_label": ".setuuid()"
     },
     {
@@ -5426,7 +5426,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_configclient",
-      "community": 4,
+      "community": 5,
       "norm_label": "configclient.java"
     },
     {
@@ -5446,7 +5446,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_configcommon",
-      "community": 4,
+      "community": 5,
       "norm_label": "configcommon.java"
     },
     {
@@ -5486,7 +5486,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_customarmcorrections_customarmcorrections_loadjsonconfigs",
-      "community": 14,
+      "community": 8,
       "norm_label": ".loadjsonconfigs()"
     },
     {
@@ -5596,7 +5596,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper",
-      "community": 8,
+      "community": 57,
       "norm_label": "serverconfigsynchelper.java"
     },
     {
@@ -5606,7 +5606,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper",
-      "community": 8,
+      "community": 57,
       "norm_label": "serverconfigsynchelper"
     },
     {
@@ -5616,7 +5616,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_getinstance",
-      "community": 8,
+      "community": 57,
       "norm_label": ".getinstance()"
     },
     {
@@ -5626,7 +5626,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_put",
-      "community": 8,
+      "community": 57,
       "norm_label": ".put()"
     },
     {
@@ -5636,7 +5636,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_java_suppresswarnings",
-      "community": 8,
+      "community": 57,
       "norm_label": "suppresswarnings"
     },
     {
@@ -5646,7 +5646,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_init",
-      "community": 8,
+      "community": 57,
       "norm_label": ".init()"
     },
     {
@@ -5656,7 +5656,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_getsyncableconfigonserver",
-      "community": 8,
+      "community": 57,
       "norm_label": ".getsyncableconfigonserver()"
     },
     {
@@ -5666,7 +5666,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_java_compoundtag",
-      "community": 8,
+      "community": 57,
       "norm_label": "compoundtag"
     },
     {
@@ -5676,7 +5676,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_updatesyncableconfigonclient",
-      "community": 8,
+      "community": 57,
       "norm_label": ".updatesyncableconfigonclient()"
     },
     {
@@ -5686,7 +5686,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_config_serversyncedconfig",
-      "community": 0,
+      "community": 5,
       "norm_label": "serversyncedconfig.java"
     },
     {
@@ -6036,7 +6036,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_math_lerpables",
-      "community": 9,
+      "community": 20,
       "norm_label": "lerpables.java"
     },
     {
@@ -6046,7 +6046,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_math_lerpables_lerpables",
-      "community": 9,
+      "community": 20,
       "norm_label": "lerpables"
     },
     {
@@ -6580,10 +6580,30 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[0.0.0-beta.3] - 2026-08-02",
+      "label": "[1.0.0] - 2026-08-02",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L3",
+      "_origin": "ast",
+      "id": "changelog_1_0_0_2026_08_02",
+      "community": 50,
+      "norm_label": "[1.0.0] - 2026-08-02"
+    },
+    {
+      "label": "Release",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "changelog_release",
+      "community": 50,
+      "norm_label": "release"
+    },
+    {
+      "label": "[0.0.0-beta.3] - 2026-08-02",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_3_2026_08_02",
       "community": 50,
@@ -6593,7 +6613,7 @@
       "label": "Fix",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L5",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "changelog_fix",
       "community": 50,
@@ -6603,7 +6623,7 @@
       "label": "[0.0.0-beta.2] - 2026-08-02",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L17",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_2_2026_08_02",
       "community": 50,
@@ -6613,9 +6633,9 @@
       "label": "Fix",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L19",
+      "source_location": "L27",
       "_origin": "ast",
-      "id": "changelog_fix_19",
+      "id": "changelog_fix_27",
       "community": 50,
       "norm_label": "fix"
     },
@@ -6623,7 +6643,7 @@
       "label": "[0.0.0-beta.1] - 2026-08-02",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L26",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_1_2026_08_02",
       "community": 50,
@@ -6633,7 +6653,7 @@
       "label": "Port",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "changelog_port",
       "community": 50,
@@ -7048,6 +7068,16 @@
       "id": "docs_curseforge_versions_0_0_0_beta_3",
       "community": 16,
       "norm_label": "0.0.0-beta.3.md"
+    },
+    {
+      "label": "1.0.0.md",
+      "file_type": "document",
+      "source_file": "docs/curseforge/versions/1.0.0.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_curseforge_versions_1_0_0",
+      "community": 58,
+      "norm_label": "1.0.0.md"
     },
     {
       "label": "Project Description",
@@ -21462,7 +21492,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L26",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_1_2026_08_02",
@@ -21472,7 +21502,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L17",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_2_2026_08_02",
@@ -21482,7 +21512,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L3",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_3_2026_08_02",
@@ -21492,7 +21522,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_1_0_0_2026_08_02",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
       "source_location": "L5",
+      "weight": 1.0,
+      "source": "changelog_1_0_0_2026_08_02",
+      "target": "changelog_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_3_2026_08_02",
       "target": "changelog_fix",
@@ -21502,17 +21552,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L19",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_2_2026_08_02",
-      "target": "changelog_fix_19",
+      "target": "changelog_fix_27",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_1_2026_08_02",
       "target": "changelog_port",
@@ -22022,5 +22072,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b031c445e6a30270f7185ddd0f2dca942da0f3c5"
+  "built_at_commit": "086783ee55235a0cd8d003b411ea9a81fc84367d"
 }
