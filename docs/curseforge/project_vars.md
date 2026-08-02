@@ -36,13 +36,13 @@ minecraft/26.2/neoforge-26.2.0.32-beta/production
 ## Tag
 
 Formato: `<mc-version>-<framework>-<version>`
-Ejemplo: `26.2-neoforge-0.0.0-beta.2`
+Ejemplo: `26.2-neoforge-0.0.0-beta.3`
 
 ## Parámetros del upload
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Player Activity View (0.0.0-beta.2)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Player Activity View (0.0.0-beta.3)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
 | `releaseType` | `release` o `beta` | Según el tipo de versión |
@@ -82,7 +82,7 @@ release_type = beta
 
 <hr>
 
-<p><strong>JAR</strong>: <code>player_activity_view-26.2-neoforge-0.0.0-beta.2.jar</code></p>
+<p><strong>JAR</strong>: <code>player_activity_view-26.2-neoforge-0.0.0-beta.3.jar</code></p>
 ```
 
 ## Subir archivo (JAR)
