@@ -20,9 +20,9 @@
     "semantic_hash": "9937b62820eb594f73c1ae9868c71dc4"
   },
   "src/client/java/com/skd/playeractivityview/PlayerActivityClient.java": {
-    "mtime": 1785675167.112026,
-    "ast_hash": "daddc60271c2ebb4621e8f0fa09138ff",
-    "semantic_hash": "daddc60271c2ebb4621e8f0fa09138ff"
+    "mtime": 1785680444.6771934,
+    "ast_hash": "e4692aff65b5852ec6d45c351e9fc4c7",
+    "semantic_hash": ""
   },
   "src/client/java/com/skd/playeractivityview/PlayerStatusClient.java": {
     "mtime": 1785675337.306279,
@@ -205,9 +205,9 @@
     "semantic_hash": "8f3909edcf9551a7abd04e2c7c501cdb"
   },
   "src/main/java/com/skd/playeractivityview/PlayerActivity.java": {
-    "mtime": 1785674878.70706,
-    "ast_hash": "8ea0a52a52c862a1b22802ceaddecaaa",
-    "semantic_hash": "8ea0a52a52c862a1b22802ceaddecaaa"
+    "mtime": 1785680428.0469635,
+    "ast_hash": "6517680ab7ed4052f8a0f9f1bcb8fad6",
+    "semantic_hash": ""
   },
   "src/main/java/com/skd/playeractivityview/PlayerActivityNetworking.java": {
     "mtime": 1785674227.8886168,
@@ -215,9 +215,9 @@
     "semantic_hash": "cf333689230233fdc6bf279decbb546e"
   },
   "src/main/java/com/skd/playeractivityview/PlayerActivityNetworkingFabric.java": {
-    "mtime": 1785675405.3107524,
-    "ast_hash": "92a80e2cf2238b65b3b7ab3330796810",
-    "semantic_hash": "92a80e2cf2238b65b3b7ab3330796810"
+    "mtime": 1785680452.2182975,
+    "ast_hash": "e06dba2cff9c4a42b56c8582d3e9a94d",
+    "semantic_hash": ""
   },
   "src/main/java/com/skd/playeractivityview/PlayerStatus.java": {
     "mtime": 1785675330.2008145,
@@ -358,5 +358,235 @@
     "mtime": 1785675129.1907413,
     "ast_hash": "b281e075405dd28e9b0e426cc9e02967",
     "semantic_hash": "b281e075405dd28e9b0e426cc9e02967"
+  },
+  ".claude/CLAUDE.md": {
+    "mtime": 1785673949.0438085,
+    "ast_hash": "2d30e670017d3b3c9db68195c0cb54e6",
+    "semantic_hash": ""
+  },
+  ".gitlab-ci.yml": {
+    "mtime": 1785673949.0449245,
+    "ast_hash": "50a9ffe86fb8e94941a257b184278b82",
+    "semantic_hash": ""
+  },
+  "CHANGELOG.md": {
+    "mtime": 1785675591.366919,
+    "ast_hash": "dc3d0ea93c26f0d23dcf9c32a9ff5ec8",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1785675583.4375293,
+    "ast_hash": "3523dd0ba52e3d3504d66e635d376b21",
+    "semantic_hash": ""
+  },
+  "docs/WORKFLOW_PLAYER_ACTIVITY_VIEW_26-2.md": {
+    "mtime": 1785675570.9208221,
+    "ast_hash": "6ef0e9ba594f2bc619507cf6cf6b70b0",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/project_description.md": {
+    "mtime": 1785673949.0469482,
+    "ast_hash": "5b8e28c48d841239e4cbdebfa638e797",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/project_vars.md": {
+    "mtime": 1785680106.2000277,
+    "ast_hash": "5131e430bbbf45035b89a8346bf83b6b",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.1.md": {
+    "mtime": 1785675627.328053,
+    "ast_hash": "bded1175ad07e299fc3a8c8dfb23df8b",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/icon.png": {
+    "mtime": 1785675135.237972,
+    "ast_hash": "6db6fa9ae660c5e01ea3f48a6b47284c",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/anvil.png": {
+    "mtime": 1785673949.120692,
+    "ast_hash": "387d5688d66b17a6786396cf9055502e",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/beacon.png": {
+    "mtime": 1785673949.120692,
+    "ast_hash": "7ba1e76109e82a7c5b56ba3c89527337",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/book.png": {
+    "mtime": 1785673949.1217618,
+    "ast_hash": "c0c9d60c6e6877f7278aebe25c0ed076",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/brewing_stand.png": {
+    "mtime": 1785673949.1217618,
+    "ast_hash": "5c93831e3b582edc9eadb08ceb171411",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_idle_0.png": {
+    "mtime": 1785673949.1217618,
+    "ast_hash": "a0cfbfa79cd5b44b4ecbd3ab4caddd95",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_idle_1.png": {
+    "mtime": 1785673949.1217618,
+    "ast_hash": "55b09ca6cdb4c03fcfe7ffef810fd354",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_typing_0.png": {
+    "mtime": 1785673949.1229172,
+    "ast_hash": "a0cfbfa79cd5b44b4ecbd3ab4caddd95",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_typing_1.png": {
+    "mtime": 1785673949.1229172,
+    "ast_hash": "cc62854e4ea895aeff28908d7ee0b106",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_typing_2.png": {
+    "mtime": 1785673949.1229172,
+    "ast_hash": "bb0112611c6d8e0e8a501d520ffe555b",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_typing_3.png": {
+    "mtime": 1785673949.1229172,
+    "ast_hash": "800a0b4f53c756127214daff6916b200",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_typing_4.png": {
+    "mtime": 1785673949.1240404,
+    "ast_hash": "d74d582933eef7beed1e416dd2180a09",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chat_typing_5.png": {
+    "mtime": 1785673949.1240404,
+    "ast_hash": "b12a272e07bf7cbd7f2903e0604568df",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chest_0.png": {
+    "mtime": 1785673949.1240404,
+    "ast_hash": "ec8979d05e29b6ae1e6a7e3afeb09108",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chest_1.png": {
+    "mtime": 1785673949.1240404,
+    "ast_hash": "6078152fe7730adf0322cd6551dc0cde",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/chest_2.png": {
+    "mtime": 1785673949.1250367,
+    "ast_hash": "5c752a633045eeb29bd00151e7c1f4de",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/command_block.png": {
+    "mtime": 1785673949.1250367,
+    "ast_hash": "2eae57f345fd1d7c1c7a50785efbc878",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/crafting_0.png": {
+    "mtime": 1785673949.1250367,
+    "ast_hash": "b3d48b57422293e9d2ffd5355534a5fc",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/crafting_1.png": {
+    "mtime": 1785673949.1250367,
+    "ast_hash": "989356fc40d8312e51dc0506a0421f27",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/crafting_2.png": {
+    "mtime": 1785673949.1250367,
+    "ast_hash": "6c98c0542513a6bcd39feacc6cf4978b",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/dispenser.png": {
+    "mtime": 1785673949.1250367,
+    "ast_hash": "32755defcccdbf6e6988b88591d71a4c",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/enchanting_table.png": {
+    "mtime": 1785673949.12638,
+    "ast_hash": "d9fdeff743f690d512c887ca4e83d3e1",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/escape_menu_0.png": {
+    "mtime": 1785673949.12638,
+    "ast_hash": "28f522e7af37eeb6e1211de3281ed6b4",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/escape_menu_1.png": {
+    "mtime": 1785673949.12638,
+    "ast_hash": "ccc65ab2058ab62b74b99622e0217f41",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/escape_menu_2.png": {
+    "mtime": 1785673949.12638,
+    "ast_hash": "55bf53df56d6888c00ebb2ef80e194d9",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/furnace.png": {
+    "mtime": 1785673949.127382,
+    "ast_hash": "6e1b425ae879ff383d7f268a5f4eb043",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/grindstone.png": {
+    "mtime": 1785673949.127382,
+    "ast_hash": "529b39c65da240219712513962731686",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/hopper.png": {
+    "mtime": 1785673949.127382,
+    "ast_hash": "43f0750ddc9e0d82433cb76b1bd80a6c",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/horse.png": {
+    "mtime": 1785673949.127382,
+    "ast_hash": "79e4f0f0c6c2e27a0b160e1b94b11a20",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/idle.png": {
+    "mtime": 1785673949.128397,
+    "ast_hash": "ee61284bcca639f65e471a410ab8c952",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/inventory_0.png": {
+    "mtime": 1785673949.128397,
+    "ast_hash": "0e4409a6f1defebc74b2fd07fc85ea6e",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/inventory_1.png": {
+    "mtime": 1785673949.128397,
+    "ast_hash": "dfb7858b0724d4818a9c07ea704b816f",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/inventory_2.png": {
+    "mtime": 1785673949.128397,
+    "ast_hash": "0f174d8fa17cce6421a359fe3aff0908",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/loom.png": {
+    "mtime": 1785673949.129406,
+    "ast_hash": "6122b59f16338cd15bf4cf7f6e4abc83",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/misc/mouse.png": {
+    "mtime": 1785673949.129406,
+    "ast_hash": "a5e7686213a03ce94d57c8fc37bf9521",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/shulker_box.png": {
+    "mtime": 1785673949.129406,
+    "ast_hash": "2bd5ff3b324e69c21ec4394a84863b4d",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/sign.png": {
+    "mtime": 1785673949.129406,
+    "ast_hash": "24577ea2010ea8ab33c848963cb3b990",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/player_activity_view/textures/particle/villager.png": {
+    "mtime": 1785673949.1305628,
+    "ast_hash": "90f69445c9867925f00dfa3a60f5b124",
+    "semantic_hash": ""
   }
 }
