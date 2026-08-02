@@ -36,10 +36,10 @@ public class PlayerActivityClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.level != null && client.player != null) {
-                getPlayerStatusManagerClient().tickGame();
                 for (net.minecraft.world.entity.player.Player p : client.level.players()) {
                     getPlayerStatusManagerClient().tickPlayerClient(p);
                 }
+                getPlayerStatusManagerClient().tickGame();
             }
         });
 

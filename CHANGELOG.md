@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.0-beta.3] - 2026-08-02
+
+### Fix
+- **Screen mirror / GUI visualizer not updating**: the client ticked `tickGame()` before
+  `tickPlayerClient()`, so `playerGuiState` was still `NONE` when `tickGame` evaluated the capture
+  condition — `canRenderNewGUI` was true but `validGui` was false on the frame the GUI opened, and by
+  the next tick `lastScreen == screen` made `canRenderNewGUI` false. The screen capture therefore only
+  happened once per session. Reordered the client tick so `tickPlayerClient` runs before `tickGame`
+  (matching NeoForge, where `PlayerTickEvent` precedes `ClientTickEvent.Post`), restoring live screen
+  mirror updates.
+- **NPE on chunked screen packets**: the partial-buffer guard for multi-packet screen data could hit
+  `existing == null` when the `packetIndex=1` chunk arrived before `packetIndex=0`; the receiver now
+  tolerates out-of-order chunks instead of throwing.
+
 ## [0.0.0-beta.2] - 2026-08-02
 
 ### Fix
