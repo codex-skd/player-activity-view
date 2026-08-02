@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0] - 2026-08-02
+
+### Release
+- First stable release for Minecraft 26.2. Promoted from beta after 3 beta iterations: typing
+  indicators, GUI visualizer, live screen mirror, idle detection, inventory animations, arm
+  animations, privacy controls and server-synced config are all functional and stable.
+- No code changes from `0.0.0-beta.3`.
+
 ## [0.0.0-beta.3] - 2026-08-02
 
 ### Fix
