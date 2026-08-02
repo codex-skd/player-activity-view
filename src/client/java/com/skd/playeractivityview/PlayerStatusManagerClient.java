@@ -824,18 +824,20 @@ public class PlayerStatusManagerClient extends PlayerStatusManager {
                     status.getScreenData().setLastIndexReceived(packetIndex);
                     if (gameTime <= status.getScreenData().getGameTicksSinceFirstPacket() + 10 && pixelData.length > 0) {
                         byte[] existing = status.getScreenData().getTexturePixelDataPartial();
-                        byte[] combined = new byte[existing.length + pixelData.length];
-                        System.arraycopy(existing, 0, combined, 0, existing.length);
-                        System.arraycopy(pixelData, 0, combined, existing.length, pixelData.length);
-                        status.getScreenData().setTexturePixelDataPartial(combined);
-                        if (packetIndex == packetCount - 1 && status.getScreenData().getTexturePixelDataPartial() != null) {
-                            try {
-                                status.getScreenData().setTexturePixelData(RenderHelper.decompress(status.getScreenData(), ByteBuffer.wrap(status.getScreenData().getTexturePixelDataPartial()), decompSize));
-                                status.getScreenData().markNeedsNewRenderFromPixelData(true);
-                                status.getScreenData().getIsBufferReady().set(true);
-                                RenderHelper.updateScreenTexture(status.getScreenData(), status.getScreenData().getTexturePixelData(),
-                                    status.getScreenData().getWidth(), status.getScreenData().getHeight(), uuid);
-                            } catch (Exception e) { e.printStackTrace(); }
+                        if (existing != null) {
+                            byte[] combined = new byte[existing.length + pixelData.length];
+                            System.arraycopy(existing, 0, combined, 0, existing.length);
+                            System.arraycopy(pixelData, 0, combined, existing.length, pixelData.length);
+                            status.getScreenData().setTexturePixelDataPartial(combined);
+                            if (packetIndex == packetCount - 1 && status.getScreenData().getTexturePixelDataPartial() != null) {
+                                try {
+                                    status.getScreenData().setTexturePixelData(RenderHelper.decompress(status.getScreenData(), ByteBuffer.wrap(status.getScreenData().getTexturePixelDataPartial()), decompSize));
+                                    status.getScreenData().markNeedsNewRenderFromPixelData(true);
+                                    status.getScreenData().getIsBufferReady().set(true);
+                                    RenderHelper.updateScreenTexture(status.getScreenData(), status.getScreenData().getTexturePixelData(),
+                                        status.getScreenData().getWidth(), status.getScreenData().getHeight(), uuid);
+                                } catch (Exception e) { e.printStackTrace(); }
+                            }
                         }
                     }
                 }
