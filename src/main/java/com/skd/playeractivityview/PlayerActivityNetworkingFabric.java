@@ -15,7 +15,6 @@ public class PlayerActivityNetworkingFabric extends PlayerActivityNetworking {
 
     /** Filled in by the client entrypoint (client source set) so the common code stays server-safe. */
     public static Consumer<CompoundTag> clientboundHandler;
-    public static Runnable clientboundRegistration;
 
     public static void register() {
         PayloadTypeRegistry.serverboundPlay().register(PacketNBTFromClient.TYPE, PacketNBTFromClient.STREAM_CODEC);
@@ -23,8 +22,6 @@ public class PlayerActivityNetworkingFabric extends PlayerActivityNetworking {
 
         ServerPlayNetworking.registerGlobalReceiver(PacketNBTFromClient.TYPE, (packet, context) ->
             context.server().execute(() -> packet.handle(context.player())));
-
-        if (clientboundRegistration != null) clientboundRegistration.run();
     }
 
     @Override

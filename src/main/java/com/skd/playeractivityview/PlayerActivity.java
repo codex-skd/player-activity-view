@@ -40,6 +40,7 @@ public class PlayerActivity implements ModInitializer {
         instance = this;
 
         new PlayerActivityNetworkingFabric();
+        PlayerActivityNetworkingFabric.register();
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> currentServer = server);
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> currentServer = null);

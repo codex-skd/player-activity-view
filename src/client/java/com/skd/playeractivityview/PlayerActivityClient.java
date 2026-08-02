@@ -28,9 +28,8 @@ public class PlayerActivityClient implements ClientModInitializer {
     public void onInitializeClient() {
         new ClientEvents();
 
-        PlayerActivityNetworkingFabric.clientboundRegistration = () ->
-            ClientPlayNetworking.registerGlobalReceiver(PacketNBTFromServer.TYPE, (packet, context) ->
-                context.client().execute(() -> PlayerStatusManagerClient.receiveServerPacket(packet.nbt())));
+        ClientPlayNetworking.registerGlobalReceiver(PacketNBTFromServer.TYPE, (packet, context) ->
+            context.client().execute(() -> PlayerStatusManagerClient.receiveServerPacket(packet.nbt())));
 
         PlayerActivityNetworkingFabric.clientboundHandler = data ->
             ClientPlayNetworking.send(new com.skd.playeractivityview.network.PacketNBTFromClient(data));
