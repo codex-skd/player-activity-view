@@ -6580,10 +6580,30 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[0.0.0-beta.1] - 2026-08-02",
+      "label": "[0.0.0-beta.2] - 2026-08-02",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L3",
+      "_origin": "ast",
+      "id": "changelog_0_0_0_beta_2_2026_08_02",
+      "community": 50,
+      "norm_label": "[0.0.0-beta.2] - 2026-08-02"
+    },
+    {
+      "label": "Fix",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "changelog_fix",
+      "community": 50,
+      "norm_label": "fix"
+    },
+    {
+      "label": "[0.0.0-beta.1] - 2026-08-02",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_1_2026_08_02",
       "community": 50,
@@ -6593,29 +6613,9 @@
       "label": "Port",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L5",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "changelog_port",
-      "community": 50,
-      "norm_label": "port"
-    },
-    {
-      "label": "[0.0.0-beta.1] - 2026-08-02",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L23",
-      "_origin": "ast",
-      "id": "changelog_0_0_0_beta_1_2026_08_02_23",
-      "community": 50,
-      "norm_label": "[0.0.0-beta.1] - 2026-08-02"
-    },
-    {
-      "label": "Port",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L25",
-      "_origin": "ast",
-      "id": "changelog_port_25",
       "community": 50,
       "norm_label": "port"
     },
@@ -7008,6 +7008,16 @@
       "id": "docs_curseforge_versions_0_0_0_beta_1",
       "community": 55,
       "norm_label": "0.0.0-beta.1.md"
+    },
+    {
+      "label": "0.0.0-beta.2.md",
+      "file_type": "document",
+      "source_file": "docs/curseforge/versions/0.0.0-beta.2.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_curseforge_versions_0_0_0_beta_2",
+      "community": 56,
+      "norm_label": "0.0.0-beta.2.md"
     },
     {
       "label": "Project Description",
@@ -21422,7 +21432,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L3",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_1_2026_08_02",
@@ -21432,10 +21442,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L23",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "changelog_changelog",
-      "target": "changelog_0_0_0_beta_1_2026_08_02_23",
+      "target": "changelog_0_0_0_beta_2_2026_08_02",
       "confidence_score": 1.0
     },
     {
@@ -21444,18 +21454,18 @@
       "source_file": "CHANGELOG.md",
       "source_location": "L5",
       "weight": 1.0,
-      "source": "changelog_0_0_0_beta_1_2026_08_02",
-      "target": "changelog_port",
+      "source": "changelog_0_0_0_beta_2_2026_08_02",
+      "target": "changelog_fix",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L25",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "changelog_0_0_0_beta_1_2026_08_02_23",
-      "target": "changelog_port_25",
+      "source": "changelog_0_0_0_beta_1_2026_08_02",
+      "target": "changelog_port",
       "confidence_score": 1.0
     },
     {
@@ -21962,5 +21972,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "48a840b9a6c47465ace12dbd3efe49a6fc48e143"
+  "built_at_commit": "740212b00bdf75a4eef9f4c1f081447d926fb5ff"
 }

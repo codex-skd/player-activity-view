@@ -370,8 +370,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1785675591.366919,
-    "ast_hash": "dc3d0ea93c26f0d23dcf9c32a9ff5ec8",
+    "mtime": 1785681319.5933726,
+    "ast_hash": "48ddbc012a1dcc00d08c733f7166b7aa",
     "semantic_hash": ""
   },
   "README.md": {
@@ -390,8 +390,8 @@
     "semantic_hash": ""
   },
   "docs/curseforge/project_vars.md": {
-    "mtime": 1785680106.2000277,
-    "ast_hash": "5131e430bbbf45035b89a8346bf83b6b",
+    "mtime": 1785681304.078235,
+    "ast_hash": "dfdc686ee0fc97e27e27e19d2dc70cc2",
     "semantic_hash": ""
   },
   "docs/curseforge/versions/0.0.0-beta.1.md": {
@@ -587,6 +587,11 @@
   "src/main/resources/assets/player_activity_view/textures/particle/villager.png": {
     "mtime": 1785673949.1305628,
     "ast_hash": "90f69445c9867925f00dfa3a60f5b124",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.2.md": {
+    "mtime": 1785681325.2897844,
+    "ast_hash": "5460df39a1bded569bbae3dcc20db51e",
     "semantic_hash": ""
   }
 }

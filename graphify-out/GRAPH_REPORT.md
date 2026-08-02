@@ -1,16 +1,16 @@
 # Graph Report - 26.2  (2026-08-02)
 
 ## Corpus Check
-- 79 files · ~67,766 words
+- 80 files · ~67,867 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 739 nodes · 1371 edges · 56 communities (31 shown, 25 thin omitted)
+- 740 nodes · 1371 edges · 57 communities (32 shown, 25 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 124 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `48a840b9`
+- Built from commit: `740212b0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -95,7 +95,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (56 total, 25 thin omitted)
+## Communities (57 total, 25 thin omitted)
 
 ### Community 0 - "Rendering Utilities"
 Cohesion: 0.06
@@ -199,7 +199,7 @@ Nodes (5): CallbackInfo, GuiGraphicsExtractor, Inject, Mixin, ScreenExtractRende
 
 ### Community 50 - "Changelog"
 Cohesion: 0.33
-Nodes (5): [0.0.0-beta.1] - 2026-08-02, [0.0.0-beta.1] - 2026-08-02, Changelog, Port, Port
+Nodes (5): [0.0.0-beta.1] - 2026-08-02, [0.0.0-beta.2] - 2026-08-02, Changelog, Fix, Port
 
 ### Community 52 - "CLAUDE.md — player_activity_view (26.2)"
 Cohesion: 0.50
@@ -214,9 +214,9 @@ Nodes (3): CLAUDE.md — player_activity_view (26.2), Prioridad de instrucciones
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `PlayerStatus` connect `Player Status Tracking` to `Rendering Utilities`, `Client Event Handlers`, `Server Configuration Sync`, `Player GUI State`, `Status Management`, `Client Player Status`, `Client GUI Rendering`, `Animation Handling`, `.tickPlayerClient`?**
-  _High betweenness centrality (0.181) - this node is a cross-community bridge._
+  _High betweenness centrality (0.180) - this node is a cross-community bridge._
 - **Why does `PlayerStatusManagerClient` connect `Status Management` to `Client Event Handlers`, `Server Configuration Sync`, `Player Status Tracking`, `Client Player Status`, `Client GUI Rendering`, `Animation Handling`, `.tickPlayerClient`, `Shader Blurring`?**
-  _High betweenness centrality (0.135) - this node is a cross-community bridge._
+  _High betweenness centrality (0.134) - this node is a cross-community bridge._
 - **Why does `ParticleRotating` connect `Particle Effects` to `Client GUI Rendering`, `Sprite Set Handling`?**
   _High betweenness centrality (0.060) - this node is a cross-community bridge._
 - **What connects `NONE`, `CHAT_SCREEN`, `INVENTORY` to the rest of the system?**
