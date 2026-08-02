@@ -335,8 +335,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1785671246.2852702,
-    "ast_hash": "0dc2994113e6d63c7db577e96a5ee869",
+    "mtime": 1785680835.762969,
+    "ast_hash": "55ec7048993696bb14a987fc01d6a03a",
     "semantic_hash": ""
   },
   "README.md": {
@@ -350,8 +350,8 @@
     "semantic_hash": ""
   },
   "docs/curseforge/project_vars.md": {
-    "mtime": 1785611776.8984506,
-    "ast_hash": "f68add4ae6f43445bc37c5b4cef42d95",
+    "mtime": 1785680850.869002,
+    "ast_hash": "3c99f1510ee6d12930a403fb75ae68b4",
     "semantic_hash": ""
   },
   "src/main/resources/assets/player_activity_view/textures/particle/anvil.png": {
@@ -562,6 +562,16 @@
   "docs/curseforge/versions/0.0.0-beta.2.md": {
     "mtime": 1785611771.3800302,
     "ast_hash": "169958b299ca47e10ff88de0a65cd0e4",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.3.md": {
+    "mtime": 1785673417.605899,
+    "ast_hash": "61fde805322d1d08f6dbbfca57b5924d",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.0.md": {
+    "mtime": 1785680844.0858517,
+    "ast_hash": "c850bb219f1d034ac17f1e83edaba498",
     "semantic_hash": ""
   }
 }

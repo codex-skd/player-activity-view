@@ -86,7 +86,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_commandreloadconfig_java",
-      "community": 7,
+      "community": 55,
       "norm_label": "commandreloadconfig.java"
     },
     {
@@ -96,7 +96,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_commandreloadconfig_commandreloadconfig",
-      "community": 7,
+      "community": 55,
       "norm_label": "commandreloadconfig"
     },
     {
@@ -106,7 +106,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_commandreloadconfig_commandreloadconfig_register",
-      "community": 7,
+      "community": 55,
       "norm_label": ".register()"
     },
     {
@@ -116,7 +116,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "commanddispatcher",
-      "community": 7,
+      "community": 55,
       "norm_label": "commanddispatcher"
     },
     {
@@ -126,7 +126,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "commandsourcestack",
-      "community": 7,
+      "community": 55,
       "norm_label": "commandsourcestack"
     },
     {
@@ -406,7 +406,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_1_2_src_main_java_com_skd_playeractivityview_playeractivity_playeractivity_playeractivity",
-      "community": 24,
+      "community": 55,
       "norm_label": ".playeractivity()"
     },
     {
@@ -616,7 +616,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_1_2_src_main_java_com_skd_playeractivityview_playeractivityclient_java",
-      "community": 6,
+      "community": 8,
       "norm_label": "playeractivityclient.java"
     },
     {
@@ -726,7 +726,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playeractivitynetworking_playeractivitynetworking_instance",
-      "community": 1,
+      "community": 30,
       "norm_label": ".instance()"
     },
     {
@@ -1306,7 +1306,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerchatstate",
-      "community": 30,
+      "community": 12,
       "norm_label": "playerchatstate"
     },
     {
@@ -1316,7 +1316,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerchatstate_none",
-      "community": 30,
+      "community": 12,
       "norm_label": "none"
     },
     {
@@ -1326,7 +1326,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerchatstate_chat_focused",
-      "community": 30,
+      "community": 12,
       "norm_label": "chat_focused"
     },
     {
@@ -1336,7 +1336,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerchatstate_chat_typing",
-      "community": 30,
+      "community": 12,
       "norm_label": "chat_typing"
     },
     {
@@ -1516,7 +1516,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_setparticle",
-      "community": 30,
+      "community": 56,
       "norm_label": ".setparticle()"
     },
     {
@@ -1806,7 +1806,7 @@
       "source_location": "L171",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_setparticleidle",
-      "community": 30,
+      "community": 56,
       "norm_label": ".setparticleidle()"
     },
     {
@@ -1856,7 +1856,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getplayerchatstate",
-      "community": 30,
+      "community": 12,
       "norm_label": ".getplayerchatstate()"
     },
     {
@@ -1876,7 +1876,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_playerstatus_playerstatus_getscreendata",
-      "community": 9,
+      "community": 30,
       "norm_label": ".getscreendata()"
     },
     {
@@ -2106,7 +2106,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient",
-      "community": 22,
+      "community": 30,
       "norm_label": "playerstatusmanagerclient.java"
     },
     {
@@ -2116,7 +2116,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient",
-      "community": 22,
+      "community": 30,
       "norm_label": "playerstatusmanagerclient"
     },
     {
@@ -2126,7 +2126,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_logger",
-      "community": 22,
+      "community": 30,
       "norm_label": "logger"
     },
     {
@@ -2136,7 +2136,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_level",
-      "community": 22,
+      "community": 30,
       "norm_label": "level"
     },
     {
@@ -2146,7 +2146,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getparticleengine",
-      "community": 22,
+      "community": 30,
       "norm_label": ".getparticleengine()"
     },
     {
@@ -2156,7 +2156,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "particleengine",
-      "community": 22,
+      "community": 30,
       "norm_label": "particleengine"
     },
     {
@@ -2176,7 +2176,7 @@
       "source_location": "L151",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_updatenearbyplayerlistandcheckifnewplayernear",
-      "community": 22,
+      "community": 30,
       "norm_label": ".updatenearbyplayerlistandcheckifnewplayernear()"
     },
     {
@@ -2226,7 +2226,7 @@
       "source_location": "L247",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_isguifocusedontextbox",
-      "community": 22,
+      "community": 30,
       "norm_label": ".isguifocusedontextbox()"
     },
     {
@@ -2236,7 +2236,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_screen",
-      "community": 22,
+      "community": 30,
       "norm_label": "screen"
     },
     {
@@ -2256,7 +2256,7 @@
       "source_location": "L261",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onmouse",
-      "community": 22,
+      "community": 30,
       "norm_label": ".onmouse()"
     },
     {
@@ -2266,7 +2266,7 @@
       "source_location": "L273",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onkey",
-      "community": 22,
+      "community": 30,
       "norm_label": ".onkey()"
     },
     {
@@ -2286,7 +2286,7 @@
       "source_location": "L287",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getmousepos",
-      "community": 22,
+      "community": 30,
       "norm_label": ".getmousepos()"
     },
     {
@@ -2296,7 +2296,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_pair",
-      "community": 22,
+      "community": 30,
       "norm_label": "pair"
     },
     {
@@ -2316,7 +2316,7 @@
       "source_location": "L337",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_onguirender",
-      "community": 22,
+      "community": 30,
       "norm_label": ".onguirender()"
     },
     {
@@ -2326,7 +2326,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_guigraphicsextractor",
-      "community": 22,
+      "community": 30,
       "norm_label": "guigraphicsextractor"
     },
     {
@@ -2336,7 +2336,7 @@
       "source_location": "L347",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_gettypingplayers",
-      "community": 22,
+      "community": 30,
       "norm_label": ".gettypingplayers()"
     },
     {
@@ -2366,7 +2366,7 @@
       "source_location": "L493",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_renderpingiconhook",
-      "community": 22,
+      "community": 30,
       "norm_label": ".renderpingiconhook()"
     },
     {
@@ -2376,7 +2376,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_playerinfo",
-      "community": 22,
+      "community": 30,
       "norm_label": "playerinfo"
     },
     {
@@ -2426,7 +2426,7 @@
       "source_location": "L607",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_getparticleposition",
-      "community": 22,
+      "community": 30,
       "norm_label": ".getparticleposition()"
     },
     {
@@ -2436,7 +2436,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_vec3",
-      "community": 22,
+      "community": 30,
       "norm_label": "vec3"
     },
     {
@@ -2506,7 +2506,7 @@
       "source_location": "L657",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendmouse",
-      "community": 22,
+      "community": 30,
       "norm_label": ".sendmouse()"
     },
     {
@@ -2516,7 +2516,7 @@
       "source_location": "L675",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_sendscreenrenderdata",
-      "community": 22,
+      "community": 30,
       "norm_label": ".sendscreenrenderdata()"
     },
     {
@@ -2556,7 +2556,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_java_compoundtag",
-      "community": 22,
+      "community": 30,
       "norm_label": "compoundtag"
     },
     {
@@ -2566,7 +2566,7 @@
       "source_location": "L834",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_receiveitemmove",
-      "community": 22,
+      "community": 30,
       "norm_label": ".receiveitemmove()"
     },
     {
@@ -2576,7 +2576,7 @@
       "source_location": "L846",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_receiveserverconfig",
-      "community": 22,
+      "community": 30,
       "norm_label": ".receiveserverconfig()"
     },
     {
@@ -2586,7 +2586,7 @@
       "source_location": "L851",
       "_origin": "ast",
       "id": "src_main_java_com_skd_playeractivityview_playerstatusmanagerclient_playerstatusmanagerclient_renderscreencapture",
-      "community": 22,
+      "community": 30,
       "norm_label": ".renderscreencapture()"
     },
     {
@@ -2876,7 +2876,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_shaderinstanceblur_java",
-      "community": 22,
+      "community": 106,
       "norm_label": "shaderinstanceblur.java"
     },
     {
@@ -2886,7 +2886,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_shaderinstanceblur_shaderinstanceblur",
-      "community": 22,
+      "community": 106,
       "norm_label": "shaderinstanceblur"
     },
     {
@@ -2896,7 +2896,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_shaderinstanceblur_shaderinstanceblur_shaderinstanceblur",
-      "community": 22,
+      "community": 106,
       "norm_label": ".shaderinstanceblur()"
     },
     {
@@ -2906,7 +2906,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_shaderinstanceblur_shaderinstanceblur_apply",
-      "community": 22,
+      "community": 106,
       "norm_label": ".apply()"
     },
     {
@@ -2916,7 +2916,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_shaderinstanceblur_shaderinstanceblur_clear",
-      "community": 22,
+      "community": 106,
       "norm_label": ".clear()"
     },
     {
@@ -3136,7 +3136,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_src_main_java_com_skd_playeractivityview_client_screen_renderhelper_renderhelper_decompress",
-      "community": 30,
+      "community": 8,
       "norm_label": ".decompress()"
     },
     {
@@ -3626,7 +3626,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_1_2_src_main_java_com_skd_playeractivityview_client_screen_screenparticlerenderer_screenparticlerenderer_getinstance",
-      "community": 22,
+      "community": 30,
       "norm_label": ".getinstance()"
     },
     {
@@ -3826,7 +3826,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_customarmcorrections_java",
-      "community": 24,
+      "community": 55,
       "norm_label": "customarmcorrections.java"
     },
     {
@@ -3836,7 +3836,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_customarmcorrections_customarmcorrections",
-      "community": 24,
+      "community": 55,
       "norm_label": "customarmcorrections"
     },
     {
@@ -3846,7 +3846,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_customarmcorrections_customarmcorrections_loadjsonconfigs",
-      "community": 24,
+      "community": 55,
       "norm_label": ".loadjsonconfigs()"
     },
     {
@@ -3856,7 +3856,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_customarmcorrections_customarmcorrections_getadjustmentforarm",
-      "community": 24,
+      "community": 55,
       "norm_label": ".getadjustmentforarm()"
     },
     {
@@ -3876,7 +3876,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "equipmentslot",
-      "community": 24,
+      "community": 55,
       "norm_label": "equipmentslot"
     },
     {
@@ -3886,7 +3886,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "vector3f",
-      "community": 24,
+      "community": 55,
       "norm_label": "vector3f"
     },
     {
@@ -3896,7 +3896,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_customarmcorrections_customarmcorrections_tovector3f",
-      "community": 24,
+      "community": 55,
       "norm_label": ".tovector3f()"
     },
     {
@@ -3906,7 +3906,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_customarmcorrections_customarmcorrections_parsefloat",
-      "community": 24,
+      "community": 55,
       "norm_label": ".parsefloat()"
     },
     {
@@ -3956,7 +3956,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_java",
-      "community": 1,
+      "community": 105,
       "norm_label": "serverconfigsynchelper.java"
     },
     {
@@ -3966,7 +3966,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper",
-      "community": 1,
+      "community": 105,
       "norm_label": "serverconfigsynchelper"
     },
     {
@@ -3976,7 +3976,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_getinstance",
-      "community": 1,
+      "community": 105,
       "norm_label": ".getinstance()"
     },
     {
@@ -3986,7 +3986,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_put",
-      "community": 1,
+      "community": 105,
       "norm_label": ".put()"
     },
     {
@@ -3996,7 +3996,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "suppresswarnings",
-      "community": 1,
+      "community": 105,
       "norm_label": "suppresswarnings"
     },
     {
@@ -4006,7 +4006,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_init",
-      "community": 1,
+      "community": 105,
       "norm_label": ".init()"
     },
     {
@@ -4016,7 +4016,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_getsyncableconfigonserver",
-      "community": 1,
+      "community": 105,
       "norm_label": ".getsyncableconfigonserver()"
     },
     {
@@ -4036,7 +4036,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_config_serverconfigsynchelper_serverconfigsynchelper_updatesyncableconfigonclient",
-      "community": 1,
+      "community": 105,
       "norm_label": ".updatesyncableconfigonclient()"
     },
     {
@@ -4926,7 +4926,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_mixin_client_postchainresizemixin_java",
-      "community": 22,
+      "community": 107,
       "norm_label": "postchainresizemixin.java"
     },
     {
@@ -4936,7 +4936,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_mixin_client_postchainresizemixin_postchainresizemixin",
-      "community": 22,
+      "community": 107,
       "norm_label": "postchainresizemixin"
     },
     {
@@ -4956,7 +4956,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_mixin_client_postchainresizemixin_postchainresizemixin_onresize",
-      "community": 22,
+      "community": 107,
       "norm_label": ".onresize()"
     },
     {
@@ -5446,7 +5446,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleanimated_java",
-      "community": 4,
+      "community": 9,
       "norm_label": "particleanimated.java"
     },
     {
@@ -5456,7 +5456,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleanimated_particleanimated",
-      "community": 4,
+      "community": 9,
       "norm_label": "particleanimated"
     },
     {
@@ -5466,7 +5466,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleanimated_particleanimated_particleanimated",
-      "community": 4,
+      "community": 9,
       "norm_label": ".particleanimated()"
     },
     {
@@ -5486,7 +5486,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleanimated_particleanimated_tick",
-      "community": 4,
+      "community": 9,
       "norm_label": ".tick()"
     },
     {
@@ -5576,7 +5576,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleitem_java",
-      "community": 30,
+      "community": 56,
       "norm_label": "particleitem.java"
     },
     {
@@ -5586,7 +5586,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleitem_particleitem",
-      "community": 30,
+      "community": 56,
       "norm_label": "particleitem"
     },
     {
@@ -5596,7 +5596,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "particle",
-      "community": 30,
+      "community": 56,
       "norm_label": "particle"
     },
     {
@@ -5606,7 +5606,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleitem_particleitem_particleitem",
-      "community": 30,
+      "community": 56,
       "norm_label": ".particleitem()"
     },
     {
@@ -5636,7 +5636,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleitem_particleitem_tick",
-      "community": 4,
+      "community": 56,
       "norm_label": ".tick()"
     },
     {
@@ -5656,7 +5656,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particleitem_particleitem_getgroup",
-      "community": 30,
+      "community": 56,
       "norm_label": ".getgroup()"
     },
     {
@@ -5806,7 +5806,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_1_2_src_main_java_com_skd_playeractivityview_particle_particlerotating_particlerotating_remove",
-      "community": 4,
+      "community": 56,
       "norm_label": ".remove()"
     },
     {
@@ -5966,7 +5966,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particlestaticlod_java",
-      "community": 4,
+      "community": 9,
       "norm_label": "particlestaticlod.java"
     },
     {
@@ -5976,7 +5976,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particlestaticlod_particlestaticlod",
-      "community": 4,
+      "community": 9,
       "norm_label": "particlestaticlod"
     },
     {
@@ -5986,7 +5986,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particlestaticlod_particlestaticlod_particlestaticlod",
-      "community": 4,
+      "community": 9,
       "norm_label": ".particlestaticlod()"
     },
     {
@@ -6006,7 +6006,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_particle_particlestaticlod_particlestaticlod_setparticlefromdistancetocamera",
-      "community": 4,
+      "community": 9,
       "norm_label": ".setparticlefromdistancetocamera()"
     },
     {
@@ -6096,7 +6096,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_src_main_java_com_skd_playeractivityview_render_dynamicscreenrenderer_java",
-      "community": 9,
+      "community": 4,
       "norm_label": "dynamicscreenrenderer.java"
     },
     {
@@ -6106,7 +6106,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_src_main_java_com_skd_playeractivityview_render_dynamicscreenrenderer_dynamicscreenrenderer",
-      "community": 9,
+      "community": 4,
       "norm_label": "dynamicscreenrenderer"
     },
     {
@@ -6126,7 +6126,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_src_main_java_com_skd_playeractivityview_render_dynamicscreenrenderer_dynamicscreenrenderer_onsubmitcustomgeometry",
-      "community": 9,
+      "community": 4,
       "norm_label": ".onsubmitcustomgeometry()"
     },
     {
@@ -6136,7 +6136,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "submitcustomgeometryevent",
-      "community": 9,
+      "community": 4,
       "norm_label": "submitcustomgeometryevent"
     },
     {
@@ -6146,7 +6146,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_src_main_java_com_skd_playeractivityview_render_dynamicscreenrenderer_dynamicscreenrenderer_quadvertex",
-      "community": 9,
+      "community": 4,
       "norm_label": ".quadvertex()"
     },
     {
@@ -6156,7 +6156,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "vertexconsumer",
-      "community": 9,
+      "community": 4,
       "norm_label": "vertexconsumer"
     },
     {
@@ -6166,7 +6166,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "pose",
-      "community": 9,
+      "community": 4,
       "norm_label": "pose"
     },
     {
@@ -6176,7 +6176,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_src_main_java_com_skd_playeractivityview_render_dynamicscreenrenderer_dynamicscreenrenderer_isvisible",
-      "community": 9,
+      "community": 4,
       "norm_label": ".isvisible()"
     },
     {
@@ -6256,7 +6256,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_spritesets_spritesetplayer_java",
-      "community": 4,
+      "community": 9,
       "norm_label": "spritesetplayer.java"
     },
     {
@@ -6266,7 +6266,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_spritesets_spritesetplayer_spritesetplayer",
-      "community": 4,
+      "community": 9,
       "norm_label": "spritesetplayer"
     },
     {
@@ -6276,7 +6276,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "spriteset",
-      "community": 4,
+      "community": 9,
       "norm_label": "spriteset"
     },
     {
@@ -6296,7 +6296,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_spritesets_spritesetplayer_spritesetplayer_spritesetplayer",
-      "community": 4,
+      "community": 9,
       "norm_label": ".spritesetplayer()"
     },
     {
@@ -6306,7 +6306,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_spritesets_spritesetplayer_spritesetplayer_get",
-      "community": 4,
+      "community": 9,
       "norm_label": ".get()"
     },
     {
@@ -6326,7 +6326,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "randomsource",
-      "community": 4,
+      "community": 9,
       "norm_label": "randomsource"
     },
     {
@@ -6336,7 +6336,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "g_proyectos_mods_minecraft_player_activity_view_src_main_java_com_skd_playeractivityview_spritesets_spritesetplayer_spritesetplayer_first",
-      "community": 4,
+      "community": 9,
       "norm_label": ".first()"
     },
     {
@@ -6400,10 +6400,30 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[0.0.0-beta.3] - 2026-08-02",
+      "label": "[1.0.0] - 2026-08-02",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L3",
+      "_origin": "ast",
+      "id": "changelog_1_0_0_2026_08_02",
+      "community": 11,
+      "norm_label": "[1.0.0] - 2026-08-02"
+    },
+    {
+      "label": "Release",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "changelog_release",
+      "community": 11,
+      "norm_label": "release"
+    },
+    {
+      "label": "[0.0.0-beta.3] - 2026-08-02",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_3_2026_08_02",
       "community": 11,
@@ -6413,7 +6433,7 @@
       "label": "Fix",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L5",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "changelog_fix",
       "community": 11,
@@ -6423,7 +6443,7 @@
       "label": "[0.0.0-beta.2] - 2026-08-01",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L13",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_2_2026_08_01",
       "community": 11,
@@ -6433,9 +6453,9 @@
       "label": "Fix",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L15",
+      "source_location": "L23",
       "_origin": "ast",
-      "id": "changelog_fix_15",
+      "id": "changelog_fix_23",
       "community": 11,
       "norm_label": "fix"
     },
@@ -6443,7 +6463,7 @@
       "label": "[0.0.0-beta.1] - 2026-08-01",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L27",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_1_2026_08_01",
       "community": 11,
@@ -6453,7 +6473,7 @@
       "label": "Port",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L29",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "changelog_port",
       "community": 11,
@@ -6675,7 +6695,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_md",
+      "id": "docs_curseforge_project_vars",
       "community": 5,
       "norm_label": "project_vars.md"
     },
@@ -6685,7 +6705,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "id": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "community": 5,
       "norm_label": "curseforge \u2014 variables del proyecto"
     },
@@ -6695,7 +6715,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_proyecto",
+      "id": "docs_curseforge_project_vars_proyecto",
       "community": 5,
       "norm_label": "proyecto"
     },
@@ -6705,7 +6725,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_tokens",
+      "id": "docs_curseforge_project_vars_tokens",
       "community": 5,
       "norm_label": "tokens"
     },
@@ -6715,7 +6735,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_versi\u00f3n_actual",
+      "id": "docs_curseforge_project_vars_versi\u00f3n_actual",
       "community": 5,
       "norm_label": "version actual"
     },
@@ -6725,7 +6745,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_rama",
+      "id": "docs_curseforge_project_vars_rama",
       "community": 5,
       "norm_label": "rama"
     },
@@ -6735,7 +6755,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_tag",
+      "id": "docs_curseforge_project_vars_tag",
       "community": 5,
       "norm_label": "tag"
     },
@@ -6745,7 +6765,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L41",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_par\u00e1metros_del_upload",
+      "id": "docs_curseforge_project_vars_par\u00e1metros_del_upload",
       "community": 5,
       "norm_label": "parametros del upload"
     },
@@ -6755,7 +6775,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L51",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_ids_de_gameversions_para_26_2",
+      "id": "docs_curseforge_project_vars_ids_de_gameversions_para_26_2",
       "community": 5,
       "norm_label": "ids de `gameversions` para 26.2"
     },
@@ -6765,7 +6785,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L64",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_claves_parseables_por_el_script_gen\u00e9rico",
+      "id": "docs_curseforge_project_vars_claves_parseables_por_el_script_gen\u00e9rico",
       "community": 5,
       "norm_label": "claves parseables por el script generico"
     },
@@ -6775,7 +6795,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L73",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_estructura_del_changelog_html",
+      "id": "docs_curseforge_project_vars_estructura_del_changelog_html",
       "community": 5,
       "norm_label": "estructura del changelog (html)"
     },
@@ -6785,7 +6805,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L88",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_subir_archivo_jar",
+      "id": "docs_curseforge_project_vars_subir_archivo_jar",
       "community": 5,
       "norm_label": "subir archivo (jar)"
     },
@@ -6795,7 +6815,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L96",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_verificar_con_get",
+      "id": "docs_curseforge_project_vars_verificar_con_get",
       "community": 5,
       "norm_label": "verificar con get"
     },
@@ -6805,7 +6825,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L103",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_changelog",
+      "id": "docs_curseforge_project_vars_changelog",
       "community": 5,
       "norm_label": "changelog"
     },
@@ -6815,7 +6835,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L110",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_descripcion_del_proyecto",
+      "id": "docs_curseforge_project_vars_descripcion_del_proyecto",
       "community": 5,
       "norm_label": "descripcion del proyecto"
     },
@@ -6825,7 +6845,7 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L114",
       "_origin": "ast",
-      "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_flujo_completo",
+      "id": "docs_curseforge_project_vars_flujo_completo",
       "community": 5,
       "norm_label": "flujo completo"
     },
@@ -6848,6 +6868,26 @@
       "id": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_versions_0_0_0_beta_2_md",
       "community": 44,
       "norm_label": "0.0.0-beta.2.md"
+    },
+    {
+      "label": "0.0.0-beta.3.md",
+      "file_type": "document",
+      "source_file": "docs/curseforge/versions/0.0.0-beta.3.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_curseforge_versions_0_0_0_beta_3",
+      "community": 108,
+      "norm_label": "0.0.0-beta.3.md"
+    },
+    {
+      "label": "1.0.0.md",
+      "file_type": "document",
+      "source_file": "docs/curseforge/versions/1.0.0.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_curseforge_versions_1_0_0",
+      "community": 183,
+      "norm_label": "1.0.0.md"
     }
   ],
   "links": [
@@ -16117,7 +16157,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L27",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_1_2026_08_01",
@@ -16127,7 +16167,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L13",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_2_2026_08_01",
@@ -16137,7 +16177,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L3",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_3_2026_08_02",
@@ -16147,7 +16187,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_1_0_0_2026_08_02",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
       "source_location": "L5",
+      "weight": 1.0,
+      "source": "changelog_1_0_0_2026_08_02",
+      "target": "changelog_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_3_2026_08_02",
       "target": "changelog_fix",
@@ -16157,17 +16217,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L15",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_2_2026_08_01",
-      "target": "changelog_fix_15",
+      "target": "changelog_fix_23",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L29",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_1_2026_08_01",
       "target": "changelog_port",
@@ -16359,8 +16419,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L1",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_md",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "source": "docs_curseforge_project_vars",
+      "target": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "confidence_score": 1.0
     },
     {
@@ -16369,8 +16429,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L103",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_changelog",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_changelog",
       "confidence_score": 1.0
     },
     {
@@ -16379,8 +16439,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L64",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_claves_parseables_por_el_script_gen\u00e9rico",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_claves_parseables_por_el_script_gen\u00e9rico",
       "confidence_score": 1.0
     },
     {
@@ -16389,8 +16449,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L110",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_descripcion_del_proyecto",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_descripcion_del_proyecto",
       "confidence_score": 1.0
     },
     {
@@ -16399,8 +16459,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L73",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_estructura_del_changelog_html",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_estructura_del_changelog_html",
       "confidence_score": 1.0
     },
     {
@@ -16409,8 +16469,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L114",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_flujo_completo",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_flujo_completo",
       "confidence_score": 1.0
     },
     {
@@ -16419,8 +16479,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L41",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_par\u00e1metros_del_upload",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_par\u00e1metros_del_upload",
       "confidence_score": 1.0
     },
     {
@@ -16429,8 +16489,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_proyecto",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_proyecto",
       "confidence_score": 1.0
     },
     {
@@ -16439,8 +16499,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L30",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_rama",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_rama",
       "confidence_score": 1.0
     },
     {
@@ -16449,8 +16509,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L88",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_subir_archivo_jar",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_subir_archivo_jar",
       "confidence_score": 1.0
     },
     {
@@ -16459,8 +16519,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L36",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_tag",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_tag",
       "confidence_score": 1.0
     },
     {
@@ -16469,8 +16529,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L11",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_tokens",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_tokens",
       "confidence_score": 1.0
     },
     {
@@ -16479,8 +16539,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L96",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_verificar_con_get",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_verificar_con_get",
       "confidence_score": 1.0
     },
     {
@@ -16489,8 +16549,8 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L21",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_curseforge_variables_del_proyecto",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_versi\u00f3n_actual",
+      "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
+      "target": "docs_curseforge_project_vars_versi\u00f3n_actual",
       "confidence_score": 1.0
     },
     {
@@ -16499,11 +16559,11 @@
       "source_file": "docs/curseforge/project_vars.md",
       "source_location": "L51",
       "weight": 1.0,
-      "source": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_par\u00e1metros_del_upload",
-      "target": "g_proyectos_mods_minecraft_player_activity_view_26_2_docs_curseforge_project_vars_ids_de_gameversions_para_26_2",
+      "source": "docs_curseforge_project_vars_par\u00e1metros_del_upload",
+      "target": "docs_curseforge_project_vars_ids_de_gameversions_para_26_2",
       "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "57cd5484a74676d944295bdab31772cfc50e22f2"
+  "built_at_commit": "5cd421f13bc3268b35e73ed5b32e86cda4c1a284"
 }

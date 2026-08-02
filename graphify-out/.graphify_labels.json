@@ -54,6 +54,8 @@
   "52": "Inject",
   "53": "Mixin",
   "54": "Logger",
+  "55": ".PlayerActivity",
+  "56": "Particle",
   "57": "BooleanValue",
   "58": "Builder",
   "59": "ConfigValue",
@@ -102,6 +104,10 @@
   "102": "Inject",
   "103": "Mixin",
   "104": "ResourceProvider",
+  "105": "ServerConfigSyncHelper",
+  "106": "ShaderInstanceBlur",
+  "107": "PostChainResizeMixin",
+  "108": "0.0.0-beta.3.md",
   "109": "Mixin",
   "110": "CallbackInfo",
   "111": "Inject",
@@ -175,5 +181,6 @@
   "179": "Player",
   "180": "EntityRenderState",
   "181": "Override",
-  "182": "TextureAtlasSprite"
+  "182": "TextureAtlasSprite",
+  "183": "1.0.0.md"
 }
