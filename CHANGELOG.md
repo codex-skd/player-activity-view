@@ -1,5 +1,12 @@
 # Changelog
 
+
+## [1.0.2] - 2026-08-12
+
+### Change
+
+- **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `player_activity_view-26.1.2-neoforge-26.1.2.78-1.0.2.jar` (se añade la versión de cargador/NeoForge al nombre del archivo). Empaquetado y documentación; sin cambios de funcionalidad.
+
 ## [1.0.1] - 2026-08-02
 
 ### Fix
