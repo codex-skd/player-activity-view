@@ -13,7 +13,7 @@
 | Clase principal | `PlayerActivity` |
 | Display name (Title Case) | `Player Activity View` |
 | Versiones de Minecraft | `26.1.2 y 26.2` |
-| Última versión publicada | `1.0.3` (CurseForge file ID TBD) |
+| Última versión publicada | `1.0.3` (CurseForge file ID 8676996) |
 | Estado | ✅ Release estable 1.0.3 |
 | Rama | `minecraft/26.2/neoforge-26.2.0.45-beta/production` |
 
