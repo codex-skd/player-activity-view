@@ -15,7 +15,7 @@
 | Versiones de Minecraft | `26.1.2 y 26.2` |
 | Última versión publicada | `1.0.3` (CurseForge file ID 8676996) |
 | Estado | ✅ Release estable 1.0.3 |
-| Rama | `minecraft/26.2/neoforge-26.2.0.45-beta/production` |
+| Rama | `minecraft/26.2/neoforge-26.2.0.57/production` |
 
 ### Notas específicas de este mod
 
@@ -61,7 +61,7 @@ Cada subida a CurseForge crea tag: beta `<mc>-neoforge-beta.X` · release `<mc>-
 **1. Desarrollo**
 
 ```bash
-git checkout minecraft/26.2/neoforge-26.2.0.45-beta/production
+git checkout minecraft/26.2/neoforge-26.2.0.57/production
 ./gradlew.bat build
 git add -A
 git commit -m "feat: <descripción>
