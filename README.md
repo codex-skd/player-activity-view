@@ -19,8 +19,8 @@ This mod is a fork of WATUT (What Are They Up To) by Corosus. This is a complete
 
 | | |
 |---|---|
-| Minecraft | 26.1.2 |
-| NeoForge | 26.1.2.78+ |
+| Minecraft | 1.21.1 |
+| NeoForge | 21.1.249+ |
 
 ## Commands
 

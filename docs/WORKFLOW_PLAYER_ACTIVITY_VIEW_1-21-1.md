@@ -12,8 +12,8 @@
 | Mod ID (`gradle.properties`) | `player_activity_view` |
 | Clase principal | `PlayerActivity` |
 | Display name (Title Case) | `Player Activity View` |
-| Versiones de Minecraft | `26.1.2` |
-| Rama | `minecraft/26.1.2/neoforge-26.1.2.78/production` |
+| Versiones de Minecraft | `1.21.1` |
+| Rama | `minecraft/1.21.1/neoforge-21.1.249/production` |
 
 ### Notas específicas de este mod
 
@@ -57,7 +57,7 @@ Cada subida a CurseForge crea tag: beta `<mc>-neoforge-beta.X` · release `<mc>-
 **1. Desarrollo**
 
 ```bash
-git checkout minecraft/26.1.2/neoforge-26.1.2.78/production
+git checkout minecraft/1.21.1/neoforge-21.1.249/production
 ./gradlew.bat build
 git add -A
 git commit -m "feat: <descripción>

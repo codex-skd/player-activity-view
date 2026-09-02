@@ -1,6 +1,45 @@
 # Changelog
 
 
+## [0.0.0-beta.1] - 2026-09-02
+
+### Port
+- Backport a Minecraft `1.21.1` / NeoForge `21.1.249` desde la rama `26.1.2` (v1.0.2), para poder usar el mod
+  en instancias 1.21.1. Nueva rama `minecraft/1.21.1/neoforge-21.1.249/production`.
+- **Capa de render de cliente revertida**: la arquitectura de extracción de render-state de 1.21.2+
+  (`Gui.extractRenderState`, `Screen.extractBackground`, `GuiGraphicsExtractor`, `EntityRenderState`,
+  `SubmitCustomGeometryEvent`) no existe en 1.21.1. Se ha vuelto al enfoque de mixins de WATUT 1.21.0,
+  rebrandeado, conservando los arreglos de comportamiento propios (crop del espejo por tipo de `Screen`,
+  onda seno de brazos al teclear, fade del borde superior, exención del jugador propio):
+  - `GuiExtractRenderStateMixin` → `GuiRenderMixin` (`Gui.render`)
+  - `ScreenExtractRenderStateWithTooltipMixin` → `ScreenRenderWithTooltipMixin` (`Screen.renderWithTooltip`)
+  - `ScreenExtractBackgroundMixin` → `ScreenRenderBackgroundMixin` (`Screen.renderBackground`)
+  - `SetupAnimInjectMixin` → `SetupRotationsInjectMixin` (`PlayerModel.setupAnim`)
+  - `GameRendererPreloadUiShaderMixin` → `GameRendererReloadShadersMixin` (`GameRenderer.reloadShaders`,
+    reconstruye `ShaderInstanceBlur` + shaders `position_tex_blur*` con namespace propio)
+  - `ExtractPingIconInjectMixin` → `RenderPingIconInjectMixin`
+  - `EntityRenderStateTrackerMixin` + `render/EntityRenderStateTracker`: eliminados (1.21.1 pasa la entidad
+    directamente)
+  - `render/DynamicScreenRenderer`: eliminado; el espejo se dibuja vía `CustomParticleEngine` +
+    `ParticleEngineMixin`, como en upstream
+  - añadidos `ParticleEngineMixin`, `TextureAtlasUploadMixin`, `client/CustomParticleEngine`
+- **Reversiones de API**: `Identifier` → `ResourceLocation`; `ClientPacketDistributor` → `PacketDistributor`;
+  `FMLEnvironment.getDist()` → `FMLEnvironment.dist`; `CompoundTag` `getXxxOr` → `getXxx`;
+  `ShaderInstanceBlur` vuelve a extender `ShaderInstance`; `RenderHelper` / `ScreenData` /
+  `ScreenParticleRenderer` / `ByteBufferProcessor` / partículas revertidos a firmas 1.21.1.
+  `accesstransformer.cfg`: nombres SRG → nombres oficiales.
+- **Seguridad en arranque temprano**: `ServerSyncedConfig` gana `isLoaded()` y accesores con fallback al
+  valor por defecto; `ScreenParticleRenderer` / `RenderHelper` los usan, de modo que la primera recarga
+  de shaders (antes de que carguen las configs) ya no lanza *"Cannot get config value before config is
+  loaded"*. `ScreenParticleRenderer` re-ejecuta `setup()` una vez la config está disponible.
+- **build**: `java.toolchain` 25 → 21; `mods.toml` de 1.21.1 (`modLoader`/`loaderVersion`); mixins
+  `JAVA_21`; se quita el `annotationProcessor` explícito de Mixin (lo aporta moddev en 21.1.x, igual que
+  el resto de mods SKD 1.21.1). Sin subir versiones de dependencias/NeoForge.
+- **Verificado**: `gradlew build` en verde; `runClient` llega al menú principal con todos los mixins
+  aplicados, shaders de blur construidos y sin excepciones del mod. **Sin verificar**: comportamiento
+  in-game con otro jugador, y carga junto a un shaderpack / NeOculus.
+
+
 ## [1.0.2] - 2026-08-12
 
 ### Change
