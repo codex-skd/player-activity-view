@@ -1,49 +1,77 @@
 package com.skd.playeractivityview.client.screen;
 
-import java.io.ByteArrayOutputStream;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.zip.Deflater;
-import net.minecraft.client.Minecraft;
+import java.nio.ByteBuffer;
+import java.util.concurrent.*;
+import java.util.function.Function;
 
 public class ByteBufferProcessor {
-    private static ByteBufferProcessor instance;
-    private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final BlockingQueue<ByteBuffer> inputQueue;
+    private final BlockingQueue<ByteBuffer> outputQueue;
+    private final ExecutorService executorService;
+    private final Function<ByteBuffer, ByteBuffer> processingFunction;
+    private volatile boolean isRunning;
 
-    public static ByteBufferProcessor getInstance() {
-        if (instance == null) instance = new ByteBufferProcessor();
-        return instance;
+    public ByteBufferProcessor(Function<ByteBuffer, ByteBuffer> processingFunction) {
+        this.inputQueue = new LinkedBlockingQueue<>();
+        this.outputQueue = new LinkedBlockingQueue<>();
+        this.executorService = Executors.newSingleThreadExecutor();
+        this.processingFunction = processingFunction;
+        this.isRunning = true;
+
+        startProcessing();
     }
 
-    public void compressPixelDataAsync(byte[] inputBytes, ByteBufferProcessorCallback callback) {
-        executor.submit(() -> {
-            try {
-                byte[] compressed = compress(inputBytes);
-                Minecraft.getInstance().execute(() -> callback.onComplete(compressed));
-            } catch (Exception e) {
-                e.printStackTrace();
+    private void startProcessing() {
+        executorService.submit(() -> {
+            while (isRunning || !inputQueue.isEmpty()) {
+                try {
+                    ByteBuffer input = inputQueue.poll(100, TimeUnit.MILLISECONDS);
+                    if (input != null) {
+                        ByteBuffer result = processingFunction.apply(input);
+                        outputQueue.put(result);
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
             }
         });
     }
 
-    public static byte[] compress(byte[] input) {
-        Deflater deflater = new Deflater(Deflater.BEST_SPEED);
-        deflater.setInput(input);
-        deflater.finish();
-        ByteArrayOutputStream bos = new ByteArrayOutputStream(input.length);
-        byte[] buf = new byte[8192];
-        while (!deflater.finished()) {
-            int count = deflater.deflate(buf);
-            bos.write(buf, 0, count);
+    public void submitForProcessing(ByteBuffer buffer) {
+        if (!isRunning) {
+            throw new IllegalStateException("Processor has been shutdown");
         }
-        deflater.end();
-        return bos.toByteArray();
+        try {
+            inputQueue.put(buffer);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Failed to submit buffer for processing", e);
+        }
     }
 
-    public interface ByteBufferProcessorCallback {
-        void onComplete(byte[] compressedData);
+    public ByteBuffer getProcessedBuffer() throws InterruptedException {
+        return outputQueue.poll(100, TimeUnit.MILLISECONDS);
+    }
+
+    public boolean hasProcessedBuffers() {
+        return !outputQueue.isEmpty();
+    }
+
+    public boolean hasWork() {
+        return !inputQueue.isEmpty();
+    }
+
+    public void shutdown() {
+        isRunning = false;
+        executorService.shutdown();
+        try {
+            if (!executorService.awaitTermination(5, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            executorService.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
     }
 }

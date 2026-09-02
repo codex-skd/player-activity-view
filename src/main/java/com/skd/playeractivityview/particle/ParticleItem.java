@@ -1,5 +1,7 @@
 package com.skd.playeractivityview.particle;
 
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleRenderType;
@@ -14,13 +16,17 @@ public class ParticleItem extends Particle {
     }
 
     @Override
+    public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
+    }
+
+    @Override
     public void tick() {
         super.tick();
         if (age >= lifetime) remove();
     }
 
     @Override
-    public ParticleRenderType getGroup() {
+    public ParticleRenderType getRenderType() {
         return ParticleRenderType.NO_RENDER;
     }
 }

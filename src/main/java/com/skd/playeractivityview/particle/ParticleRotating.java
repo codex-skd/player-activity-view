@@ -1,103 +1,183 @@
 package com.skd.playeractivityview.particle;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Axis;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.SingleQuadParticle;
-import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
-import net.minecraft.util.ARGB;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
-public abstract class ParticleRotating extends SingleQuadParticle {
-    public float rotationYaw;
+public abstract class ParticleRotating extends TextureSheetParticle {
+
+    public boolean useCustomRotation = true;
     public float prevRotationYaw;
-    public float rotationPitch;
+    public float rotationYaw;
     public float prevRotationPitch;
-    public float rotationRoll;
+    public float rotationPitch;
     public float prevRotationRoll;
-    private float brightness = 1.0F;
-    private boolean dead = false;
+    public float rotationRoll;
+    public float brightness = 1F;
 
-    protected ParticleRotating(ClientLevel level, double x, double y, double z) {
-        super(level, x, y, z, null);
-        this.gravity = 0.0F;
-        this.lifetime = 0;
-        this.quadSize = 0.3F;
-    }
+    public int despawnCountdown = 40;
+
+    public static ParticleRenderType CUSTOM = new ParticleRenderType() {
+        @Override
+        public @Nullable BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.depthMask(true);
+            RenderSystem.disableBlend();
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+        }
+
+        public void begin(BufferBuilder p_107469_, TextureManager p_107470_) {
+            RenderSystem.depthMask(true);
+            RenderSystem.disableBlend();
+        }
+
+        public String toString() {
+            return "CUSTOM";
+        }
+    };
+
+    public static ParticleRenderType PARTICLE_SHEET_TRANSLUCENT_NO_FACE_CULL = new ParticleRenderType() {
+        public @Nullable BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.depthMask(true);
+            RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_PARTICLES);
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            RenderSystem.disableCull();
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+        }
+
+        public String toString() {
+            return "PARTICLE_SHEET_TRANSLUCENT_NO_FACE_CULL";
+        }
+    };
+
+    public static ParticleRenderType TERRAIN_SHEET_TRANSLUCENT_NO_FACE_CULL = new ParticleRenderType() {
+        public @Nullable BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.depthMask(true);
+            RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            RenderSystem.disableCull();
+            RenderSystem.disableDepthTest();
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+        }
+
+        public String toString() {
+            return "TERRAIN_SHEET_TRANSLUCENT_NO_FACE_CULL";
+        }
+    };
 
     @Override
     public void tick() {
-        prevRotationYaw = rotationYaw;
-        prevRotationPitch = rotationPitch;
-        prevRotationRoll = rotationRoll;
-        super.tick();
+        despawnCountdown--;
+        if (despawnCountdown <= 0) {
+            remove();
+        }
+    }
+
+    public float getColorRed() {
+        return rCol;
+    }
+
+    public float getColorGreen() {
+        return gCol;
+    }
+
+    public float getColorBlue() {
+        return bCol;
+    }
+
+    public void keepAlive() {
+        despawnCountdown = 40;
+    }
+
+    public ParticleRotating(ClientLevel pLevel, double pX, double pY, double pZ) {
+        super(pLevel, pX, pY, pZ);
+    }
+
+    public void setQuadSize(float size) {
+        this.quadSize = size;
+    }
+
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+
+    public ParticleRenderType getRenderType() {
+        return PARTICLE_SHEET_TRANSLUCENT_NO_FACE_CULL;
+    }
+
+    public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
+        Vec3 vec3 = pRenderInfo.getPosition();
+        float f = (float)(Mth.lerp(pPartialTicks, this.xo, this.x) - vec3.x());
+        float f1 = (float)(Mth.lerp(pPartialTicks, this.yo, this.y) - vec3.y());
+        float f2 = (float)(Mth.lerp(pPartialTicks, this.zo, this.z) - vec3.z());
+        Quaternionf quaternion;
+        if (useCustomRotation) {
+            quaternion = new Quaternionf(0, 0, 0, 1);
+            quaternion.mul(Axis.YP.rotationDegrees(Mth.lerp(pPartialTicks, this.prevRotationYaw, rotationYaw)));
+            quaternion.mul(Axis.XP.rotationDegrees(Mth.lerp(pPartialTicks, this.prevRotationPitch, rotationPitch)));
+            quaternion.mul(Axis.ZP.rotationDegrees(Mth.lerp(pPartialTicks, this.prevRotationRoll, rotationRoll)));
+        } else {
+            if (this.roll == 0.0F) {
+                quaternion = pRenderInfo.rotation();
+            } else {
+                quaternion = new Quaternionf(pRenderInfo.rotation());
+                quaternion.rotateZ(Mth.lerp(pPartialTicks, this.oRoll, this.roll));
+            }
+        }
+
+        Vector3f[] avector3f = new Vector3f[]{new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F)};
+        float f3 = this.getQuadSize(pPartialTicks);
+
+        for(int i = 0; i < 4; ++i) {
+            Vector3f vector3f = avector3f[i];
+            vector3f.rotate(quaternion);
+            vector3f.mul(f3);
+            vector3f.add(f, f1, f2);
+        }
+
+        float u0 = this.getU0();
+        float u1 = this.getU1();
+        float v0 = this.getV0();
+        float v1 = this.getV1();
+
+        int j = this.getLightColor(pPartialTicks);
+        pBuffer.addVertex(avector3f[0].x(), avector3f[0].y(), avector3f[0].z()).setUv(u1, v1).setColor(this.rCol, this.gCol, this.bCol, this.alpha).setLight(j);
+        pBuffer.addVertex(avector3f[1].x(), avector3f[1].y(), avector3f[1].z()).setUv(u1, v0).setColor(this.rCol, this.gCol, this.bCol, this.alpha).setLight(j);
+        pBuffer.addVertex(avector3f[2].x(), avector3f[2].y(), avector3f[2].z()).setUv(u0, v0).setColor(this.rCol, this.gCol, this.bCol, this.alpha).setLight(j);
+        pBuffer.addVertex(avector3f[3].x(), avector3f[3].y(), avector3f[3].z()).setUv(u0, v1).setColor(this.rCol, this.gCol, this.bCol, this.alpha).setLight(j);
+    }
+
+    public void setPosPrev(double pX, double pY, double pZ) {
+        this.xo = pX;
+        this.yo = pY;
+        this.zo = pZ;
+    }
+
+    public float getBrightness() {
+        return brightness;
+    }
+
+    public void setBrightness(float brightness) {
+        this.brightness = brightness;
     }
 
     @Override
-    public void extract(QuadParticleRenderState particleTypeRenderState, Camera camera, float partialTickTime) {
-        float yaw = Mth.lerp(partialTickTime, prevRotationYaw, rotationYaw);
-        float pitch = Mth.lerp(partialTickTime, prevRotationPitch, rotationPitch);
-        float roll = Mth.lerp(partialTickTime, prevRotationRoll, rotationRoll);
-        Quaternionf rotation = new Quaternionf();
-        rotation.rotationY(yaw * Mth.DEG_TO_RAD);
-        rotation.rotateX(pitch * Mth.DEG_TO_RAD);
-        rotation.rotateZ(roll * Mth.DEG_TO_RAD);
-        Vec3 pos = camera.position();
-        float x = (float)(Mth.lerp(partialTickTime, this.xo, this.x) - pos.x());
-        float y = (float)(Mth.lerp(partialTickTime, this.yo, this.y) - pos.y());
-        float z = (float)(Mth.lerp(partialTickTime, this.zo, this.z) - pos.z());
-        this.extractRotatedQuadForParticle(particleTypeRenderState, rotation, x, y, z, partialTickTime);
-    }
-
-    protected void extractRotatedQuadForParticle(QuadParticleRenderState particleTypeRenderState, Quaternionf rotation, float x, float y, float z, float partialTickTime) {
-        if (sprite == null) return;
-        particleTypeRenderState.add(
-            getLayer(),
-            x,
-            y,
-            z,
-            rotation.x,
-            rotation.y,
-            rotation.z,
-            rotation.w,
-            getQuadSize(partialTickTime),
-            getU0(),
-            getU1(),
-            getV0(),
-            getV1(),
-            ARGB.colorFromFloat(this.alpha, this.rCol, this.gCol, this.bCol),
-            getLightCoords(partialTickTime)
-        );
-    }
-
-    public void keepAlive() { this.age = 0; }
-
-    @Override
-    public void remove() { this.dead = true; }
-
-    @Override
-    public boolean isAlive() { return !this.dead && this.age < this.lifetime; }
-
-    public void setBrightness(float b) { this.brightness = b; }
-
-    public void setQuadSize(float size) { this.quadSize = size; }
-
-    public void setAlpha(float a) { this.alpha = a; }
-
-    @Override
-    protected int getLightCoords(float partialTick) {
-        int light = super.getLightCoords(partialTick);
+    protected int getLightColor(float partialTick) {
+        int light = super.getLightColor(partialTick);
         int sky = (light >> 16) & 0xFF;
         int block = (int)((light & 0xFF) * brightness);
         return (sky << 16) | (block & 0xFF);
-    }
-
-    @Override
-    public SingleQuadParticle.Layer getLayer() {
-        if (sprite != null) {
-            return SingleQuadParticle.Layer.bySprite(sprite);
-        }
-        return SingleQuadParticle.Layer.TRANSLUCENT;
     }
 }

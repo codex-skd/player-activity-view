@@ -68,9 +68,9 @@ public class ServerConfigSyncHelper {
             if (!nbt.contains(name)) continue;
             Class<?> type = types.get(name);
             Object value;
-            if (type == Boolean.class) value = nbt.getBoolean(name).orElse(false);
-            else if (type == Integer.class) value = nbt.getInt(name).orElse(0);
-            else if (type == Double.class) value = nbt.getDouble(name).orElse(0.0);
+            if (type == Boolean.class) value = nbt.getBoolean(name);
+            else if (type == Integer.class) value = nbt.getInt(name);
+            else if (type == Double.class) value = nbt.getDouble(name);
             else continue;
             Consumer<Object> setter = setters.get(name);
             if (setter != null) setter.accept(value);

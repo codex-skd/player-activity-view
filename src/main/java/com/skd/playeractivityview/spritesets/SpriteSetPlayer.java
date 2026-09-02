@@ -24,7 +24,6 @@ public class SpriteSetPlayer implements net.minecraft.client.particle.SpriteSet 
         return sprites[random.nextInt(sprites.length)];
     }
 
-    @Override
     public TextureAtlasSprite first() {
         if (sprites.length == 0) return null;
         return sprites[0];

@@ -20,8 +20,8 @@ public class ParticleStatic extends ParticleRotating {
     public void tick() { super.tick(); }
 
     @Override
-    protected int getLightCoords(float partialTick) {
-        int light = super.getLightCoords(partialTick);
+    protected int getLightColor(float partialTick) {
+        int light = super.getLightColor(partialTick);
         int sky = (light >> 16) & 0xFF;
         int block = (int)((light & 0xFF) * brightnessVal);
         return (sky << 16) | (Math.min(block, 240) & 0xFF);

@@ -34,22 +34,22 @@ public class PlayerStatusManagerServer extends PlayerStatusManager {
     public void receiveAny(Player player, CompoundTag data) {
         data.putString(PlayerActivityNetworking.NBTDataPlayerUUID, player.getUUID().toString());
         if (data.contains(PlayerActivityNetworking.NBTDataPlayerGuiStatus)) {
-            PlayerStatus.PlayerGuiState state = PlayerStatus.PlayerGuiState.get(data.getIntOr(PlayerActivityNetworking.NBTDataPlayerGuiStatus, 0));
+            PlayerStatus.PlayerGuiState state = PlayerStatus.PlayerGuiState.get(data.getInt(PlayerActivityNetworking.NBTDataPlayerGuiStatus));
             getStatus(player).setPlayerGuiState(state);
         }
         if (data.contains(PlayerActivityNetworking.NBTDataPlayerChatStatus)) {
-            PlayerStatus.PlayerChatState state = PlayerStatus.PlayerChatState.get(data.getIntOr(PlayerActivityNetworking.NBTDataPlayerChatStatus, 0));
+            PlayerStatus.PlayerChatState state = PlayerStatus.PlayerChatState.get(data.getInt(PlayerActivityNetworking.NBTDataPlayerChatStatus));
             getStatus(player).setPlayerChatState(state);
         }
         if (data.contains(PlayerActivityNetworking.NBTDataPlayerIdleTicks)) {
-            handleIdleState(player, data.getIntOr(PlayerActivityNetworking.NBTDataPlayerIdleTicks, 0));
+            handleIdleState(player, data.getInt(PlayerActivityNetworking.NBTDataPlayerIdleTicks));
             data.putInt(PlayerActivityNetworking.NBTDataPlayerTicksToGoIdle, ConfigCommon.TICKS_TO_MARK_PLAYER_IDLE.get());
         }
         if (data.contains(PlayerActivityNetworking.NBTDataPlayerMouseX)) {
             setMouse(player.getUUID(),
-                data.getFloatOr(PlayerActivityNetworking.NBTDataPlayerMouseX, 0f),
-                data.getFloatOr(PlayerActivityNetworking.NBTDataPlayerMouseY, 0f),
-                data.getBooleanOr(PlayerActivityNetworking.NBTDataPlayerMousePressed, false));
+                data.getFloat(PlayerActivityNetworking.NBTDataPlayerMouseX),
+                data.getFloat(PlayerActivityNetworking.NBTDataPlayerMouseY),
+                data.getBoolean(PlayerActivityNetworking.NBTDataPlayerMousePressed));
         }
         getStatus(player).getNbtCache().merge(data);
         if (!data.contains(PlayerActivityNetworking.NBTDataPlayerGuiStatus)

@@ -113,8 +113,7 @@ configurations {
 }
 
 dependencies {
-    // Mixin annotation processor
-    annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
+    // Mixin annotation processor - handled by NeoForge moddev plugin
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

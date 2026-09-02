@@ -16,7 +16,7 @@ public class ParticleDynamic extends ParticleRotating {
     }
 
     @Override
-    public ParticleRenderType getGroup() {
+    public ParticleRenderType getRenderType() {
         return renderType;
     }
 }

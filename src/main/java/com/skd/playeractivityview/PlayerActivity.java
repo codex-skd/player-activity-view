@@ -9,7 +9,7 @@ import com.skd.playeractivityview.network.PacketNBTFromServer;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.players.PlayerList;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
@@ -65,17 +65,13 @@ public class PlayerActivity {
         NeoForge.EVENT_BUS.addListener(this::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(this::onPlayerJoin);
 
-        if (FMLEnvironment.getDist().isClient()) {
+        if (FMLEnvironment.dist.isClient()) {
             com.skd.playeractivityview.loader.ClientEvents clientEvents = new com.skd.playeractivityview.loader.ClientEvents();
             container.getEventBus().addListener(clientEvents::getRegisteredParticles);
             NeoForge.EVENT_BUS.addListener(clientEvents::onRegisterCommandsClient);
             NeoForge.EVENT_BUS.addListener(clientEvents::onGameTick);
             NeoForge.EVENT_BUS.addListener(clientEvents::onMouseEvent);
             NeoForge.EVENT_BUS.addListener(clientEvents::onKeyEvent);
-            NeoForge.EVENT_BUS.addListener(clientEvents::onRenderFramePost);
-
-            com.skd.playeractivityview.render.DynamicScreenRenderer dynamicScreenRenderer = new com.skd.playeractivityview.render.DynamicScreenRenderer();
-            NeoForge.EVENT_BUS.addListener(dynamicScreenRenderer::onSubmitCustomGeometry);
         }
 
         generateJsonConfigFile(configJSONName);
@@ -115,7 +111,7 @@ public class PlayerActivity {
 
     public static void generateJsonConfigFile(String filename) {
         String filePath = "config/" + filename;
-        String contents = getContentsFromResourceLocation(Identifier.fromNamespaceAndPath(MODID, filePath));
+        String contents = getContentsFromResourceLocation(ResourceLocation.fromNamespaceAndPath(MODID, filePath));
         if (!contents.isEmpty()) {
             File fileOut = new File("./config/" + filename);
             if (!fileOut.exists()) {
@@ -128,7 +124,7 @@ public class PlayerActivity {
         }
     }
 
-    public static String getContentsFromResourceLocation(Identifier loc) {
+    public static String getContentsFromResourceLocation(ResourceLocation loc) {
         try {
             String str = "assets/" + loc.toString().replace(":", "/");
             InputStream in = PlayerActivity.class.getClassLoader().getResourceAsStream(str);
@@ -140,14 +136,4 @@ public class PlayerActivity {
     }
 
     public static void dbg(Object obj) {}
-
-    private static net.minecraft.server.packs.resources.ResourceProvider shaderResourceProvider;
-
-    public static void initCustomShaders(net.minecraft.server.packs.resources.ResourceProvider resourceProvider) {
-        shaderResourceProvider = resourceProvider;
-    }
-
-    public static net.minecraft.server.packs.resources.ResourceProvider getShaderResourceProvider() {
-        return shaderResourceProvider;
-    }
 }
