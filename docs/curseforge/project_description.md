@@ -1,6 +1,13 @@
-<h1 align="center">👁️ Player Activity View</h1>
+<h1 align="center">&#128064; Player Activity View</h1>
 
-<p align="center"><strong>See what other players are doing at a glance — typing, idling, browsing, crafting, and more.</strong></p>
+<p align="center"><strong>See what other players are doing at a glance &mdash; typing, idling, browsing menus, crafting, and more.</strong></p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/loader-NeoForge%20%2F%20Fabric-orange?style=plastic&logo=curseforge" alt="NeoForge / Fabric">
+<img src="https://img.shields.io/badge/minecraft-26.1.2%20%7C%2026.2-blue?style=plastic" alt="Minecraft 26.1.2 and 26.2">
+<img src="https://img.shields.io/badge/side-client%20%2B%20server-brightgreen?style=plastic" alt="Client and Server">
+<img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-lightgrey?style=plastic" alt="All Rights Reserved">
+</p>
 
 <br>
 
@@ -8,49 +15,84 @@
 
 <br>
 
-<h2>✨ Overview</h2>
-
-<p>Player Activity View lets you see what other players are doing in real time — whether they're typing in chat, browsing their inventory, using a crafting table, or just standing around idling. Animated particles and on-screen indicators show you exactly what's happening, so you never have to wonder if someone is AFK or just quiet.</p>
-
-<br>
-
-<h2>🎯 Features</h2>
-
-<h3>💬 Typing Indicators</h3>
-<p>See when a player is typing in chat, editing a book, or writing on a sign, with animated particles above their head and an on-screen <em>"is typing..."</em> message.</p>
-
-<h3>🖥️ GUI Visualizer</h3>
-<p>Shows exactly what interface a player is using: inventory, chest, crafting table, furnace, enchanting table, anvil, beacon, brewing stand, dispenser, grindstone, hopper, horse, loom, villager trading, command blocks, and more.</p>
-
-<h3>😴 Idle Detection</h3>
-<p>Automatically detects when players go idle with a configurable timeout (default 5 minutes). Shows an idle icon above their head and in the tab player list.</p>
-
-<h3>📦 Inventory Animations</h3>
-<p>Animated item particles fly between players and containers when items are transferred — you can see items move in real time.</p>
-
-<h3>🦾 Arm Animations</h3>
-<p>Players using GUIs show arm movements: pointing, clicking, typing — bringing life to otherwise static third-person views.</p>
-
-<h3>🔒 Privacy Controls</h3>
-<p>Every feature can be toggled client-side or server-side. Don't want others to see your GUI? Disable it in config.</p>
-
-<h3>⚙️ Server-Synced Config</h3>
-<p>Server owners can control what information is broadcast to all players through a server-side config that syncs to every client.</p>
-
-<br>
-
-<h2>📋 Requirements</h2>
+<h2>&#10024; Overview</h2>
 
 <table>
-<tr><td><strong>Minecraft</strong></td><td>26.1.2</td></tr>
-<tr><td><strong>NeoForge</strong></td><td>26.1.2.78+</td></tr>
+<tr>
+<td width="65%">
+<p>Player Activity View shows what other players are doing in real time &mdash; typing in chat, browsing an inventory, using a crafting table, or just idling. Animated particles and on-screen indicators tell you exactly what's happening, and a small tilted panel in front of each player mirrors the menu they have open. Every feature can be toggled client-side, and server owners can force settings for everyone through a synced config.</p>
+
+<p>A from-scratch reimplementation inspired by <strong>WATUT (What Are They Up To)</strong> by <em>Corosus</em>, modernised for current Minecraft with an independent codebase and no dependency on CoroUtil. Not affiliated with or endorsed by the original author.</p>
+</td>
+<td width="35%" align="center">
+<a href="https://codex.skdragons.com/" target="_blank"><img src="https://node-files.skdragons.com/uploads/MINECRAFT/Codex/logo_codex_stalking_dragons.png" alt="Codex Stalking Dragons" width="160"></a>
+</td>
+</tr>
 </table>
 
 <br>
 
-<h2>🎮 Commands</h2>
+<h2>&#127919; Features</h2>
 
-<p><code>/player_activity_view reloadJSON</code> — Reload arm adjustment configuration from the JSON file.</p>
+<h3>&#128172; Typing Indicators</h3>
+<p>See when a player is typing in chat, editing a book or writing on a sign &mdash; animated particles above their head plus an on-screen <em>"is typing&hellip;"</em> message.</p>
+
+<h3>&#128421;&#65039; GUI Visualizer</h3>
+<p>Shows exactly which interface a player has open: inventory, chest, crafting table, furnace, enchanting table, anvil, beacon, brewing stand, dispenser, grindstone, hopper, horse, loom, villager trading, command blocks and more.</p>
+
+<h3>&#128250; Live Screen Mirror</h3>
+<p>A preview of the player's open menu is captured, cropped and shown as a small tilted panel held in front of them, visible to nearby players.</p>
+
+<h3>&#128564; Idle Detection</h3>
+<p>Detects when players go idle after a configurable timeout, with an idle icon above the head and in the tab list.</p>
+
+<h3>&#128230; Inventory &amp; Arm Animations</h3>
+<p>Animated item particles fly between players and containers when items move; players using GUIs point, click and type instead of standing still.</p>
+
+<h3>&#128274; Privacy &amp; Server-Synced Config</h3>
+<p>Every feature toggles client-side, and a server-side config syncs to every client so server owners control what is broadcast.</p>
+
+<br>
+
+<h2>&#129521; Mod Structure</h2>
+
+<table>
+<tr><th align="left">Area</th><th align="left">What it provides</th></tr>
+<tr><td>status model</td><td>Per-player activity state, its network sync and the idle timer.</td></tr>
+<tr><td>screen mirror</td><td>Framebuffer capture, cropping and the tilted in-world panel render.</td></tr>
+<tr><td>particles</td><td>The typing / inventory-transfer particle system.</td></tr>
+<tr><td>arm adjustments</td><td>The GUI arm-pose animations and their per-item JSON tuning.</td></tr>
+<tr><td>config</td><td>Client and server-synced config.</td></tr>
+</table>
+
+<br>
+
+<h2>&#128203; Requirements</h2>
+
+<table>
+<tr><td><strong>Minecraft / loader / Java</strong></td><td>see <em>Available Versions</em> below</td></tr>
+<tr><td><strong>Dependencies</strong></td><td>Fabric build: Fabric API. NeoForge build: none.</td></tr>
+<tr><td><strong>Side</strong></td><td>Client and Server (client required for the visuals; server for the synced config)</td></tr>
+</table>
+
+<br>
+
+<h2>&#128230; Available Versions</h2>
+
+<table>
+<tr><th align="left">Minecraft</th><th align="left">Loader</th><th align="left">Latest build</th><th align="left">Status</th></tr>
+<tr><td>26.1.2</td><td>NeoForge 26.1.2+</td><td><code>1.0.2</code></td><td>Stable</td></tr>
+<tr><td>26.2</td><td>NeoForge 26.2.0.32-beta+</td><td><code>1.1.0</code></td><td>Stable</td></tr>
+<tr><td>26.2</td><td>Fabric Loader 0.19.3+ / Fabric API</td><td><code>1.0.1</code></td><td>Stable</td></tr>
+</table>
+
+<p><em>All builds share this CurseForge project. Pick the file that matches your loader and Minecraft version. No 1.21.1 build is planned.</em></p>
+
+<br>
+
+<h2>&#127918; Commands</h2>
+
+<p><code>/player_activity_view reloadJSON</code> &mdash; reload the arm-adjustment configuration from the JSON file.</p>
 
 <br>
 
@@ -58,9 +100,9 @@
 
 <br>
 
-<h2>🙏 Credits</h2>
+<h2>&#128591; Credits &amp; License</h2>
 
-<p>This mod is a fork of <strong>WATUT</strong> (What Are They Up To) by <em>Corosus</em>. This is a complete ground-up rewrite and modernization for current NeoForge versions, with no dependency on CoroUtil.</p>
+<p>Player Activity View is a from-scratch reimplementation by <strong>Stalking Dragons</strong>, inspired by <strong>WATUT (What Are They Up To)</strong> by <em>Corosus</em>. It shares no code with WATUT and does not depend on CoroUtil. Released as <strong>All Rights Reserved</strong>. Not affiliated with or endorsed by the original author.</p>
 
 <br>
 <br>
@@ -72,5 +114,5 @@
   <br>
   <a href="https://codex.skdragons.com/">https://codex.skdragons.com/</a>
   <br>
-  <em>Codex Stalking Dragons — Minecraft Modding</em>
+  <em>Codex Stalking Dragons &mdash; Minecraft Modding</em>
 </p>
