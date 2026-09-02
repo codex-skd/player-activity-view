@@ -4,7 +4,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/loader-NeoForge%20%2F%20Fabric-orange?style=plastic&logo=curseforge" alt="NeoForge / Fabric">
-<img src="https://img.shields.io/badge/minecraft-26.1.2%20%7C%2026.2-blue?style=plastic" alt="Minecraft 26.1.2 and 26.2">
+<img src="https://img.shields.io/badge/minecraft-1.21.1%20%7C%2026.1.2%20%7C%2026.2-blue?style=plastic" alt="Minecraft 1.21.1, 26.1.2 and 26.2">
 <img src="https://img.shields.io/badge/side-client%20%2B%20server-brightgreen?style=plastic" alt="Client and Server">
 <img src="https://img.shields.io/badge/license-All%20Rights%20Reserved-lightgrey?style=plastic" alt="All Rights Reserved">
 </p>
@@ -81,12 +81,13 @@
 
 <table>
 <tr><th align="left">Minecraft</th><th align="left">Loader</th><th align="left">Latest build</th><th align="left">Status</th></tr>
+<tr><td>1.21.1</td><td>NeoForge 21.1.249+</td><td><code>0.0.0-beta.1</code></td><td>Beta</td></tr>
 <tr><td>26.1.2</td><td>NeoForge 26.1.2+</td><td><code>1.0.2</code></td><td>Stable</td></tr>
 <tr><td>26.2</td><td>NeoForge 26.2.0.32-beta+</td><td><code>1.1.0</code></td><td>Stable</td></tr>
 <tr><td>26.2</td><td>Fabric Loader 0.19.3+ / Fabric API</td><td><code>1.0.1</code></td><td>Stable</td></tr>
 </table>
 
-<p><em>All builds share this CurseForge project. Pick the file that matches your loader and Minecraft version. No 1.21.1 build is planned.</em></p>
+<p><em>All builds share this CurseForge project. Pick the file that matches your loader and Minecraft version.</em></p>
 
 <br>
 

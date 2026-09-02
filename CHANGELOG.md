@@ -38,6 +38,9 @@
 - **Verificado**: `gradlew build` en verde; `runClient` llega al menú principal con todos los mixins
   aplicados, shaders de blur construidos y sin excepciones del mod. **Sin verificar**: comportamiento
   in-game con otro jugador, y carga junto a un shaderpack / NeOculus.
+- `ServerSyncedConfig`: solo se conservan los 6 accesores `isLoaded()`-guardados que usa la ruta de
+  render de arranque temprano; los otros 15 (leídos solo desde tick/render con mundo ya cargado, donde
+  `.get()` crudo es seguro) eran código muerto y se han quitado.
 
 
 ## [1.0.2] - 2026-08-12
