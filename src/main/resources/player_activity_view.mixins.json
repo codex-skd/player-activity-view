@@ -1,0 +1,26 @@
+{
+  "required": false,
+  "package": "com.skd.playeractivityview.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "client.SetupRotationsInjectMixin",
+    "client.RenderPingIconInjectMixin",
+    "client.GuiRenderMixin",
+    "client.ScreenRenderBackgroundMixin",
+    "client.ScreenRenderWithTooltipMixin",
+    "client.PostChainResizeMixin",
+    "client.GameRendererReloadShadersMixin",
+    "client.ParticleEngineMixin",
+    "client.NativeImageAccessorMixin",
+    "client.TextureAtlasUploadMixin",
+    "client.AbstractContainerScreenAccessorMixin"
+  ],
+  "mixins": [
+    "BlockBehaviorUseMixin",
+    "AbstractContainerMenuDoClickMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "minVersion": "0.8"
+}
