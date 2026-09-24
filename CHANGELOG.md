@@ -1,0 +1,78 @@
+# Changelog
+---
+
+
+## [1.1.0] - 2026-08-19
+
+### Change
+
+- **Actualización de NeoForge**: actualizado de 26.2.0.45-beta a 26.2.0.57.
+- **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `player_activity_view-26.2-neoforge-26.2.0.57-1.1.0.jar`.
+- **Documentación del workflow**: actualizada `docs/WORKFLOW_PLAYER_ACTIVITY_VIEW_26-2.md` para reflejar la nueva rama de trabajo.
+
+## [1.0.3] - 2026-08-18
+
+### Change
+
+- **Actualización de NeoForge**: actualizado de 26.2.0.37-beta a 26.2.0.45-beta.
+- **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `player_activity_view-26.2-neoforge-26.2.0.45-beta-1.0.3.jar`.
+- **Documentación del workflow**: actualizada `docs/WORKFLOW_PLAYER_ACTIVITY_VIEW_26-2.md` para reflejar la nueva rama de trabajo.
+
+## [1.0.2] - 2026-08-12
+
+### Change
+
+- **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `player_activity_view-26.2-neoforge-26.2.0.37-beta-1.0.2.jar` (se añade la versión de cargador/NeoForge al nombre del archivo). Empaquetado y documentación; sin cambios de funcionalidad.
+
+
+## [1.0.1] - 2026-08-05
+
+### Change
+
+- **Recompilado contra NeoForge `26.2.0.37-beta`**: bump de `neo_version` en `gradle.properties` (`26.2.0.32-beta` -> `26.2.0.37-beta`). Verificado con `runServer` (arranque sin errores).
+
+## [1.0.0] - 2026-08-02
+
+### Release
+- First stable release for Minecraft 26.2. Promoted from beta after 3 beta iterations: typing
+  indicators, GUI visualizer, live screen mirror, idle detection, inventory animations, arm
+  animations, privacy controls and server-synced config are all functional and stable.
+- No code changes from `0.0.0-beta.3`.
+
+## [0.0.0-beta.3] - 2026-08-02
+
+### Fix
+- Chat hands now raise when the chat screen is open, not only once text is being typed: the typing
+  pose (arms raised toward the screen, alternating anti-phase sway so one arm rises while the other
+  falls) previously only triggered on `CHAT_TYPING`. Since opening the chat reports `CHAT_FOCUSED`
+  (text box focused, nothing typed yet), the arms stayed down. The pose now applies to any typing
+  GUI (`CHAT_SCREEN`, `EDIT_BOOK`, `EDIT_SIGN`, `COMMAND_BLOCK`) with a chat state other than
+  `NONE`, so the "writing" animation plays from the moment the screen opens.
+
+## [0.0.0-beta.2] - 2026-08-01
+
+### Fix
+- Typing indicator ("X is typing...") no longer renders on screen: `GuiExtractRenderStateMixin` was
+  left with the 26.1.2 signature `(GuiGraphicsExtractor, DeltaTracker)` but NeoForge 26.2.0.37-beta
+  changed `Gui.extractRenderState` to `(DeltaTracker, boolean, boolean)` (it no longer receives the
+  extractor — the HUD extraction now lives in `Hud.extractRenderState`). The mixin failed to apply,
+  so `onGuiRender` never drew the typing overlay. Retargeted the mixin to `Hud.extractRenderState`.
+- Inventory screen mirror no longer shows the whole window: in 26.2 the container background is
+  extracted as a full-screen element, so the element bounding box spanned the entire window and the
+  union with the deterministic panel rectangle could not shrink it. The crop now clamps to the
+  `AbstractContainerScreen` panel rectangle (`leftPos`/`topPos`/`imageWidth`/`imageHeight`) instead
+  of unioning, so the mirror shows just the inventory panel again.
+
+## [0.0.0-beta.1] - 2026-08-01
+
+### Port
+- Full port to Minecraft 26.2 / NeoForge 26.2.0.32-beta from the `26.1.2` branch (v1.0.0). Build
+  metadata updated (`gradle.properties`, `build.gradle`, moddev plugin 2.0.142) and 26.2 API
+  accessors adopted:
+  - `mc.screen` → `mc.gui.screen()` (screen field moved from `Minecraft` to `Gui`)
+  - `mc.getMainRenderTarget()` → `mc.gameRenderer.mainRenderTarget()`
+  - `mc.renderBuffers()` → `mc.gameRenderer.renderBuffers()`
+  - `mc.gameRenderer.getMainCamera()` → `mc.gameRenderer.mainCamera()`
+- Includes the complete feature set of the stable 26.1.2 release: typing indicators, GUI visualizer,
+  live screen mirror, idle detection, inventory animations, arm animations, privacy controls and
+  server-synced config.
