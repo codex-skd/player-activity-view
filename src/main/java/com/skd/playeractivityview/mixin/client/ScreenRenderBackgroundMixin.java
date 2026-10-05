@@ -1,0 +1,50 @@
+package com.skd.playeractivityview.mixin.client;
+
+import com.skd.playeractivityview.client.screen.ScreenParticleRenderer;
+import net.minecraft.client.gui.screens.Screen;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(Screen.class)
+public class ScreenRenderBackgroundMixin {
+    @Inject(
+            method = {
+                    "renderBackground"
+            },
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/Screen;renderMenuBackground(Lnet/minecraft/client/gui/GuiGraphics;)V"),
+            cancellable = true
+    )
+    private void renderBackground(CallbackInfo ci) {
+        if (ScreenParticleRenderer.isRenderingParticleGUI) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = {
+                    "renderBackground*"
+            },
+            at = @At(value = "HEAD"),
+            cancellable = true
+    )
+    private void onRenderBackground(CallbackInfo ci) {
+        if (ScreenParticleRenderer.isRenderingParticleGUI2) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = {
+                    "renderTransparentBackground"
+            },
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;fillGradient(IIIIII)V"),
+            cancellable = true
+    )
+    private void renderBackground3(CallbackInfo ci) {
+        if (ScreenParticleRenderer.isRenderingParticleGUI) {
+            ci.cancel();
+        }
+    }
+}
