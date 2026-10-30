@@ -1,0 +1,26 @@
+{
+	"required": false,
+	"package": "com.skd.playeractivityview.mixin.client",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"PostChainResizeMixin",
+		"GuiExtractRenderStateMixin",
+		"ExtractPingIconInjectMixin",
+		"ScreenExtractBackgroundMixin",
+		"ScreenExtractRenderStateWithTooltipMixin",
+		"GameRendererPreloadUiShaderMixin",
+		"NativeImageAccessorMixin",
+		"EntityRenderStateTrackerMixin",
+		"SetupAnimInjectMixin",
+		"AbstractContainerScreenAccessorMixin",
+		"MouseButtonPostMixin",
+		"KeyPressMixin",
+		"RenderFramePostMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
