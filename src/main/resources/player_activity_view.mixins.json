@@ -1,0 +1,15 @@
+{
+	"required": false,
+	"package": "com.skd.playeractivityview.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"BlockBehaviorUseMixin",
+		"AbstractContainerMenuDoClickMixin"
+	],
+	"injectors": {
+		"defaultRequire": 0
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
